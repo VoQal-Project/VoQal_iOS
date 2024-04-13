@@ -8,9 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C66C2BCABE490067432A /* AppDelegate.swift */; };
-		95B5C66F2BCABE490067432A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C66E2BCABE490067432A /* SceneDelegate.swift */; };
 		95B5C6712BCABE490067432A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C6702BCABE490067432A /* ViewController.swift */; };
-		95B5C6742BCABE490067432A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B5C6722BCABE490067432A /* Main.storyboard */; };
 		95B5C6762BCABE4B0067432A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B5C6752BCABE4B0067432A /* Assets.xcassets */; };
 		95B5C6792BCABE4B0067432A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95B5C6772BCABE4B0067432A /* LaunchScreen.storyboard */; };
 		95B5C6842BCABE4B0067432A /* VoQal_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C6832BCABE4B0067432A /* VoQal_iOSTests.swift */; };
@@ -38,9 +36,7 @@
 /* Begin PBXFileReference section */
 		95B5C6692BCABE490067432A /* VoQal_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoQal_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B5C66C2BCABE490067432A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		95B5C66E2BCABE490067432A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		95B5C6702BCABE490067432A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		95B5C6732BCABE490067432A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		95B5C6752BCABE4B0067432A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95B5C6782BCABE4B0067432A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		95B5C67A2BCABE4B0067432A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -100,9 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				95B5C66C2BCABE490067432A /* AppDelegate.swift */,
-				95B5C66E2BCABE490067432A /* SceneDelegate.swift */,
 				95B5C6702BCABE490067432A /* ViewController.swift */,
-				95B5C6722BCABE490067432A /* Main.storyboard */,
 				95B5C6752BCABE4B0067432A /* Assets.xcassets */,
 				95B5C6772BCABE4B0067432A /* LaunchScreen.storyboard */,
 				95B5C67A2BCABE4B0067432A /* Info.plist */,
@@ -233,7 +227,6 @@
 			files = (
 				95B5C6792BCABE4B0067432A /* LaunchScreen.storyboard in Resources */,
 				95B5C6762BCABE4B0067432A /* Assets.xcassets in Resources */,
-				95B5C6742BCABE490067432A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +253,6 @@
 			files = (
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */,
-				95B5C66F2BCABE490067432A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +289,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		95B5C6722BCABE490067432A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				95B5C6732BCABE490067432A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		95B5C6772BCABE4B0067432A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -442,7 +426,6 @@
 				INFOPLIST_FILE = VoQal_iOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,7 +453,6 @@
 				INFOPLIST_FILE = VoQal_iOS/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
