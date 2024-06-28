@@ -13,8 +13,6 @@ class EmailFinderViewController: UIViewController {
     
     override func loadView() {
         view = emailFinderView
-        
-        setupNavigationBar()
     }
     
     private func setupNavigationBar() {
@@ -27,8 +25,18 @@ class EmailFinderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupNavigationBar()
+        setAddTarget()
     }
     
-
+    private func setAddTarget() {
+        emailFinderView.findEmailButton.addTarget(self, action: #selector(didTapfindBtn), for: .touchUpInside)
+    }
+    
+    @objc private func didTapfindBtn() {
+        let vc = EmailResultViewController()
+        vc.title = "조회 결과"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }

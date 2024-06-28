@@ -43,7 +43,7 @@ class EmailFinderView: UIView, UITextFieldDelegate {
         return textField
     }()
     
-    private let findEmailButton: UIButton = {
+    internal let findEmailButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("조회", for: .normal)

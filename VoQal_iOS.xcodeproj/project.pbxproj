@@ -29,6 +29,8 @@
 		959D942B2C2C7A800014F086 /* RegistrationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D942A2C2C7A800014F086 /* RegistrationData.swift */; };
 		959D942F2C2D66070014F086 /* EmailFinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D942E2C2D66070014F086 /* EmailFinderView.swift */; };
 		959D94312C2D66B80014F086 /* EmailFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D94302C2D66B80014F086 /* EmailFinderViewController.swift */; };
+		959D94362C2EE0D40014F086 /* EmailResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D94352C2EE0D40014F086 /* EmailResultView.swift */; };
+		959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959D94372C2EE7C80014F086 /* EmailResultViewController.swift */; };
 		95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C66C2BCABE490067432A /* AppDelegate.swift */; };
 		95B5C6712BCABE490067432A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C6702BCABE490067432A /* ViewController.swift */; };
 		95B5C6762BCABE4B0067432A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95B5C6752BCABE4B0067432A /* Assets.xcassets */; };
@@ -78,6 +80,8 @@
 		959D942A2C2C7A800014F086 /* RegistrationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationData.swift; sourceTree = "<group>"; };
 		959D942E2C2D66070014F086 /* EmailFinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFinderView.swift; sourceTree = "<group>"; };
 		959D94302C2D66B80014F086 /* EmailFinderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailFinderViewController.swift; sourceTree = "<group>"; };
+		959D94352C2EE0D40014F086 /* EmailResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailResultView.swift; sourceTree = "<group>"; };
+		959D94372C2EE7C80014F086 /* EmailResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailResultViewController.swift; sourceTree = "<group>"; };
 		95B5C6692BCABE490067432A /* VoQal_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VoQal_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B5C66C2BCABE490067432A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95B5C6702BCABE490067432A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +199,6 @@
 				9542B63E2BCD6BEB0060E1BB /* LoginViewController.swift */,
 				9542B6412BCD6C470060E1BB /* RegistrationViewController.swift */,
 				95EA47172BE25CCE00E6631B /* RoleViewController.swift */,
-				959D94302C2D66B80014F086 /* EmailFinderViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -228,7 +231,6 @@
 				9542B6472BCD7FE40060E1BB /* LoginView.swift */,
 				9542B6492BCD7FF10060E1BB /* RegistrationView.swift */,
 				95EA47152BE25CB100E6631B /* RoleView.swift */,
-				959D942E2C2D66070014F086 /* EmailFinderView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -270,6 +272,8 @@
 		959D94322C2DB4410014F086 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				959D942E2C2D66070014F086 /* EmailFinderView.swift */,
+				959D94352C2EE0D40014F086 /* EmailResultView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -277,6 +281,8 @@
 		959D94332C2DB45B0014F086 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				959D94302C2D66B80014F086 /* EmailFinderViewController.swift */,
+				959D94372C2EE7C80014F086 /* EmailResultViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -483,6 +489,8 @@
 			files = (
 				9542B63F2BCD6BEB0060E1BB /* LoginViewController.swift in Sources */,
 				9541D3762BD2AF8600B36977 /* ReservationView.swift in Sources */,
+				959D94362C2EE0D40014F086 /* EmailResultView.swift in Sources */,
+				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				9541D3732BD2AEB100B36977 /* MainTabBarController.swift in Sources */,
 				9541D37C2BD2AFC200B36977 /* ChallengeViewController.swift in Sources */,
