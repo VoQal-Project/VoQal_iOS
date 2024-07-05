@@ -8,12 +8,24 @@
 import UIKit
 
 class EmailResultView: UIView {
-
+    
+    var email: String? {
+        didSet {
+            if let email = email, !email.isEmpty {
+                resultComment.text = "고객님의 정보와 일치하는 이메일입니다."
+                resultEmail.text = email
+            } else {
+                resultComment.text = "고객님의 정보와 일치하는 이메일을 찾을 수 없습니다."
+                resultEmail.text = ""
+            }
+        }
+    }
+    
     private let resultComment: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "SUIT-Regular", size: 13)
-        label.text = "이메일 찾기에 대한 결과 코멘트/이메일 찾기에 대한 결과 코멘트/이메일 찾기에 대한 결과 코멘트/이메일 찾기에 대한 결과 코멘트"
+        label.text = ""
         label.numberOfLines = 2
         label.textAlignment = .center
         
@@ -24,7 +36,7 @@ class EmailResultView: UIView {
         let label = UILabel()
         label.textColor = UIColor.white
         label.font = UIFont(name: "SUIT-Regular", size: 11)
-        label.text = "abcd1234@gmail.com"
+        label.text = ""
         label.textAlignment = .center
         
         return label
@@ -43,6 +55,8 @@ class EmailResultView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        print("\(resultEmail.text ?? "Empty Email")")
+        
         backgroundColor = UIColor(named: "mainBackgroundColor")
         
         addSubViews()
@@ -52,6 +66,8 @@ class EmailResultView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 
     private func addSubViews() {
         addSubview(resultComment)

@@ -9,6 +9,8 @@ import UIKit
 
 class RegistrationView: UIView, UITextFieldDelegate {
     
+    weak var registrationVC: RegistrationViewController?
+
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         
@@ -89,7 +91,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
         return button
     }()
     
-    private let nameField: UITextField = {
+    internal let nameField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "이름", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderColor")!])
         textField.backgroundColor = UIColor(named: "bottomBarColor")
@@ -105,7 +107,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
         return textField
     }()
     
-    private let passwordField: UITextField = {
+    internal let passwordField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "비밀번호", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderColor")!])
         textField.backgroundColor = UIColor(named: "bottomBarColor")
@@ -124,7 +126,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
         return textField
     }()
     
-    private let passwordCheckField: UITextField = {
+    internal let passwordCheckField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "비밀번호확인", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderColor")!])
         textField.backgroundColor = UIColor(named: "bottomBarColor")
@@ -171,7 +173,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
         return view
     }()
     
-    private let contactField: UITextField = {
+    internal let contactField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: "연락처", attributes: [NSAttributedString.Key.foregroundColor : UIColor(named: "placeholderColor")!])
         textField.backgroundColor = UIColor(named: "bottomBarColor")
@@ -383,6 +385,15 @@ class RegistrationView: UIView, UITextFieldDelegate {
         endEditing(true)
     }
     
+    func updateEmailVerificationButton(isVerified: Bool) {
+        emailVerifyButton.alpha = isVerified ? 0.5 : 1.0
+    }
+    
+    func updateNicknameVerificationButton(isVerified: Bool) {
+        nicknameVerifyButton.alpha = isVerified ? 0.5 : 1.0
+    }
+    
+    
     // MARK: - 각 텍스트필드 섹션에 대한 유효성 검증
     var accountErrorMessages: [UITextField: String] = [:]
     
@@ -405,13 +416,14 @@ class RegistrationView: UIView, UITextFieldDelegate {
         
         // account 관련 텍스트필드 유효성 검증
         if textField == self.emailField {
-            if let email = textField.text, !isValidEmail(email) {
+            registrationVC?.isEmailVerified = false
+            if let email = textField.text, !ValidationUtility.isValidEmail(email) {
                 accountErrorMessage = "- 이메일 주소가 정확한지 확인해 주세요."
             }
         }
         
         if textField == self.passwordField {
-            if let password = passwordField.text, !isValidPassword(password){
+            if let password = passwordField.text, !ValidationUtility.isValidPassword(password){
                 accountErrorMessage = "- 비밀번호는 영문 대소문자, 숫자, 특수문자(.!@#$%)를 혼합하여 8~15자로 입력해주세요."
             }
         }
@@ -425,20 +437,21 @@ class RegistrationView: UIView, UITextFieldDelegate {
         // basicInfo 관련 텍스트필드 유효성 검증
         
         if textField == self.nicknameField {
-            if let nickname = nicknameField.text, !isValidNickname(nickname){
+            registrationVC?.isNicknameVerified = false
+            if let nickname = nicknameField.text, !ValidationUtility.isValidNickname(nickname){
                 basicInfoErrorMessage = "- 닉네임은 공백, 특수문자를 제외하여 3~15자로 입력해주세요."
             }
         }
         
         if textField == self.nameField {
-            if let name = nameField.text, !isValidName(name){
-                basicInfoErrorMessage = "- 이름의 형식이 올바르지 않습니다.(2~20자 이내)"
+            if let name = nameField.text, !ValidationUtility.isValidName(name){
+                basicInfoErrorMessage = "- 이름의 형식이 올바르지 않습니다.(공백을 제외한 2~20자 이내)"
             }
         }
         
         if textField == self.contactField {
-            if let contact = contactField.text, !isValidContact(contact){
-                basicInfoErrorMessage = "- 연락처의 형식이 올바르지 않습니다.(- 제외, 11자)"
+            if let contact = contactField.text, !ValidationUtility.isValidContact(contact){
+                basicInfoErrorMessage = "- 연락처의 형식이 올바르지 않습니다.(- 제외, 010으로 시작하는 11자리 번호)"
             }
         }
         
@@ -468,77 +481,9 @@ class RegistrationView: UIView, UITextFieldDelegate {
         basicCheckInfo.text = basicInfoCombinedErrorMessage
         basicCheckInfo.textColor = UIColor(named: "errorColor")
         
-        
-    }
-    
-    // 이메일 유효성 검사 함수 예시
-    func isValidEmail(_ email: String) -> Bool {
-        // 간단한 이메일 유효성 검사 로직을 구현합니다.
-        // 실제로는 더 정교한 검사가 필요합니다.
-        return email.contains("@")
-    }
-    
-    func isValidPassword(_ password: String) -> Bool {
-        let passwordRegex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[.!@#$%]).{8,15}$"
-        let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegex)
-        return passwordTest.evaluate(with: password)
-    }
-    
-    func isValidNickname(_ nickname: String) -> Bool {
-        if nickname.count < 3 || nickname.count > 15 {
-            return false
-        }
-        
-        if nickname.contains(" "){
-            return false
-        }
-        
-        let forbiddenStrings = ["fuck", "shit", "bitch", "ass"]
-        for forbiddenString in forbiddenStrings {
-            if nickname.lowercased().contains(forbiddenString) {
-                return false
-            }
-        }
-        
-        // 특수문자 포함 여부 확인
-        let specialCharacterRegex = ".*[^A-Za-z0-9가-힣].*"
-        if let _ = nickname.range(of: specialCharacterRegex, options: .regularExpression) {
-            return false
-        }
-        
-        return true
-    }
-    
-    func isValidName(_ name: String) -> Bool {
-        // 이름 길이 확인
-        if name.count < 2 || name.count > 20 {
-            return false
-        }
-        
-        // 이름이 공백만으로 구성되지 않았는지 확인
-        let trimmedName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        if trimmedName.isEmpty {
-            return false
-        }
-        
-        // 이름에 숫자나 특수문자가 포함되어 있는지 확인
-        let nameRegex = "^[a-zA-Z가-힣]+$"
-        let nameTest = NSPredicate(format:"SELF MATCHES %@", nameRegex)
-        if !nameTest.evaluate(with: trimmedName) {
-            return false
-        }
-        
-        return true
     }
     
     
-    func isValidContact(_ contact: String) -> Bool {
-        if contact.count != 11 {
-            return false
-        }
-        
-        return true
-    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.emailField {

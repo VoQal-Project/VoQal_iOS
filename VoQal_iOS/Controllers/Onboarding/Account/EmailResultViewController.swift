@@ -9,6 +9,8 @@ import UIKit
 
 class EmailResultViewController: UIViewController {
 
+    var emailValue: String?
+    
     private let emailResultView = EmailResultView()
     
     override func loadView() {
@@ -18,6 +20,8 @@ class EmailResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailResultView.email = emailValue
+        
         setupNavigationBar()
         setAddTarget()
     }
