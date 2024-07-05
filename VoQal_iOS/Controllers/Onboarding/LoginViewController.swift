@@ -79,7 +79,9 @@ extension LoginViewController: LoginViewDelegate {
     
     func didTapPasswordButton() {
         print("delegate - didTapPwd")
-        
+        let vc = PasswordResetViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+        vc.title = "비밀번호 재설정"
     }
     
     func didTapSignupButton() {
