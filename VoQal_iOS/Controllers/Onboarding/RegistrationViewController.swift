@@ -63,6 +63,7 @@ class RegistrationViewController: UIViewController {
             ValidationUtility.isValidContact(contact) &&
             password == passwordCheck {
             print("아아")
+            self.dismiss(animated: true)
             // 회원가입 api 요청 후 클로저 내에 코치or학생 선택 화면으로.
         } else {
             let alert = UIAlertController(title: "회원가입 실패", message: "올바른 정보를 입력해주세요.", preferredStyle: .alert)
