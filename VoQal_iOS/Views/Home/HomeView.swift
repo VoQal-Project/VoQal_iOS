@@ -12,7 +12,7 @@ class HomeView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = .green
+        self.backgroundColor = UIColor(named: "mainBackgroundColor")
         addSubViews()
         setConstraints()
     }
@@ -20,8 +20,6 @@ class HomeView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 
     private func addSubViews() {
         

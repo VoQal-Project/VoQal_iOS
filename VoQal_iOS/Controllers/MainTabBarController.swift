@@ -8,11 +8,9 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    
+    
 
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,19 +21,20 @@ class MainTabBarController: UITabBarController {
         
         self.viewControllers = [firstNC,secondNC,thirdNC,fourthNC]
         
-        let firstTabBarItem = UITabBarItem(title: "첫번째", image: UIImage(systemName: "mic"), tag: 0)
-        let secondTabBarItem = UITabBarItem(title: "두번째", image: UIImage(systemName: "sun.min"), tag: 1)
-        let thirtdTabBarItem = UITabBarItem(title: "세번째", image: UIImage(systemName: "moon"), tag: 2)
-        let fourthTabBarItem = UITabBarItem(title: "네번째", image: UIImage(systemName: "pencil"), tag: 3)
+        let firstTabBarItem = UITabBarItem(title: "", image: UIImage(named: "home"), tag: 0)
+        let secondTabBarItem = UITabBarItem(title: "", image: UIImage(named: "reservation"), tag: 1)
+        let thirtdTabBarItem = UITabBarItem(title: "", image: UIImage(named: "crown"), tag: 2)
+        let fourthTabBarItem = UITabBarItem(title: "", image: UIImage(named: "person"), tag: 3)
         
         firstNC.tabBarItem = firstTabBarItem
         secondNC.tabBarItem = secondTabBarItem
         thirdNC.tabBarItem = thirtdTabBarItem
         fourthNC.tabBarItem = fourthTabBarItem
         
-        self.tabBar.backgroundColor = UIColor.white
+        self.tabBar.backgroundColor = UIColor(named: "bottomBarColor")
+        self.tabBar.unselectedItemTintColor = UIColor(named: "mainButtonColor")
+        self.tabBar.tintColor = UIColor.white
+        
     }
-    
-    
 
 }
