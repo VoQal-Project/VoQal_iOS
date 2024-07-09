@@ -92,7 +92,6 @@ class LoginView: UIView {
         button.tintColor = .white
         button.backgroundColor = UIColor(named: "mainButtonColor")
         button.layer.cornerRadius = CGFloat(10.0)
-        button.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
         return button
     }()
@@ -258,14 +257,4 @@ class LoginView: UIView {
                 break
             }
         }
-    
-    // MARK: - etc.
-    @objc func didTapLoginButton() {
-        print("UI 단 로그인 버튼 탭 !")
-        emailField.resignFirstResponder()
-        passwordField.resignFirstResponder()
-        
-        // if문 써서 필드 내 값이 유효한지 검사 후 api 요청 부분.
-        
-    }
 }

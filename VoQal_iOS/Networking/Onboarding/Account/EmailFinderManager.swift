@@ -15,7 +15,7 @@ struct EmailFinderParameter: Encodable {
 
 struct EmailFinderManager {
     
-    private let url = "https://voqal.codns.com/find/email"
+    private let url = "https://www.voqal.today/find/email"
     
     func findEmail(_ contact: String, _ name: String, completion: @escaping (EmailFinderModel?) -> Void) {
         

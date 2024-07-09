@@ -1,24 +1,23 @@
 //
-//  RoleViewController.swift
+//  CoachSelectionViewController.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 5/1/24.
+//  Created by 송규섭 on 7/9/24.
 //
 
 import UIKit
 
-class RoleViewController: UIViewController {
+class CoachSelectionViewController: UIViewController {
 
-    private let roleView = RoleView()
+    let coachSelectionView = CoachSelectionView()
     
     override func loadView() {
-        view = roleView
+        view = coachSelectionView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
 

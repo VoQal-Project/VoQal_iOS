@@ -8,5 +8,18 @@
 import Foundation
 
 struct RegistrationModel {
-    
+    let status: Int
+    let error: ErrorDetail?
+    let message: String?
 }
+
+//struct RegistrationData: Codable {
+//    let nickName: String
+//    let email: String
+//    let name: String
+//    let phoneNum: String
+//    let status: Int
+//    let message: String
+//    let error: ErrorDetail
+//    let code: String
+//}

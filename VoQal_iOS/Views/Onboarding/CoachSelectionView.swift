@@ -1,18 +1,18 @@
 //
-//  RoleView.swift
+//  CoachSelectionView.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 5/1/24.
+//  Created by 송규섭 on 7/9/24.
 //
 
 import UIKit
 
-class RoleView: UIView {
+class CoachSelectionView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor(hexCode: "96db72", alpha: 1.0)
+        backgroundColor = UIColor(named: "mainBackgroundColor")
     }
     
     required init?(coder: NSCoder) {

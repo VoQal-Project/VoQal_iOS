@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct EmailFinderData: Decodable {
+struct EmailFinderData: Codable {
     let email: String?
     let message: String?
     let status: Int?
@@ -15,7 +15,7 @@ struct EmailFinderData: Decodable {
     let code: String?
 }
 
-struct ErrorDetail: Decodable {
+struct ErrorDetail: Codable {
     let field: String
     let value: String
     let reason: String

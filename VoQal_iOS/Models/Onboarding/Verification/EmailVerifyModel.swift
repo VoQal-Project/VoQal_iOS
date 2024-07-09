@@ -9,4 +9,5 @@ import Foundation
 
 struct EmailVerifyModel {
     let message: String
+    let status: Int
 }

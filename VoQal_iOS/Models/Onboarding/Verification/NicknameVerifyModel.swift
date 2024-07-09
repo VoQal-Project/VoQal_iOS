@@ -9,4 +9,5 @@ import Foundation
 
 struct NicknameVerifyModel {
     let message: String
+    let status: Int
 }

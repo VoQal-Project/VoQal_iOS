@@ -9,4 +9,5 @@ import Foundation
 
 struct NicknameVerifyData: Codable {
     let message: String
+    let status: Int
 }

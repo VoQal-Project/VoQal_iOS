@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509C3BC2C3D409D00FE211E /* CoachSelectionViewController.swift */; };
+		9509C3BF2C3D40AE00FE211E /* CoachSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509C3BE2C3D40AE00FE211E /* CoachSelectionView.swift */; };
 		9541D3302BD29C0300B36977 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D32F2BD29C0300B36977 /* HomeView.swift */; };
 		9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D3322BD29CCA00B36977 /* HomeViewController.swift */; };
 		9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D3702BD2ACC300B36977 /* SceneDelegate.swift */; };
@@ -51,8 +53,12 @@
 		95B5C6842BCABE4B0067432A /* VoQal_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C6832BCABE4B0067432A /* VoQal_iOSTests.swift */; };
 		95B5C68E2BCABE4B0067432A /* VoQal_iOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C68D2BCABE4B0067432A /* VoQal_iOSUITests.swift */; };
 		95B5C6902BCABE4B0067432A /* VoQal_iOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B5C68F2BCABE4B0067432A /* VoQal_iOSUITestsLaunchTests.swift */; };
-		95EA47162BE25CB100E6631B /* RoleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA47152BE25CB100E6631B /* RoleView.swift */; };
-		95EA47182BE25CCE00E6631B /* RoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA47172BE25CCE00E6631B /* RoleViewController.swift */; };
+		95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6615F2C3D1C390091F241 /* RoleSelectionModel.swift */; };
+		95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B661612C3D1C5F0091F241 /* RoleSelectionData.swift */; };
+		95B661642C3D1C8D0091F241 /* RoleSelectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B661632C3D1C8D0091F241 /* RoleSelectionManager.swift */; };
+		95B661682C3D1D370091F241 /* RoleSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B661672C3D1D370091F241 /* RoleSelectionView.swift */; };
+		95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */; };
+		95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA47172BE25CCE00E6631B /* RoleSelectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +79,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9509C3BC2C3D409D00FE211E /* CoachSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionViewController.swift; sourceTree = "<group>"; };
+		9509C3BE2C3D40AE00FE211E /* CoachSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionView.swift; sourceTree = "<group>"; };
 		9541D32F2BD29C0300B36977 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9541D3322BD29CCA00B36977 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9541D3702BD2ACC300B36977 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,8 +127,12 @@
 		95B5C6892BCABE4B0067432A /* VoQal_iOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VoQal_iOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		95B5C68D2BCABE4B0067432A /* VoQal_iOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoQal_iOSUITests.swift; sourceTree = "<group>"; };
 		95B5C68F2BCABE4B0067432A /* VoQal_iOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoQal_iOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		95EA47152BE25CB100E6631B /* RoleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleView.swift; sourceTree = "<group>"; };
-		95EA47172BE25CCE00E6631B /* RoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleViewController.swift; sourceTree = "<group>"; };
+		95B6615F2C3D1C390091F241 /* RoleSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionModel.swift; sourceTree = "<group>"; };
+		95B661612C3D1C5F0091F241 /* RoleSelectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionData.swift; sourceTree = "<group>"; };
+		95B661632C3D1C8D0091F241 /* RoleSelectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionManager.swift; sourceTree = "<group>"; };
+		95B661672C3D1D370091F241 /* RoleSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionView.swift; sourceTree = "<group>"; };
+		95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionButton.swift; sourceTree = "<group>"; };
+		95EA47172BE25CCE00E6631B /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,7 +236,8 @@
 				959D94332C2DB45B0014F086 /* Account */,
 				9542B63E2BCD6BEB0060E1BB /* LoginViewController.swift */,
 				9542B6412BCD6C470060E1BB /* RegistrationViewController.swift */,
-				95EA47172BE25CCE00E6631B /* RoleViewController.swift */,
+				95EA47172BE25CCE00E6631B /* RoleSelectionViewController.swift */,
+				9509C3BC2C3D409D00FE211E /* CoachSelectionViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -256,7 +269,8 @@
 				959D94322C2DB4410014F086 /* Account */,
 				9542B6472BCD7FE40060E1BB /* LoginView.swift */,
 				9542B6492BCD7FF10060E1BB /* RegistrationView.swift */,
-				95EA47152BE25CB100E6631B /* RoleView.swift */,
+				95B661672C3D1D370091F241 /* RoleSelectionView.swift */,
+				9509C3BE2C3D40AE00FE211E /* CoachSelectionView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -294,6 +308,7 @@
 			children = (
 				959D94342C2DB46A0014F086 /* Account */,
 				959D94202C2AEF100014F086 /* RegistrationManager.swift */,
+				95B661632C3D1C8D0091F241 /* RoleSelectionManager.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -305,6 +320,8 @@
 				959D943B2C2EF7430014F086 /* Account */,
 				959D94282C2C7A650014F086 /* RegistrationModel.swift */,
 				959D942A2C2C7A800014F086 /* RegistrationData.swift */,
+				95B6615F2C3D1C390091F241 /* RoleSelectionModel.swift */,
+				95B661612C3D1C5F0091F241 /* RoleSelectionData.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -373,6 +390,7 @@
 		95B5C66B2BCABE490067432A /* VoQal_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				95B661692C3D30850091F241 /* Components */,
 				954F56942BD0AF2600288A7D /* Resources */,
 				9542B6442BCD7F910060E1BB /* Models */,
 				959D941E2C2AEEC30014F086 /* Networking */,
@@ -402,6 +420,14 @@
 				95B5C68F2BCABE4B0067432A /* VoQal_iOSUITestsLaunchTests.swift */,
 			);
 			path = VoQal_iOSUITests;
+			sourceTree = "<group>";
+		};
+		95B661692C3D30850091F241 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				957E3E172C344DE500936617 /* NicknameVerifyModel.swift in Sources */,
+				95B661642C3D1C8D0091F241 /* RoleSelectionManager.swift in Sources */,
 				957E3E122C344D1700936617 /* NicknameVerifyData.swift in Sources */,
 				959D943A2C2EF6ED0014F086 /* EmailFinderManager.swift in Sources */,
 				959D94412C2F07A80014F086 /* PasswordResetManager.swift in Sources */,
@@ -550,6 +577,7 @@
 				959D94472C2F07DD0014F086 /* PasswordResetView.swift in Sources */,
 				9541D3762BD2AF8600B36977 /* ReservationView.swift in Sources */,
 				959D94362C2EE0D40014F086 /* EmailResultView.swift in Sources */,
+				9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */,
 				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				9541D3732BD2AEB100B36977 /* MainTabBarController.swift in Sources */,
@@ -559,7 +587,7 @@
 				959D943F2C2EF75E0014F086 /* EmailFinderData.swift in Sources */,
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
 				9541D3822BD2AFEE00B36977 /* MyPageViewController.swift in Sources */,
-				95EA47182BE25CCE00E6631B /* RoleViewController.swift in Sources */,
+				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
 				9541D37F2BD2AFD900B36977 /* ChallengeView.swift in Sources */,
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
@@ -567,17 +595,21 @@
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
 				959D94452C2F07C80014F086 /* PasswordResetData.swift in Sources */,
+				95B661682C3D1D370091F241 /* RoleSelectionView.swift in Sources */,
 				9541D3302BD29C0300B36977 /* HomeView.swift in Sources */,
 				959D942B2C2C7A800014F086 /* RegistrationData.swift in Sources */,
+				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
+				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
 				957E3E102C344D0600936617 /* EmailVerifyData.swift in Sources */,
+				95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */,
 				957E3E152C344DD800936617 /* EmailVerifyModel.swift in Sources */,
 				959D94312C2D66B80014F086 /* EmailFinderViewController.swift in Sources */,
+				9509C3BF2C3D40AE00FE211E /* CoachSelectionView.swift in Sources */,
 				9541D3792BD2AFA000B36977 /* ReservationViewController.swift in Sources */,
 				9542B6482BCD7FE40060E1BB /* LoginView.swift in Sources */,
 				959D942F2C2D66070014F086 /* EmailFinderView.swift in Sources */,
-				95EA47162BE25CB100E6631B /* RoleView.swift in Sources */,
 				959D94492C2F07F10014F086 /* PasswordResetViewController.swift in Sources */,
 				95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */,
 			);
