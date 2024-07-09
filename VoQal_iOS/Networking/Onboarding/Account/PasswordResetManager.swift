@@ -14,7 +14,7 @@ struct PasswordResetParameter: Encodable {
 }
 
 struct PasswordResetManager {
-    private let url = "https://voqal.codns.com/reset/password"
+    private let url = "https://www.voqal.today/reset/password"
     
     func resetPassword(_ email: String, _ password: String, completion: @escaping (PasswordResetModel?) -> Void) {
         

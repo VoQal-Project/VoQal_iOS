@@ -10,6 +10,16 @@ import UIKit
 class RegistrationView: UIView, UITextFieldDelegate {
     
     weak var registrationVC: RegistrationViewController?
+    
+    var isEmailAPICallInProgress = false
+    var isEmailEditingInProgress = false
+    var isNicknameAPICallInProgress = false
+    var isNicknameEditingInProgress = false
+    let emailDispatchGroup = DispatchGroup()
+    let nicknameDispatchGroup = DispatchGroup()
+    
+    internal var originalEmail: String?
+    internal var originalNickname: String?
 
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -225,6 +235,8 @@ class RegistrationView: UIView, UITextFieldDelegate {
         
         addGestureRecognizer(tapGesture)
         
+        emailVerifyButton.isEnabled = true
+        nicknameVerifyButton.isEnabled = true
     }
     
     required init?(coder: NSCoder) {
@@ -387,10 +399,14 @@ class RegistrationView: UIView, UITextFieldDelegate {
     
     func updateEmailVerificationButton(isVerified: Bool) {
         emailVerifyButton.alpha = isVerified ? 0.5 : 1.0
+        emailVerifyButton.setTitle(isVerified ? "수정" : "중복확인" , for: .normal)
+        emailField.isEnabled = isVerified ? false : true
     }
     
     func updateNicknameVerificationButton(isVerified: Bool) {
         nicknameVerifyButton.alpha = isVerified ? 0.5 : 1.0
+        nicknameVerifyButton.setTitle(isVerified ? "수정" : "중복확인" , for: .normal)
+        nicknameField.isEnabled = isVerified ? false : true
     }
     
     
@@ -402,10 +418,6 @@ class RegistrationView: UIView, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         print("end editing")
         
-        // 각 필드에 대한 유효성 검사를 수행합니다.
-        // 예를 들어, 이메일 유효성 검사, 비밀번호 일치 여부 등을 확인합니다.
-        // 그리고 오류 정보를 적절히 처리합니다.
-        
         iconImageView.isHidden = true
         
         infoLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor).isActive = true
@@ -415,10 +427,19 @@ class RegistrationView: UIView, UITextFieldDelegate {
         var basicInfoErrorMessage: String = ""
         
         // account 관련 텍스트필드 유효성 검증
-        if textField == self.emailField {
-            registrationVC?.isEmailVerified = false
-            if let email = textField.text, !ValidationUtility.isValidEmail(email) {
+        if let email = textField.text, textField == self.emailField {
+            
+            if !ValidationUtility.isValidEmail(email) {
                 accountErrorMessage = "- 이메일 주소가 정확한지 확인해 주세요."
+            }
+            
+            isEmailEditingInProgress = false
+            if !isEmailAPICallInProgress {
+                emailVerifyButton.isEnabled = true
+            }
+            if textField.text != originalEmail {
+                registrationVC!.isEmailVerified = false
+                updateEmailVerificationButton(isVerified: false)
             }
         }
         
@@ -440,6 +461,15 @@ class RegistrationView: UIView, UITextFieldDelegate {
             registrationVC?.isNicknameVerified = false
             if let nickname = nicknameField.text, !ValidationUtility.isValidNickname(nickname){
                 basicInfoErrorMessage = "- 닉네임은 공백, 특수문자를 제외하여 3~15자로 입력해주세요."
+            }
+            
+            isNicknameEditingInProgress = false
+            if !isNicknameAPICallInProgress {
+                nicknameVerifyButton.isEnabled = true
+            }
+            if textField.text != originalNickname {
+                registrationVC!.isNicknameVerified = false
+                updateNicknameVerificationButton(isVerified: false)
             }
         }
         
@@ -483,11 +513,19 @@ class RegistrationView: UIView, UITextFieldDelegate {
         
     }
     
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == emailField {
+            isEmailEditingInProgress = true
+            emailVerifyButton.isEnabled = false
+        } else if textField == nicknameField {
+            isNicknameEditingInProgress = true
+            nicknameVerifyButton.isEnabled = false
+        }
+    }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.emailField {
-            passwordField.becomeFirstResponder()
+            emailField.resignFirstResponder()
         }
         else if textField == self.passwordField {
             passwordCheckField.becomeFirstResponder()
@@ -496,7 +534,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
             nicknameField.becomeFirstResponder()
         }
         else if textField == self.nicknameField {
-            nameField.becomeFirstResponder()
+            nicknameField.resignFirstResponder()
         }
         else if textField == self.nameField {
             contactField.becomeFirstResponder()

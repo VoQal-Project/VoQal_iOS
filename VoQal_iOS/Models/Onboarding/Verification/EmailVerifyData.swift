@@ -9,4 +9,5 @@ import Foundation
 
 struct EmailVerifyData: Codable {
     let message: String
+    let status: Int
 }
