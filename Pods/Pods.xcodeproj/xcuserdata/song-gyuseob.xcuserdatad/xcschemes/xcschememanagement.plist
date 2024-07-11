@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>KeychainAccess.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-VoQal_iOS-VoQal_iOSUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>

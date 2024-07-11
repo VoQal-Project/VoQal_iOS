@@ -7,15 +7,9 @@
 
 import UIKit
 
-protocol RoleSelectionDelegate: AnyObject {
-    func didFinishRoleSetting()
-}
-
 class RoleSelectionViewController: UIViewController {
 
     private let roleSelectionView = RoleSelectionView()
-    
-    weak var delegate: RoleSelectionDelegate?
     
     override func loadView() {
         view = roleSelectionView
@@ -34,8 +28,8 @@ class RoleSelectionViewController: UIViewController {
     
     @objc private func didTapCoachButton() {
         // api로 코치 선택함을 알려야함 그 뒤 클로저를 통해 아래 함수 처리
-            delegate?.didFinishRoleSetting()
-            dismiss(animated: true, completion: nil)
+        
+//            dismiss(animated: true, completion: nil)
     }
     
     @objc private func didTapStudentButton() {
