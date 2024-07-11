@@ -1,0 +1,6 @@
+framework module Pods_VoQal_iOS_VoQal_iOSUITests {
+  umbrella header "Pods-VoQal_iOS-VoQal_iOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
