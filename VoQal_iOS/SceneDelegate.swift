@@ -20,7 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else {return}
         window = UIWindow(frame: UIScreen.main.bounds)
-        let vc = ViewController()
         
         let mainTC = MainTabBarController()
         window?.rootViewController = mainTC
