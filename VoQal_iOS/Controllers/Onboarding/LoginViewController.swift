@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     private let loginView = LoginView()
     private let loginManager = LoginManager()
     
+    var loginCompletion : (() -> Void)?
+    
     override func loadView() {
         view = loginView
     }
@@ -57,6 +59,7 @@ class LoginViewController: UIViewController {
                     }
                     
                     if result.status == 200 {
+                        
                         guard let accessToken = result.accessToken, let refreshToken = result.refreshToken else {
                             print("토큰을 받아오는 데 실패했습니다.")
                             let alert = UIAlertController(title: "토큰 오류", message: "토큰을 받아오는 데 실패했습니다.", preferredStyle: .alert)
@@ -64,10 +67,21 @@ class LoginViewController: UIViewController {
                             self.present(alert, animated: true)
                             return
                         }
+                        
                         KeychainHelper.shared.saveAccessToken(accessToken)
                         KeychainHelper.shared.saveRefreshToken(refreshToken)
-                        let roleSettingVC = RoleSelectionViewController()
-                        self.navigationController?.pushViewController(roleSettingVC, animated: true)
+                        
+                        if result.role == "GUEST" {
+                            let roleSettingVC = RoleSelectionViewController(mainTabBarController: MainTabBarController())
+                            print("Access Token: \(String(describing: KeychainHelper.shared.getAccessToken()))\nRefresh Token: \(String(describing: KeychainHelper.shared.getRefreshToken()))")
+                            self.navigationController?.pushViewController(roleSettingVC, animated: true)
+                        }
+                        else if result.role == "COACH" {
+                            (self.loginCompletion ?? {print("로그인 컴플리션 오류")})()
+                            self.dismiss(animated: true)
+                        }
+                        
+                        
                     } else {
                         let alert = UIAlertController(title: "로그인 실패!", message: "로그인에 실패하였습니다.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "확인", style: .default))

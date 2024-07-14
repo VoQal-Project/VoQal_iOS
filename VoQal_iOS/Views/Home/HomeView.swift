@@ -7,25 +7,22 @@
 
 import UIKit
 
-class HomeView: UIView {
+class HomeView: BaseView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(named: "mainBackgroundColor")
-        addSubViews()
-        setConstraints()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func addSubViews() {
+    override func addSubViews() {
         
     }
     
-    private func setConstraints() {
+    override func setConstraints() {
         
     }
     

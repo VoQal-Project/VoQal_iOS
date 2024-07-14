@@ -35,6 +35,27 @@ class MainTabBarController: UITabBarController {
         self.tabBar.unselectedItemTintColor = UIColor(named: "mainButtonColor")
         self.tabBar.tintColor = UIColor.white
         
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleRoleSelectionSuccess), name: NSNotification.Name("RoleSelectionSuccess"), object: nil)
+    }
+    
+    @objc private func handleRoleSelectionSuccess() {
+        self.selectedIndex = 0 // 홈 화면으로 전환
+    }
+    
+    func switchToHome() {
+        self.selectedIndex = 0
     }
 
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        if let navController = viewController as? UINavigationController,
+           let homeVC = navController.viewControllers.first as? HomeViewController {
+            homeVC.refreshUI()
+        }
+    }
+    
+    deinit {
+        // NotificationCenter 알림 수신 해제
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("RoleSelectionSuccess"), object: nil)
+    }
 }

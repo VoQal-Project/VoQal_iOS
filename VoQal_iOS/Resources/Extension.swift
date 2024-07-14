@@ -43,3 +43,7 @@ extension UIImage {
         return UIGraphicsGetImageFromCurrentImageContext()!
     }
 }
+
+extension Notification.Name {
+    static let tokenExpired = Notification.Name("tokenExpired")
+}

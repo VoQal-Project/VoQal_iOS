@@ -27,7 +27,8 @@ struct LoginManager {
                 let status = res.status
                 let accessToken = res.accessToken
                 let refreshToken = res.refreshToken
-                let model = LoginModel(status: status, accessToken: accessToken, refreshToken: refreshToken)
+                let role = res.role
+                let model = LoginModel(status: status, accessToken: accessToken, refreshToken: refreshToken, role: role)
                 completion(model)
             case .failure(let err):
                 print(err)
