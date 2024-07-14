@@ -13,5 +13,6 @@ struct LoginModel {
     let errors: [ErrorDetail]? = nil
     let accessToken: String?
     let refreshToken: String?
+    let role: String?
     let code: String? = ""
 }

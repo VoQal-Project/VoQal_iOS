@@ -37,17 +37,16 @@ class CoachSelectionViewController: UIViewController {
 
 extension CoachSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return coaches.count
-        return 1
+        return coaches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CoachSelectionTableViewCell.identifier, for: indexPath) as? CoachSelectionTableViewCell else {
             return UITableViewCell()
         }
-//        let coachName = coaches[indexPath.row]
-//        cell.configure(with: coachName.name)
-        cell.configure(with: "박효신")
+        print(coaches.count)
+        let coachName = coaches[indexPath.row]
+        cell.configure(with: coachName.name)
         
         return cell
     }

@@ -7,7 +7,7 @@
 
 import KeychainAccess
 
-class KeychainHelper {
+class KeychainHelper{
     
     static let shared = KeychainHelper()
     private let keychain = Keychain(service: "com.yourapp.service")
@@ -34,4 +34,5 @@ class KeychainHelper {
         try? keychain.remove("accessToken")
         try? keychain.remove("refreshToken")
     }
+    
 }

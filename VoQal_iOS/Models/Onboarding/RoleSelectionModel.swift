@@ -8,5 +8,7 @@
 import Foundation
 
 struct RoleSelectionModel {
-    
+    let accessToken: String?
+    let refreshToken: String?
+    let status: Int
 }
