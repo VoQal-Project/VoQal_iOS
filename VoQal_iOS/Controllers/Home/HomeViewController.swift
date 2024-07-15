@@ -43,7 +43,7 @@ class HomeViewController: BaseViewController {
         let navigationController = UINavigationController(rootViewController: loginVC)
         navigationController.navigationBar.barTintColor = UIColor(named: "mainBackgroundColor")
         navigationController.modalPresentationStyle = .fullScreen
-        present(navigationController, animated: true, completion: nil)
+        present(navigationController, animated: false, completion: nil)
     }
     
     private func handleNotAuthenticated() {

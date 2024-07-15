@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
     private let loginView = LoginView()
     private let loginManager = LoginManager()
@@ -26,16 +26,23 @@ class LoginViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // 필드를 초기화
+        clearFields()
+    }
+    
+    func clearFields() {
+        loginView.emailField.text = ""
+        loginView.passwordField.text = ""
+    }
+    
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
     }
     
-    private func setupLayout() {
-        
-    }
-    
-    private func setAddTarget() {
+    override func setAddTarget() {
         loginView.loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     

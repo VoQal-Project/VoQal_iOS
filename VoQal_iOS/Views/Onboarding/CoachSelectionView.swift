@@ -9,8 +9,6 @@ import UIKit
 
 class CoachSelectionView: UIView {
     
-    
-
     private let introLabel: UILabel = {
         let label = UILabel()
         label.text = "담당 코치님을 선택해주세요."
@@ -33,6 +31,16 @@ class CoachSelectionView: UIView {
         return tableView
     }()
     
+    internal let applyCoachButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
+        button.backgroundColor = UIColor.white
+        button.tintColor = UIColor(named: "mainBackgroundColor")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -45,10 +53,16 @@ class CoachSelectionView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        applyCoachButton.layer.cornerRadius = applyCoachButton.frame.height / 2
+    }
+    
     private func addSubViews() {
         addSubview(introLabel)
         addSubview(coachTableView)
+        addSubview(applyCoachButton)
     }
     
     private func setConstraints() {
@@ -63,9 +77,14 @@ class CoachSelectionView: UIView {
             coachTableView.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 35),
             coachTableView.heightAnchor.constraint(equalToConstant: 400),
             
-            
+            applyCoachButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            applyCoachButton.topAnchor.constraint(equalTo: coachTableView.bottomAnchor, constant: 20),
+            applyCoachButton.widthAnchor.constraint(equalToConstant: 45),
+            applyCoachButton.heightAnchor.constraint(equalToConstant: 45),
         ])
     }
+    
+    
     
     
 }

@@ -1,10 +1,3 @@
-//
-//  CoachSelectionTableViewCell.swift
-//  VoQal_iOS
-//
-//  Created by 송규섭 on 7/11/24.
-//
-
 import UIKit
 
 class CoachSelectionTableViewCell: UITableViewCell {
@@ -13,7 +6,7 @@ class CoachSelectionTableViewCell: UITableViewCell {
     
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 50, weight: .regular)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 65, weight: .regular)
         imageView.image = UIImage(systemName: "person.fill", withConfiguration: configuration)
         imageView.tintColor = .white
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -29,16 +22,19 @@ class CoachSelectionTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let containerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 15.0
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "bottomBarColor")
+        return view
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: CoachSelectionTableViewCell.identifier)
         
         backgroundColor = UIColor(named: "mainBackgroundColor")
         selectionStyle = .none
-        
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 16.0, left: 0, bottom: 16, right: 0))
-        contentView.layer.cornerRadius = 15.0
-        contentView.backgroundColor = UIColor(named: "bottomBarColor")
         
         addSubViews()
         setConstraints()
@@ -60,21 +56,35 @@ class CoachSelectionTableViewCell: UITableViewCell {
     }
     
     private func addSubViews() {
-        contentView.addSubview(iconImageView)
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(containerView)
+        containerView.addSubview(iconImageView)
+        containerView.addSubview(nameLabel)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
-//            iconImageView.widthAnchor.constraint(equalToConstant: 40),
-//            iconImageView.heightAnchor.constraint(equalToConstant: 50),
-            iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+            
+            iconImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 30),
+            iconImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             
             nameLabel.centerYAnchor.constraint(equalTo: iconImageView.centerYAnchor),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -50),
+            nameLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -30),
             nameLabel.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        if selected {
+            containerView.layer.borderWidth = 2.0
+            containerView.layer.borderColor = UIColor.white.cgColor
+        } else {
+            containerView.layer.borderWidth = 0.0
+            containerView.layer.borderColor = UIColor.clear.cgColor
+        }
+    }
 }
