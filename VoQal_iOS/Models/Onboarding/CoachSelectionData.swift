@@ -16,3 +16,10 @@ struct Coach: Codable {
     let id: Int
     let name: String
 }
+
+struct ApplyCoachData: Codable {
+    let message: String
+    let status: Int
+    let error: [ErrorDetail]?
+    let code: String?
+}

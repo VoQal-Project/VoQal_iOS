@@ -11,3 +11,8 @@ struct CoachSelectionModel {
     let status: Int
     let coaches: [Coach]?
 }
+
+struct ApplyCoachModel {
+    let status: Int
+    let message: String
+}
