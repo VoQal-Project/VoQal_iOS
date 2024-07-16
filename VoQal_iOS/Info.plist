@@ -6,16 +6,16 @@
 	<string>Dark</string>
 	<key>UIAppFonts</key>
 	<array>
-		<string>SUIT-Bold.otf</string>
-		<string>SUIT-ExtraBold.otf</string>
-		<string>SUIT-ExtraLight.otf</string>
-		<string>SUIT-Heavy.otf</string>
-		<string>SUIT-Light.otf</string>
-		<string>SUIT-Medium.otf</string>
-		<string>SUIT-Regular.otf</string>
-		<string>SUIT-SemiBold.otf</string>
-		<string>SUIT-Thin.otf</string>
-	</array>
+		<string>Fonts/SUIT-Regular.otf</string>
+    	<string>Fonts/SUIT-Bold.otf</string>
+    	<string>Fonts/SUIT-ExtraBold.otf</string>
+    	<string>Fonts/SUIT-ExtraLight.otf</string>
+    	<string>Fonts/SUIT-Heavy.otf</string>
+   	 	<string>Fonts/SUIT-Light.otf</string>
+   	 	<string>Fonts/SUIT-Medium.otf</string>
+    	<string>Fonts/SUIT-SemiBold.otf</string>
+    	<string>Fonts/SUIT-Thin.otf</string>
+		</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

@@ -1,0 +1,68 @@
+//
+//  CustomButtonView.swift
+//  VoQal_iOS
+//
+//  Created by 송규섭 on 7/16/24.
+//
+
+import UIKit
+
+class CustomButtonView: UIView {
+    
+    private let button: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 10.0
+        button.tintColor = .white
+        button.backgroundColor = UIColor(named: "bottomBarColor")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = UIFont(name: "SUIT-Regular", size: 11)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    private func setupUI() {
+        addSubview(button)
+        addSubview(label)
+        
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: topAnchor),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 8),
+            label.leadingAnchor.constraint(equalTo: leadingAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControl.Event) {
+        button.addTarget(target, action: action, for: controlEvents)
+    }
+    
+    func setIcon(_ icon: UIImage) {
+        button.setImage(icon, for: .normal)
+    }
+    
+    func setTitleLabel(_ title: String) {
+        label.text = title
+    }
+    
+    
+}
