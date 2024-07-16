@@ -31,6 +31,7 @@ class MyPageViewController: BaseViewController {
     @objc private func didTapLogoutButton() {
         KeychainHelper.shared.clearTokens()
         UserManager.shared.deleteUserModel()
+        print("after logout: \(UserManager.shared.userModel)")
         
         showLoginScreen()
     }

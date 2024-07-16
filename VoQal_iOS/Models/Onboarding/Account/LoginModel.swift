@@ -16,3 +16,7 @@ struct LoginModel {
     let role: String?
     let code: String? = ""
 }
+
+struct CoachApprovalModel {
+    
+}

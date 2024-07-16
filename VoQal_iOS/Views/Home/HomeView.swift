@@ -8,6 +8,13 @@
 import UIKit
 
 class HomeView: BaseView {
+    
+    let userModel: UserModel?
+    
+    private let introLabel: UILabel = {
+        let label = UILabel()
+//        label.text = "\(userModel.name)님 "
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)

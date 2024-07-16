@@ -18,6 +18,7 @@ class UserManager {
         }
         set {
             saveUserToUserDefaults(newValue)
+            NotificationCenter.default.post(name: .userModelUpdated, object: nil)
         }
     }
     
@@ -38,5 +39,11 @@ class UserManager {
     
     func deleteUserModel() {
         UserDefaults.standard.removeObject(forKey: "userModel")
+        userModel = nil
     }
+    
+}
+
+extension Notification.Name {
+    static let userModelUpdated = Notification.Name("UserModelUpdated")
 }

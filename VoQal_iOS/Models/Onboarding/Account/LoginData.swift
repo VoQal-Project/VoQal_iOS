@@ -16,3 +16,12 @@ struct LoginData: Codable {
     let errors: [ErrorDetail]?
     let code: String?
 }
+
+struct CoachApprovalData: Codable {
+    let status: Int
+    let message: String?
+    let errors: [ErrorDetail]?
+    let code: String?
+    
+}
+
