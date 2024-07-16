@@ -29,6 +29,9 @@
 		954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */; };
 		954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */; };
 		954F56962BD0AF8400288A7D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F56952BD0AF8400288A7D /* Extension.swift */; };
+		95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95715A9E2C4673130010D4B7 /* UserModel.swift */; };
+		95715AA02C4678020010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
+		95715AA12C4678030010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
 		95786E8C2C40210B00F77146 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95786E8B2C40210B00F77146 /* KeychainHelper.swift */; };
 		95786E8E2C40233800F77146 /* LoginData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95786E8D2C40233800F77146 /* LoginData.swift */; };
 		95786E902C40234100F77146 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95786E8F2C40234100F77146 /* LoginModel.swift */; };
@@ -38,6 +41,9 @@
 		957E3E152C344DD800936617 /* EmailVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E142C344DD800936617 /* EmailVerifyModel.swift */; };
 		957E3E172C344DE500936617 /* NicknameVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E162C344DE500936617 /* NicknameVerifyModel.swift */; };
 		957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E182C344E0100936617 /* PasswordResetModel.swift */; };
+		9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */; };
+		9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */; };
+		9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */; };
 		958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958D42442C37DDEC00088EA3 /* ValidationUtility.swift */; };
 		958FE7C42C42AE7F00F2954D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FE7C32C42AE7F00F2954D /* BaseViewController.swift */; };
 		958FE7C72C42C2BB00F2954D /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958FE7C62C42C2BB00F2954D /* HomeManager.swift */; };
@@ -130,7 +136,7 @@
 		9541D37B2BD2AFC200B36977 /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		9541D37E2BD2AFD900B36977 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeView.swift; sourceTree = "<group>"; };
 		9541D3812BD2AFEE00B36977 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
-		9542B63B2BCD688E0060E1BB /* Fonts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Fonts; path = VoQal_iOS/Fonts; sourceTree = "<group>"; };
+		9542B63B2BCD688E0060E1BB /* Fonts */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		9542B63E2BCD6BEB0060E1BB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9542B6412BCD6C470060E1BB /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		9542B6472BCD7FE40060E1BB /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 		954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionData.swift; sourceTree = "<group>"; };
 		954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionModel.swift; sourceTree = "<group>"; };
 		954F56952BD0AF8400288A7D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		95715A9E2C4673130010D4B7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		95786E8B2C40210B00F77146 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		95786E8D2C40233800F77146 /* LoginData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginData.swift; sourceTree = "<group>"; };
 		95786E8F2C40234100F77146 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -148,6 +155,9 @@
 		957E3E142C344DD800936617 /* EmailVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E162C344DE500936617 /* NicknameVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E182C344E0100936617 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
+		9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
+		9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentViewController.swift; sourceTree = "<group>"; };
+		9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentView.swift; sourceTree = "<group>"; };
 		958D42442C37DDEC00088EA3 /* ValidationUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationUtility.swift; sourceTree = "<group>"; };
 		958FE7C32C42AE7F00F2954D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		958FE7C62C42C2BB00F2954D /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
@@ -238,6 +248,8 @@
 		9541D32E2BD29BF300B36977 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9587DDF92C46C4590039B6D0 /* Student */,
+				9587DDF82C46C4530039B6D0 /* Coach */,
 				9541D32F2BD29C0300B36977 /* HomeView.swift */,
 			);
 			path = Home;
@@ -246,6 +258,8 @@
 		9541D3312BD29CB800B36977 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9587DDF52C46C4150039B6D0 /* Student */,
+				9587DDF42C46C3FC0039B6D0 /* Coach */,
 				9541D3322BD29CCA00B36977 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -338,6 +352,7 @@
 				958FE7C82C42C31500F2954D /* Home */,
 				959B57572C412BF3009428D7 /* Auth */,
 				959D94272C2C77B00014F086 /* Onboarding */,
+				95715A9E2C4673130010D4B7 /* UserModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,6 +389,36 @@
 				957E3E162C344DE500936617 /* NicknameVerifyModel.swift */,
 			);
 			path = Verification;
+			sourceTree = "<group>";
+		};
+		9587DDF42C46C3FC0039B6D0 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		9587DDF52C46C4150039B6D0 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		9587DDF82C46C4530039B6D0 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		9587DDF92C46C4590039B6D0 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
 			sourceTree = "<group>";
 		};
 		958FE7C52C42C2AC00F2954D /* Home */ = {
@@ -500,7 +545,6 @@
 		95B5C6602BCABE490067432A = {
 			isa = PBXGroup;
 			children = (
-				9542B63B2BCD688E0060E1BB /* Fonts */,
 				95B5C66B2BCABE490067432A /* VoQal_iOS */,
 				95B5C6822BCABE4B0067432A /* VoQal_iOSTests */,
 				95B5C68C2BCABE4B0067432A /* VoQal_iOSUITests */,
@@ -523,6 +567,7 @@
 		95B5C66B2BCABE490067432A /* VoQal_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9542B63B2BCD688E0060E1BB /* Fonts */,
 				95B661692C3D30850091F241 /* Components */,
 				954F56942BD0AF2600288A7D /* Resources */,
 				9542B6442BCD7F910060E1BB /* Models */,
@@ -559,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */,
+				9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -693,6 +739,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95715AA02C4678020010D4B7 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +747,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95715AA12C4678030010D4B7 /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -846,7 +894,9 @@
 				95786E902C40234100F77146 /* LoginModel.swift in Sources */,
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
 				95A0D4422C43AD8E002A768B /* MyPageView.swift in Sources */,
+				9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */,
 				954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */,
+				9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */,
 				959D943D2C2EF7520014F086 /* EmailFinderModel.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
@@ -856,11 +906,13 @@
 				95B661682C3D1D370091F241 /* RoleSelectionView.swift in Sources */,
 				9541D3302BD29C0300B36977 /* HomeView.swift in Sources */,
 				959D942B2C2C7A800014F086 /* RegistrationData.swift in Sources */,
+				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
 				959B57592C412C02009428D7 /* AuthManager.swift in Sources */,
 				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
 				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
 				959B57562C41268D009428D7 /* AuthInterceptor.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
+				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
 				957E3E102C344D0600936617 /* EmailVerifyData.swift in Sources */,
 				95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */,

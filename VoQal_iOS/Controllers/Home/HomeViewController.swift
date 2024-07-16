@@ -7,14 +7,6 @@
 
 import UIKit
 
-struct UserModel: Codable, Equatable {
-    let email: String?
-    let nickname: String?
-    let name: String?
-    let phoneNum: String?
-    let role: String?
-}
-
 class HomeViewController: BaseViewController {
     private let homeView = HomeView()
     private let homeManager = HomeManager()
@@ -28,7 +20,8 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("home viewDidLoad!")
-        
+        homeView.homeViewController = self
+        setupNavigationBar()
         NotificationCenter.default.addObserver(self, selector: #selector(userModelUpdated), name: .userModelUpdated, object: nil)
         print("Notification observer registered")
     }
@@ -39,9 +32,10 @@ class HomeViewController: BaseViewController {
         
         DispatchQueue.main.async {
             self.updateUserInformationIfNeeded()
+            
+            self.refreshUI()
         }
         
-        refreshUI()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,6 +44,11 @@ class HomeViewController: BaseViewController {
         // Observer 제거하지 않음
         // NotificationCenter.default.removeObserver(self, name: .userModelUpdated, object: nil)
         print("Notification observer will not be removed")
+    }
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
     }
     
     override func showLoginScreen() {
@@ -137,15 +136,21 @@ class HomeViewController: BaseViewController {
         if currentUser != user {
             print("Updating UI with new user")
             currentUser = user
-            updateUI(with: user)
+            homeView.updateUI(with: user)
         } else {
             print("No need to update UI - user is the same")
         }
     }
 
-    private func updateUI(with user: UserModel) {
-        // 유저 정보를 사용하여 UI를 업데이트합니다.
-        // 예: homeView.nicknameLabel.text = user.nickname
-        print("update UI with user: \(user)")
+    @objc internal func didTapManageStudentBtn() {
+        print("학생 관리 탭!")
+        let vc = ManageStudentViewController()
+        navigationController?.pushViewController(vc, animated: true)
+        vc.title = "학생 관리"
     }
+    
+    @objc internal func didTapManageLessonBtn() {
+        print("수업 관리 탭!")
+    }
+    
 }
