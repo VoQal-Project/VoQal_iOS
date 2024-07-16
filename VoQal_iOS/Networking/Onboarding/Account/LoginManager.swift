@@ -14,13 +14,14 @@ struct LoginParameter: Encodable {
 }
 
 struct LoginManager {
-    private let url = "https://www.voqal.today/login"
+    private let loginUrl = "https://www.voqal.today/login"
+    private let coachApprovalStatusUrl = "https://www.voqal.today/check/status"
     
-    func LoginUser(_ email: String, _ password: String, completion: @escaping (LoginModel?) -> Void) {
+    func loginUser(_ email: String, _ password: String, completion: @escaping (LoginModel?) -> Void) {
         
         let parameter = LoginParameter(email: email, password: password)
         
-        AF.request(url, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default).responseDecodable(of: LoginData.self) { response in
+        AF.request(loginUrl, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default).responseDecodable(of: LoginData.self) { response in
             switch response.result {
             case .success(let res):
                 print(res.status)
@@ -35,6 +36,10 @@ struct LoginManager {
                 completion(nil)
             }
         }
+    }
+    
+    func checkCoachApprovalStatus() {
         
     }
+    
 }

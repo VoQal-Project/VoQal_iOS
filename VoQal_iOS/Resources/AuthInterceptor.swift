@@ -69,6 +69,7 @@ struct AuthInterceptor: RequestInterceptor {
                 let refreshToken = res.refreshToken
                 keychain["accessToken"] = accessToken
                 keychain["refreshToken"] = refreshToken
+                print("액세스 토큰이 재발급되었습니다.")
                 completion(true)
             case .failure(let err):
                 print(err)

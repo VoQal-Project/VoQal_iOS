@@ -56,7 +56,7 @@ class LoginViewController: BaseViewController {
            !email.isEmpty && !password.isEmpty {
             if ValidationUtility.isValidEmail(email) && ValidationUtility.isValidPassword(password) {
                 print("모두 성공!")
-                loginManager.LoginUser(email, password) { result in
+                loginManager.loginUser(email, password) { result in
                     guard let result = result else {
                         print("로그인 결과를 받아오는 데 실패했습니다.")
                         let alert = UIAlertController(title: "로그인 실패!", message: "로그인에 실패하였습니다.", preferredStyle: .alert)
@@ -78,15 +78,18 @@ class LoginViewController: BaseViewController {
                         KeychainHelper.shared.saveAccessToken(accessToken)
                         KeychainHelper.shared.saveRefreshToken(refreshToken)
                         
+                        
+                        
                         if result.role == "GUEST" {
                             let roleSettingVC = RoleSelectionViewController(mainTabBarController: MainTabBarController())
                             print("Access Token: \(String(describing: KeychainHelper.shared.getAccessToken()))\nRefresh Token: \(String(describing: KeychainHelper.shared.getRefreshToken()))")
                             self.navigationController?.pushViewController(roleSettingVC, animated: true)
                         }
                         else if result.role == "COACH" {
-                            (self.loginCompletion ?? {print("로그인 컴플리션 오류")})()
+                            self.loginCompletion?()
                             self.dismiss(animated: true)
                         }
+                        
                         
                         
                     } else {
