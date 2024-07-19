@@ -37,7 +37,7 @@ class LoginViewController: BaseViewController {
         loginView.passwordField.text = ""
     }
     
-    private func setupNavigationBar() {
+    override func setupNavigationBar() {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
     }

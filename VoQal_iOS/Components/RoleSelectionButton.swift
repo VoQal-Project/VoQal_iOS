@@ -17,7 +17,7 @@ class RoleSelectionButton: UIButton {
     
     private let customLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "SUIT-Regular", size: 25)
+        label.font = UIFont(name: "SUIT-Regular", size: 17)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

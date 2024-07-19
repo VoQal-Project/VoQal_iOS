@@ -9,6 +9,8 @@ import UIKit
 
 class ManageStudentView: BaseView {
 
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
