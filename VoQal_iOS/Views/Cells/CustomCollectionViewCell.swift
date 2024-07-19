@@ -9,7 +9,7 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
     
-    private let contentLabel: UILabel = {
+    internal let contentLabel: UILabel = {
         
         let label = UILabel()
         label.font = UIFont(name: "SUIT-Regular", size: 13)
@@ -32,7 +32,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         backgroundColor = UIColor(hexCode: "181818")
         addSubViews()
         setConstraints()
@@ -67,4 +66,20 @@ class CustomCollectionViewCell: UICollectionViewCell {
     internal func configureAvailableTime(_ isAvailable: Bool) {
         contentLabel.textColor = isAvailable ? .white : .gray
     }
+    
+    internal func configureSelectedCell(_ isSelected: Bool) {
+        contentView.backgroundColor = isSelected ? UIColor.lightGray.withAlphaComponent(0.3) : UIColor(hexCode: "181818", alpha: 1.0)
+    }
+    
+    internal func highlightSelectedCell() {
+        let pressedDownTransform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { self.contentLabel.transform = pressedDownTransform })
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            let originalTransform = CGAffineTransform(scaleX: 1, y: 1)
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 3, options: [.curveEaseInOut], animations: { self.contentLabel.transform = originalTransform })
+        }
+    }
+    
+    
 }
