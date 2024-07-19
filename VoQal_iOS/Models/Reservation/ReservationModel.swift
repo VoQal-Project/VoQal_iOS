@@ -8,7 +8,13 @@
 import Foundation
 
 struct ReservationModel {
-    
+    let roomId: Int?
+    let startTime: String?
+    let endTime: String?
+    let message: String?
+    let status: Int?
+    let errors: [ErrorDetail]?
+    let code: String?
 }
 
 struct FetchTimesModel {
