@@ -34,6 +34,7 @@ class MyPageViewController: BaseViewController {
         print("after logout: \(UserManager.shared.userModel)")
         
         showLoginScreen()
+        resetAllNavigationStacks()
     }
     
     override func showLoginScreen() {
@@ -53,5 +54,15 @@ class MyPageViewController: BaseViewController {
             tabBarController.switchToHome()
         }
         dismiss(animated: true)
+    }
+    
+    private func resetAllNavigationStacks() {
+        if let tabBarController = UIApplication.shared.windows.first?.rootViewController as? UITabBarController {
+            tabBarController.viewControllers?.forEach { viewController in
+                if let navigationController = viewController as? UINavigationController {
+                    navigationController.popToRootViewController(animated: false)
+                }
+            }
+        }
     }
 }

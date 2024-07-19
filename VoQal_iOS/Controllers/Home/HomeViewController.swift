@@ -46,7 +46,7 @@ class HomeViewController: BaseViewController {
         print("Notification observer will not be removed")
     }
     
-    private func setupNavigationBar() {
+    override func setupNavigationBar() {
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
     }

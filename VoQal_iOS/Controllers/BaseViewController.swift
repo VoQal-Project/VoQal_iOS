@@ -33,4 +33,8 @@ class BaseViewController: UIViewController {
     internal func setAddTarget() {
         
     }
+    
+    internal func setupNavigationBar() {
+        
+    }
 }
