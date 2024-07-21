@@ -7,9 +7,14 @@
 
 import UIKit
 
+protocol MyPageViewDelegate: AnyObject {
+    func removeTarget()
+}
+
 class MyPageViewController: BaseViewController {
     
     private let myPageView = MyPageView()
+    var delegate: MyPageViewDelegate?
     
     override func loadView() {
         view = myPageView
@@ -32,7 +37,7 @@ class MyPageViewController: BaseViewController {
         KeychainHelper.shared.clearTokens()
         UserManager.shared.deleteUserModel()
         print("after logout: \(UserManager.shared.userModel)")
-        
+        delegate?.removeTarget()
         showLoginScreen()
         resetAllNavigationStacks()
     }

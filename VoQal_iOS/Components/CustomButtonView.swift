@@ -64,5 +64,8 @@ class CustomButtonView: UIView {
         label.text = title
     }
     
+    func getButton() -> UIButton {
+        return button
+    }
     
 }

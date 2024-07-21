@@ -81,11 +81,40 @@ class LoginViewController: BaseViewController {
                         
                         
                         if result.role == "GUEST" {
-                            let roleSettingVC = RoleSelectionViewController(mainTabBarController: MainTabBarController())
-                            print("Access Token: \(String(describing: KeychainHelper.shared.getAccessToken()))\nRefresh Token: \(String(describing: KeychainHelper.shared.getRefreshToken()))")
-                            self.navigationController?.pushViewController(roleSettingVC, animated: true)
+                            
+                            self.loginManager.checkStudentStatus { model in
+                                guard let model = model else {
+                                    print("checkStudentStatus 모델을 받아오는 데에 실패했습니다.")
+                                    return
+                                }
+                                
+                                if model.status == 200 {
+                                    if let studentData = model.data {
+                                        if studentData.status == "PENDING" {
+                                            let alert = UIAlertController(title: "담당 코치 승인 대기 중", message: "현재 담당 코치님의 승인을 기다리고 있습니다. 승인이 완료되면 다시 로그인 시도해 주세요.", preferredStyle: .alert)
+                                            alert.addAction(UIAlertAction(title: "확인", style: .default))
+                                            self.present(alert, animated: true)
+                                        }
+                                        else {
+                                            print("Error: 담당 코치 신청은 했지만 pending이 아닌 상태입니다.")
+                                        }
+                                    }
+                                }
+                                else if model.status == 400 {
+                                    let roleSettingVC = RoleSelectionViewController(mainTabBarController: MainTabBarController())
+                                    print("Access Token: \(String(describing: KeychainHelper.shared.getAccessToken()))\nRefresh Token: \(String(describing: KeychainHelper.shared.getRefreshToken()))")
+                                    self.navigationController?.pushViewController(roleSettingVC, animated: true)
+                                }
+                                else {
+                                    print("Error: 게스트의 정보가 올바르지 않습니다.")
+                                }
+                            }
                         }
                         else if result.role == "COACH" {
+                            self.loginCompletion?()
+                            self.dismiss(animated: true)
+                        }
+                        else if result.role == "STUDENT" {
                             self.loginCompletion?()
                             self.dismiss(animated: true)
                         }

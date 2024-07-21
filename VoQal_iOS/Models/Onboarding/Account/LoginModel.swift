@@ -17,6 +17,10 @@ struct LoginModel {
     let code: String? = ""
 }
 
-struct CoachApprovalModel {
-    
+struct StudentStatusModel {
+    let status: Int
+    let message: String?
+    let errors: [ErrorDetail]?
+    let code: String?
+    let data: StudentStatus?
 }

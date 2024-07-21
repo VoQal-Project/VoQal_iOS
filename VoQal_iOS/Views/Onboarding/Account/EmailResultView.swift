@@ -24,7 +24,7 @@ class EmailResultView: UIView {
     private let resultComment: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
-        label.font = UIFont(name: "SUIT-Regular", size: 13)
+        label.font = UIFont(name: "SUIT-Regular", size: 15)
         label.text = ""
         label.numberOfLines = 2
         label.textAlignment = .center
@@ -35,7 +35,7 @@ class EmailResultView: UIView {
     private let resultEmail: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.white
-        label.font = UIFont(name: "SUIT-Regular", size: 11)
+        label.font = UIFont(name: "SUIT-Regular", size: 15)
         label.text = ""
         label.textAlignment = .center
         

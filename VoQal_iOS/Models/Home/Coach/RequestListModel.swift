@@ -11,3 +11,17 @@ struct RequestListModel {
     let status: Int
     let students: [Student]
 }
+
+struct ApproveStudentModel: Codable {
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+}
+
+struct RejectStudentModel: Codable {
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+}
