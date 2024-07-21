@@ -71,6 +71,8 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
             return
         }
         
+        print("토큰이 온전합니다. - updateUserInformationIfNeeded")
+        
         if UserManager.shared.userModel == nil {
             homeManager.getUserInform { [weak self] homeModel in
                 if let model = homeModel {
