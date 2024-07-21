@@ -13,11 +13,18 @@ class MainTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let homeVC = HomeViewController()
+        let reservationVC = ReservationViewController()
+        let challengeVC = ChallengeViewController()
+        let myPageVC = MyPageViewController()
+        
+        myPageVC.delegate = homeVC
 
-        let firstNC = UINavigationController.init(rootViewController: HomeViewController())
-        let secondNC = UINavigationController.init(rootViewController: ReservationViewController())
-        let thirdNC = UINavigationController.init(rootViewController: ChallengeViewController())
-        let fourthNC = UINavigationController.init(rootViewController: MyPageViewController())
+        let firstNC = UINavigationController.init(rootViewController: homeVC)
+        let secondNC = UINavigationController.init(rootViewController: reservationVC)
+        let thirdNC = UINavigationController.init(rootViewController: challengeVC)
+        let fourthNC = UINavigationController.init(rootViewController: myPageVC)
         
         self.viewControllers = [firstNC,secondNC,thirdNC,fourthNC]
         

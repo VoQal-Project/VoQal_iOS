@@ -17,11 +17,15 @@ struct LoginData: Codable {
     let code: String?
 }
 
-struct CoachApprovalData: Codable {
+struct StudentStatusData: Codable {
     let status: Int
     let message: String?
     let errors: [ErrorDetail]?
     let code: String?
+    let data: StudentStatus?
     
 }
 
+struct StudentStatus: Codable {
+    let status: String?
+}

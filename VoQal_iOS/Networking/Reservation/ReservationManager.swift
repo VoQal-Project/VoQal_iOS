@@ -24,14 +24,20 @@ struct ReservationManager {
     private let fetchTimesUrl = "https://www.voqal.today/available-times"
     private let reservationUrl = "https://www.voqal.today/reservation"
     
-    func fetchTimes(_ roomId: Int, _ requestDate: Date, completion: @escaping (FetchTimesModel?) -> Void) {
+    func fetchTimes(_ roomId: Int, _ requestDate: String, completion: @escaping (FetchTimesModel?) -> Void) {
         
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        let requestDateString = dateFormatter.string(from: requestDate)
-        let parameter = FetchTimesParameter(roomId: roomId, requestDate: requestDateString)
+        var components = URLComponents(string: fetchTimesUrl)
+        components?.queryItems = [
+            URLQueryItem(name: "roomId", value: String(roomId)),
+            URLQueryItem(name: "requestDate", value: requestDate)
+        ]
         
-        AF.request(fetchTimesUrl, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, interceptor: AuthInterceptor()).responseDecodable(of: FetchTimesData.self) { response in
+        guard let url = components?.url else {
+            completion(nil)
+            return
+        }
+        
+        AF.request(url, method: .get, interceptor: AuthInterceptor()).responseDecodable(of: FetchTimesData.self) { response in
             switch response.result {
             case .success(let res):
                 print(res)

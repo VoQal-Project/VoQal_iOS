@@ -15,7 +15,7 @@ struct LoginParameter: Encodable {
 
 struct LoginManager {
     private let loginUrl = "https://www.voqal.today/login"
-    private let coachApprovalStatusUrl = "https://www.voqal.today/check/status"
+    private let checkStudentStatusUrl = "https://www.voqal.today/status/check"
     
     func loginUser(_ email: String, _ password: String, completion: @escaping (LoginModel?) -> Void) {
         
@@ -38,8 +38,25 @@ struct LoginManager {
         }
     }
     
-    func checkCoachApprovalStatus() {
-        
+    func checkStudentStatus(completion: @escaping (StudentStatusModel?) -> Void) {
+        AF.request(checkStudentStatusUrl, method: .get, interceptor: AuthInterceptor()).responseDecodable(of: StudentStatusData.self) { response in
+            switch response.result {
+            case .success(let res):
+                print()
+                print(res)
+                let status = res.status
+                let data = res.data
+                let message = res.message
+                let errors = res.errors
+                let code = res.code
+                let model = StudentStatusModel(status: status, message: message, errors: errors, code: code, data: data)
+                completion(model)
+                
+            case .failure(let err):
+                print(err)
+                completion(nil)
+        }
+        }
     }
     
 }

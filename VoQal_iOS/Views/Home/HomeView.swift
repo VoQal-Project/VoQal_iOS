@@ -99,8 +99,12 @@ class HomeView: BaseView {
     private func configureButton(_ userRole: String?) {
         print(userRole ?? "userRole이 없는데요?")
         
-        let icon = userRole == "COACH" ? UIImage(systemName: "person.3.fill") : UIImage(systemName: "pencil")
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: userRole == "COACH" ? 13 : 20 , weight: .bold, scale: .large)
+        let iconName = userRole == "COACH" ? "person.3.fill" : "pencil"
+        let icon = UIImage(systemName: iconName, withConfiguration: largeConfig)
+        
         if let icon = icon {
+            
             manageRequestButton.setIcon(icon)
         }
         
@@ -109,6 +113,11 @@ class HomeView: BaseView {
         
         let action = userRole == "COACH" ? #selector(homeViewController?.didTapManageStudentBtn) : #selector(homeViewController?.didTapManageLessonBtn)
         manageRequestButton.addTarget(homeViewController, action: action, for: .touchUpInside)
+    }
+    
+    func resetButtonTargets() {
+        print("target 제거 완료")
+        manageRequestButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
     }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: BaseViewController {
+class HomeViewController: BaseViewController, MyPageViewDelegate {
     private let homeView = HomeView()
     private let homeManager = HomeManager()
     
@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController {
         setupNavigationBar()
         NotificationCenter.default.addObserver(self, selector: #selector(userModelUpdated), name: .userModelUpdated, object: nil)
         print("Notification observer registered")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,11 +89,11 @@ class HomeViewController: BaseViewController {
                             }
                             
                             let user = UserModel(
-                                email: successModel.email,
-                                nickname: successModel.nickname,
-                                name: successModel.name,
-                                phoneNum: successModel.phoneNum,
-                                role: successModel.role
+                                email: email,
+                                nickname: nickname,
+                                name: name,
+                                phoneNum: phoneNum,
+                                role: role
                             )
                             
                             UserManager.shared.userModel = user
@@ -151,6 +152,10 @@ class HomeViewController: BaseViewController {
     
     @objc internal func didTapManageLessonBtn() {
         print("수업 관리 탭!")
+    }
+    
+    func removeTarget() {
+        homeView.resetButtonTargets()
     }
     
 }

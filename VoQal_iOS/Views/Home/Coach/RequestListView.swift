@@ -12,7 +12,8 @@ class RequestListView: BaseView {
     internal let tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
-        tableView.separatorStyle = .singleLine
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -33,7 +34,6 @@ class RequestListView: BaseView {
     }
     
     override func setConstraints() {
-        super.setConstraints()
         
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 10),

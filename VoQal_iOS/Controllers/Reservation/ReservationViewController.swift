@@ -33,10 +33,13 @@ class ReservationViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         reservationView.calendar.date = Date()
+        selectedRoom = nil
+        setIsHiddenTimeSection(true)
     }
     
     override func setAddTarget() {
         reservationView.reservationCustomView.fetchButton.addTarget(self, action: #selector(didTapFetchButton), for: .touchUpInside)
+        reservationView.calendar.addTarget(self, action: #selector(didChangedDate(_:)), for: .valueChanged)
     }
     
     private func setCollectionView() {
@@ -46,34 +49,35 @@ class ReservationViewController: BaseViewController {
         reservationView.reservationCustomView.timeCollectionButton.dataSource = self
     }
     
-    private func convertSelectedDate(_ date: Date) -> String {
+    private func convertSelectedDate(_ date: Date, _ toSubmit: Bool) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
-        formatter.dateFormat = "yy년 M월 d일"
+        formatter.dateFormat = toSubmit ? "yyyy-MM-dd": "yy년 M월 d일"
         return formatter.string(from: date)
     }
     
     private func convertToISO8601String(date: Date, time: String) -> String? {
-            let calendar = Calendar.current
-            
-            // 년월일
-            var dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
-            
-            // 시분
-            let timeComponents = time.split(separator: ":").compactMap { Int($0) }
-            let hour = timeComponents[0]
-            let minute = timeComponents[1]
-            dateComponents.hour = hour
-            dateComponents.minute = minute
-            
-            // DateComponents로 Date 객체 생성
-            guard let fullDate = calendar.date(from: dateComponents) else { return nil }
-            
-            // Date 객체를 ISO8601 형식의 문자열로 변환
-            let isoFormatter = ISO8601DateFormatter()
-            isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-            return isoFormatter.string(from: fullDate)
-        }
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
+        
+        // 년월일
+        var dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+        
+        // 시분
+        let timeComponents = time.split(separator: ":").compactMap { Int($0) }
+        let hour = timeComponents[0]
+        let minute = timeComponents[1]
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        // DateComponents로 Date 객체 생성
+        guard let fullDate = calendar.date(from: dateComponents) else { return nil }
+        
+        // Date 객체를 ISO8601 형식의 문자열로 변환
+        let isoFormatter = ISO8601DateFormatter()
+        isoFormatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
+        return isoFormatter.string(from: fullDate)
+    }
     
     private func timeRangeString(from startTime: String) -> String? {
         let dateFormatter = DateFormatter()
@@ -101,6 +105,7 @@ class ReservationViewController: BaseViewController {
     private func convertEndTimeString(from startTime: String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
         
         // 시작 시간을 Date 객체로 변환
         guard let startDate = dateFormatter.date(from: startTime) else {
@@ -108,7 +113,8 @@ class ReservationViewController: BaseViewController {
         }
         
         // Calendar를 사용하여 1시간 뒤의 시간을 계산
-        let calendar = Calendar.current
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone(abbreviation: "UTC")!
         guard let endDate = calendar.date(byAdding: .hour, value: 1, to: startDate) else {
             return nil
         }
@@ -123,9 +129,9 @@ class ReservationViewController: BaseViewController {
     
     @objc private func didTapFetchButton() {
         print("사용 가능한 시간을 조회합니다")
-        let date = reservationView.calendar.date
+        let convertedDate = convertSelectedDate(reservationView.calendar.date, true)
         if let selectedRoom = selectedRoom {
-            reservationManager.fetchTimes(selectedRoom, date) { model in
+            reservationManager.fetchTimes(selectedRoom, convertedDate) { model in
                 if let model = model {
                     print(model.convertedAvailableTimes)
                     self.availableTimes = model.convertedAvailableTimes
@@ -136,6 +142,11 @@ class ReservationViewController: BaseViewController {
                 }
             }
         }
+    }
+    
+    @objc private func didChangedDate(_ sender: UIDatePicker) {
+        print("date changed!")
+        self.setIsHiddenTimeSection(true)
     }
     
 }
@@ -193,17 +204,16 @@ extension ReservationViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
         if let cell = collectionView.cellForItem(at: indexPath) as? CustomCollectionViewCell {
             if collectionView == reservationView.reservationCustomView.roomCollectionButton {
                 selectedRoom = indexPath.item + 1
                 setIsHiddenTimeSection(true)
                 cell.configureSelectedCell(true)
-                print(indexPath.item)
+                print(selectedRoom)
             }
             else if collectionView == reservationView.reservationCustomView.timeCollectionButton {
                 cell.highlightSelectedCell()
-                let message: String = "\n예약 날짜: \(convertSelectedDate(reservationView.calendar.date))\n예약 시간: \(timeRangeString(from: cell.contentLabel.text!)!)\n방 번호: \(selectedRoom!)\n\n선택하신 정보로 예약을 진행할까요?"
+                let message: String = "\n예약 날짜: \(convertSelectedDate(reservationView.calendar.date, false))\n예약 시간: \(timeRangeString(from: cell.contentLabel.text!)!)\n방 번호: \(selectedRoom!)\n\n선택하신 정보로 예약을 진행할까요?"
                 let alert = UIAlertController(title: "예약 정보를 확인해주세요!", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
                     if let selectedRoom = self.selectedRoom,
@@ -221,7 +231,7 @@ extension ReservationViewController: UICollectionViewDelegate, UICollectionViewD
                             if model.status == 200 {
                                 let alert = UIAlertController(title: "예약 성공", message: "예약 신청이 완료되었습니다.", preferredStyle: .alert)
                                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
-                                    collectionView.reloadData()
+                                    self.setIsHiddenTimeSection(true)
                                 }))
                                 self.present(alert, animated: true)
                             }
@@ -238,7 +248,7 @@ extension ReservationViewController: UICollectionViewDelegate, UICollectionViewD
                     
                 }))
                 alert.addAction(UIAlertAction(title: "취소", style: .cancel))
-               
+                
                 present(alert, animated: true)
             }
         }

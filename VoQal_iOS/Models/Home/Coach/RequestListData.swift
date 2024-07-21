@@ -18,12 +18,19 @@ struct Student: Codable {
     let studentId: Int?
     let studentName: String?
 }
-//{
-//  "status": 0,
-//  "data": [
-//    {
-//      "studentId": 0,
-//      "studentName": "string"
-//    }
-//  ]
-//}
+
+struct ApproveStudentData: Codable {
+    
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+    
+}
+
+struct RejectStudentData: Codable {
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+}
