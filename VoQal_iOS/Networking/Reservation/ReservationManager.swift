@@ -19,6 +19,12 @@ struct ReservationParameter: Encodable {
     let endTime: String
 }
 
+struct EditReservationParameter: Encodable {
+    let newRoomId: Int
+    let newStartTime: String
+    let newEndTime: String
+}
+
 struct ReservationManager {
     
     private let fetchTimesUrl = "https://www.voqal.today/available-times"
@@ -75,7 +81,8 @@ struct ReservationManager {
                 completion(nil)
             }
         }
-        
     }
+    
+    
     
 }

@@ -81,5 +81,13 @@ class CustomCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        contentLabel.text = nil
+        contentLabel.textColor = .white
+        separator.isHidden = false
+        contentView.backgroundColor = UIColor(hexCode: "181818")
+    }
     
 }

@@ -44,3 +44,10 @@ struct FetchTimesModel {
         }
     }
 }
+
+struct EditReservationModel {
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+}

@@ -29,6 +29,9 @@
 		954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */; };
 		954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */; };
 		954F56962BD0AF8400288A7D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F56952BD0AF8400288A7D /* Extension.swift */; };
+		956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C062C4E18FB00ECAADA /* EditReservationView.swift */; };
+		956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */; };
+		956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */; };
 		956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C252C47C9E400F63F33 /* RequestListViewController.swift */; };
 		956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C272C47C9FE00F63F33 /* RequestListView.swift */; };
 		956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */; };
@@ -164,6 +167,9 @@
 		954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionData.swift; sourceTree = "<group>"; };
 		954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionModel.swift; sourceTree = "<group>"; };
 		954F56952BD0AF8400288A7D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		956C1C062C4E18FB00ECAADA /* EditReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationView.swift; sourceTree = "<group>"; };
+		956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationViewController.swift; sourceTree = "<group>"; };
+		956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeUtility.swift; sourceTree = "<group>"; };
 		956F3C252C47C9E400F63F33 /* RequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		956F3C272C47C9FE00F63F33 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListManager.swift; sourceTree = "<group>"; };
@@ -309,6 +315,7 @@
 				9541D3752BD2AF8600B36977 /* ReservationView.swift */,
 				956F3C372C48E2F500F63F33 /* ReservationCustomView.swift */,
 				9570F0972C4CFBF80004AA67 /* MyReservationView.swift */,
+				956C1C062C4E18FB00ECAADA /* EditReservationView.swift */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -318,6 +325,7 @@
 			children = (
 				9541D3782BD2AFA000B36977 /* ReservationViewController.swift */,
 				9570F0952C4CFBD00004AA67 /* MyReservationViewController.swift */,
+				956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */,
 			);
 			path = Reservation;
 			sourceTree = "<group>";
@@ -419,6 +427,7 @@
 				95786E8B2C40210B00F77146 /* KeychainHelper.swift */,
 				959B57552C41268D009428D7 /* AuthInterceptor.swift */,
 				9570F0A12C4D20220004AA67 /* DateUtility.swift */,
+				956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -990,6 +999,7 @@
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
+				956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */,
 				9541D37C2BD2AFC200B36977 /* ChallengeViewController.swift in Sources */,
 				954F56962BD0AF8400288A7D /* Extension.swift in Sources */,
 				9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */,
@@ -1000,6 +1010,7 @@
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
 				9541D3822BD2AFEE00B36977 /* MyPageViewController.swift in Sources */,
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
+				956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */,
 				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
 				956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
@@ -1034,6 +1045,7 @@
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
 				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
+				956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */,
 				956F3C3E2C49034200F63F33 /* ReservationData.swift in Sources */,
 				957E3E102C344D0600936617 /* EmailVerifyData.swift in Sources */,
 				95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */,

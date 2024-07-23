@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import Alamofire
+
+struct ManageStudentManager {
+    
+    let baseUrl = "https://www.voqal.today/lessonsongurl"
+    
+    
+    
+}

@@ -34,12 +34,11 @@ class MyReservationViewController: BaseViewController, MyReservationTableViewCel
             }
             if model.status == 200 {
                 print("내 예약을 받아오는 데에 성공했습니다.")
-                self.reservations = model.data.compactMap { data in
+                self.reservations = model.sortedData.compactMap { data in
                     
                     return Reservation(roomId: data.roomId, reservationId: data.reservationId, startTime: data.startTime, endTime: data.endTime)
                     
                 }
-                print("내 예약들은요 \n\(self.reservations)")
                 
                 DispatchQueue.main.async {
                     self.myReservationView.tableView.reloadData()
@@ -53,7 +52,7 @@ class MyReservationViewController: BaseViewController, MyReservationTableViewCel
     
     func didTapEditButton(_ cell: MyReservationTableViewCell) {
         print("예약 수정 버튼 탭!")
-        
+        showSheet(cell)
     }
     
     func didTapDeleteButton(_ cell: MyReservationTableViewCell) {
@@ -61,7 +60,7 @@ class MyReservationViewController: BaseViewController, MyReservationTableViewCel
         
         let reservation = reservations[indexPath.row]
         guard let reservedDate = DateUtility.convertToDateString(reservation.startTime),
-              let reservedTime = DateUtility.timeRangeString(from: reservation.startTime)
+              let reservedTime = DateUtility.iSO8601timeRangeString(from: reservation.startTime)
         else { return }
         let message = "\(reservedDate) \(reservedTime)에 예약된 연습실 \(reservation.roomId)번 방 예약을 취소할까요?"
         
@@ -89,6 +88,35 @@ class MyReservationViewController: BaseViewController, MyReservationTableViewCel
         present(alert, animated: true, completion: nil)
     }
     
+    private func showSheet(_ cell: MyReservationTableViewCell) {
+        guard let indexPath = myReservationView.tableView.indexPath(for: cell) else { return }
+        
+        let viewControllerToPresent = EditReservationViewController()
+        viewControllerToPresent.reservationId = reservations[indexPath.row].reservationId
+        viewControllerToPresent.modalPresentationStyle = .pageSheet
+        viewControllerToPresent.editCompletion = { () in
+            print("예약 변경 완료")
+            self.fetchMyReservations()
+        }
+        
+        let detentIdentifier = UISheetPresentationController.Detent.Identifier("customDetent")
+        let customDetent = UISheetPresentationController.Detent.custom(identifier: detentIdentifier) { _ in
+            return 500
+        }
+
+        if let sheet = viewControllerToPresent.sheetPresentationController {
+            sheet.detents = [customDetent]
+            sheet.largestUndimmedDetentIdentifier = detentIdentifier  // nil 기본값
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+            sheet.prefersEdgeAttachedInCompactHeight = false // false 기본값
+            sheet.widthFollowsPreferredContentSizeWhenEdgeAttached = true // false 기본값
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 12.0
+        }
+
+        present(viewControllerToPresent, animated: true, completion: nil)
+    }
+    
 }
 
 extension MyReservationViewController: UITableViewDelegate, UITableViewDataSource {
@@ -105,7 +133,7 @@ extension MyReservationViewController: UITableViewDelegate, UITableViewDataSourc
         print("reservation: \(reservation)")
         let date = DateUtility.convertStringToDate(reservation.startTime)
         let roomId = reservation.roomId
-        guard let time = DateUtility.timeRangeString(from: reservation.startTime) else {
+        guard let time = DateUtility.iSO8601timeRangeString(from: reservation.startTime) else {
             print("TimeRangeString failed")
             return UITableViewCell()
         }

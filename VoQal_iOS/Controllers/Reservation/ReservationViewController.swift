@@ -29,6 +29,7 @@ class ReservationViewController: BaseViewController {
         reservationView.reservationCustomView.timeCollectionButton.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         
         setupNavigationBar()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +70,7 @@ class ReservationViewController: BaseViewController {
     
     @objc private func didTapFetchButton() {
         print("사용 가능한 시간을 조회합니다")
+        print("시간 조회 당시 selectedRoom: \(selectedRoom)")
         let convertedDate = DateUtility.convertSelectedDate(reservationView.calendar.date, true)
         if let selectedRoom = selectedRoom {
             reservationManager.fetchTimes(selectedRoom, convertedDate) { model in
@@ -76,8 +78,8 @@ class ReservationViewController: BaseViewController {
                     print(model.convertedAvailableTimes)
                     self.availableTimes = model.convertedAvailableTimes
                     DispatchQueue.main.async {
-                        self.setIsHiddenTimeSection(false)
                         self.reservationView.reservationCustomView.timeCollectionButton.reloadData()
+                        self.setIsHiddenTimeSection(false)
                     }
                 }
             }
@@ -159,7 +161,9 @@ extension ReservationViewController: UICollectionViewDelegate, UICollectionViewD
             }
             else if collectionView == reservationView.reservationCustomView.timeCollectionButton {
                 cell.highlightSelectedCell()
-                let message: String = "\n예약 날짜: \(DateUtility.convertSelectedDate(reservationView.calendar.date, false))\n예약 시간: \(DateUtility.timeRangeString(from: cell.contentLabel.text!)!)\n방 번호: \(selectedRoom!)\n\n선택하신 정보로 예약을 진행할까요?"
+                guard let selectedRoom = selectedRoom else { print("selectedRoom을 불러오는 데에 실패했습니다."); return }
+                print("\(selectedRoom)번 방 선택됨")
+                let message: String = "\n예약 날짜: \(DateUtility.convertSelectedDate(reservationView.calendar.date, false))\n예약 시간: \(DateUtility.timeRangeString(from: cell.contentLabel.text!)!)\n방 번호: \(selectedRoom)\n\n선택하신 정보로 예약을 진행할까요?"
                 let alert = UIAlertController(title: "예약 정보를 확인해주세요!", message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
                     if let selectedRoom = self.selectedRoom,
