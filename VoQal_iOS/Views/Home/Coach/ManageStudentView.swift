@@ -9,7 +9,14 @@ import UIKit
 
 class ManageStudentView: BaseView {
 
-    
+    internal let tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
+        tableView.separatorStyle = .none
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

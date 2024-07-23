@@ -11,6 +11,16 @@ class HomeView: BaseView {
     
     weak var homeViewController: HomeViewController?
     
+    private let lessonSongButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 15.0
+        button.layer.cornerCurve = .continuous
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(named: "bottomBarColor")
+        
+        return button
+    }()
+    
     private let manageRequestButton: CustomButtonView = {
         let customButtonView = CustomButtonView()
         customButtonView.translatesAutoresizingMaskIntoConstraints = false
@@ -49,6 +59,7 @@ class HomeView: BaseView {
     
     override func addSubViews() {
         addSubview(introLabel)
+        addSubview(lessonSongButton)
         addSubview(manageRequestButton)
     }
     
@@ -60,7 +71,12 @@ class HomeView: BaseView {
             introLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
             introLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
             
-            manageRequestButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 50),
+            lessonSongButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            lessonSongButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 35),
+            lessonSongButton.widthAnchor.constraint(equalToConstant: 320),
+            lessonSongButton.heightAnchor.constraint(equalToConstant: 170),
+            
+            manageRequestButton.topAnchor.constraint(equalTo: lessonSongButton.bottomAnchor, constant: 50),
             manageRequestButton.centerXAnchor.constraint(equalTo: centerXAnchor),
             manageRequestButton.widthAnchor.constraint(equalToConstant: 58),
             manageRequestButton.heightAnchor.constraint(equalToConstant: 77),

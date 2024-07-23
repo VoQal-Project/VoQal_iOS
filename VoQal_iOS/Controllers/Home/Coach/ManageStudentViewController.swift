@@ -19,6 +19,9 @@ class ManageStudentViewController: BaseViewController {
         super.viewDidLoad()
 
         setupNavigationBar()
+        
+        manageStudentView.tableView.dataSource = self
+        manageStudentView.tableView.delegate = self
     }
     
     override func setAddTarget() {
@@ -40,4 +43,22 @@ class ManageStudentViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        <#code#>
+    }
 }

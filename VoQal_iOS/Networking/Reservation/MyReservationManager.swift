@@ -51,4 +51,25 @@ struct MyReservationManager {
             }
         }
     }
+    
+    func editMyReservation(_ newRoomId: Int, _ newStartTime: String, _ newEndTime: String, _ reservationId: Int, completion: @escaping (EditReservationModel?) -> Void) {
+        let url = "\(reservationUrl)/\(Int64(reservationId))"
+        let parameter = EditReservationParameter(newRoomId: newRoomId, newStartTime: newStartTime, newEndTime: newEndTime)
+        print("Parameter : \(parameter)")
+        AF.request(url, method: .patch, parameters: parameter, encoder: JSONParameterEncoder.default, interceptor: AuthInterceptor()).responseDecodable(of: EditReservationData.self) { response in
+            switch response.result {
+            case .success(let res):
+                print(res)
+                let status = res.status
+                let message = res.message
+                let errors = res.errors
+                let code = res.code
+                let model = EditReservationModel(message: message, status: status, errors: errors, code: code)
+                completion(model)
+            case .failure(let err):
+                print(err)
+                completion(nil)
+            }
+        }
+    }
 }

@@ -134,6 +134,7 @@ class ReservationCustomView: BaseView {
             timeCollectionButton.topAnchor.constraint(equalTo: timeCustomLabel.bottomAnchor, constant: 10),
             timeCollectionButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             timeCollectionButton.heightAnchor.constraint(equalTo: roomCollectionButton.heightAnchor),
+            timeCollectionButton.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
     

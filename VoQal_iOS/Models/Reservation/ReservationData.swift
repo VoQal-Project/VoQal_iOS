@@ -25,3 +25,11 @@ struct FetchTimesData: Codable {
     let errors: [ErrorDetail]?
     let code: String?
 }
+
+struct EditReservationData: Codable {
+    let message: String
+    let status: Int
+    let errors: [ErrorDetail]?
+    let code: String?
+}
+

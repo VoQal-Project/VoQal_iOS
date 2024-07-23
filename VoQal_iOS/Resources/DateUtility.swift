@@ -8,6 +8,14 @@
 import Foundation
 
 class DateUtility {
+    
+    static func stringToDate(_ date: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        return formatter.date(from: date)
+    }
+    
     static func convertSelectedDate(_ date: Date, _ toSubmit: Bool) -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ko_KR")
@@ -38,9 +46,35 @@ class DateUtility {
         return isoFormatter.string(from: fullDate)
     }
     
-    static func timeRangeString(from startTime: String) -> String? {
+    static func iSO8601timeRangeString(from startTime: String) -> String? {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        
+        // 시작 시간을 Date 객체로 변환
+        guard let startDate = inputFormatter.date(from: startTime) else {
+            return nil
+        }
+        
+        // Calendar를 사용하여 1시간 뒤의 시간을 계산
+        let calendar = Calendar.current
+        guard let endDate = calendar.date(byAdding: .hour, value: 1, to: startDate) else {
+            return nil
+        }
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "HH:mm"
+        
+        // 시작 시간과 끝 시간을 문자열로 변환
+        let startTimeString = outputFormatter.string(from: startDate)
+        let endTimeString = outputFormatter.string(from: endDate)
+        let timeRange = "\(startTimeString)~\(endTimeString)"
+        
+        return timeRange
+    }
+    
+    static func timeRangeString(from startTime: String) -> String? {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "HH:mm"
         
         // 시작 시간을 Date 객체로 변환
         guard let startDate = inputFormatter.date(from: startTime) else {
