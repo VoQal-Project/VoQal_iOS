@@ -51,9 +51,10 @@ class HomeView: BaseView {
     
     func updateUI(with user: UserModel) {
         
+        print("Home UI updated!")
+        
         setIntroText(user.name)
         configureButton(user.role)
-        
         
     }
     

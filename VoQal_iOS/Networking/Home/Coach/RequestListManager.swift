@@ -60,9 +60,10 @@ struct RequestListManager {
     
     func rejectStudent(_ studentId: Int, completion: @escaping (RejectStudentModel?) -> Void) {
         let parameter = studentProcessParameter(studentId: studentId)
-        AF.request(approveStudentUrl, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, interceptor: AuthInterceptor()).responseDecodable(of: RejectStudentData.self) { response in
+        AF.request(rejectStudentUrl, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default, interceptor: AuthInterceptor()).responseDecodable(of: RejectStudentData.self) { response in
             switch response.result {
             case .success(let res):
+                print(res)
                 let message = res.message
                 let status = res.status
                 let errors = res.errors

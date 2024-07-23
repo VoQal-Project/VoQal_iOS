@@ -96,7 +96,8 @@ class LoginViewController: BaseViewController {
                                             self.present(alert, animated: true)
                                         }
                                         else {
-                                            print("Error: 담당 코치 신청은 했지만 pending이 아닌 상태입니다.")
+                                            let coachSelectionVC = CoachSelectionViewController()
+                                            self.navigationController?.pushViewController(coachSelectionVC, animated: true)
                                         }
                                     }
                                 }

@@ -10,6 +10,12 @@ import UIKit
 class ManageStudentViewController: BaseViewController {
 
     private let manageStudentView = ManageStudentView()
+    private let manageStudentManager = ManageStudentManager()
+    internal var students: [ApprovedStudent] = [] {
+        didSet {
+            manageStudentView.tableView.reloadData()
+        }
+    }
     
     override func loadView() {
         view = manageStudentView
@@ -22,6 +28,9 @@ class ManageStudentViewController: BaseViewController {
         
         manageStudentView.tableView.dataSource = self
         manageStudentView.tableView.delegate = self
+        manageStudentView.tableView.register(StudentsTableViewCell.self, forCellReuseIdentifier: StudentsTableViewCell.identifier)
+        
+        fetchStudents()
     }
     
     override func setAddTarget() {
@@ -43,22 +52,84 @@ class ManageStudentViewController: BaseViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    private func fetchStudents() {
+        manageStudentManager.getStudents { model in
+            guard let model = model else { print("model을 불러오는 데에 실패했습니다."); return }
+            if model.status == 200 {
+                let students = model.sortedStudents
+                self.students = students
+            }
+        }
+    }
+    
 }
 
 extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return students.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: StudentsTableViewCell.identifier, for: indexPath) as? StudentsTableViewCell else {
+            print("StudentsTableViewCell 불러오기 실패")
+            return UITableViewCell()
+        }
+        cell.configure(students[indexPath.row].name)
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        <#code#>
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 왼쪽에 만들기
+        
+        let write = UIContextualAction(style: .normal, title: "Write") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("수업 일지 작성 tap!")
+            success(true)
+        }
+        write.image = UIImage(systemName: "pencil")
+        write.backgroundColor = UIColor(hexCode: "747474")
+        
+        
+        let chat = UIContextualAction(style: .normal, title: "Chat") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("담당 학생과의 채팅 tap!")
+            success(true)
+        }
+        chat.image = UIImage(systemName: "ellipsis.bubble")
+        chat.backgroundColor = UIColor(hexCode: "474747")
+        
+        //actions배열 인덱스 0이 왼쪽에 붙어서 나옴
+        return UISwipeActionsConfiguration(actions:[write, chat])
+        
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("담당 학생에서 삭제 tap!")
+            self.manageStudentManager.deleteStudent(self.students[indexPath.row].id) { model in
+                guard let model = model else { return }
+                if model.status == 200 {
+                    self.fetchStudents()
+                    tableView.reloadData()
+                }
+                else {
+                    let alert = UIAlertController(title: "", message: "삭제에 실패했습니다. 다시 시도해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
+            }
+            success(true)
+        }
+        delete.image = UIImage(systemName: "minus.circle")
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }

@@ -27,10 +27,17 @@ class ManageStudentView: BaseView {
     }
     
     override func addSubViews() {
-        
+        addSubview(tableView)
     }
     
     override func setConstraints() {
+        
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        ])
         
     }
 }

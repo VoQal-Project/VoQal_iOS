@@ -158,6 +158,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
     
     func removeTarget() {
         homeView.resetButtonTargets()
+        self.currentUser = nil
     }
     
 }
