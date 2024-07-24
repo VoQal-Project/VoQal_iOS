@@ -44,6 +44,11 @@
 		956F3C3E2C49034200F63F33 /* ReservationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C3D2C49034200F63F33 /* ReservationData.swift */; };
 		956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C3F2C49035500F63F33 /* ReservationModel.swift */; };
 		956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C412C49036100F63F33 /* ReservationManager.swift */; };
+		956FFD9A2C5123DA00DD7995 /* WriteLessonNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD992C5123DA00DD7995 /* WriteLessonNoteManager.swift */; };
+		956FFD9C2C5123F300DD7995 /* WriteLessonNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD9B2C5123F300DD7995 /* WriteLessonNoteView.swift */; };
+		956FFD9E2C51240D00DD7995 /* WriteLessonNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */; };
+		956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD9F2C512B7600DD7995 /* CustomTextField.swift */; };
+		956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFDA12C51401A00DD7995 /* CustomTextView.swift */; };
 		9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0952C4CFBD00004AA67 /* MyReservationViewController.swift */; };
 		9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0972C4CFBF80004AA67 /* MyReservationView.swift */; };
 		9570F09A2C4CFD070004AA67 /* MyReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */; };
@@ -185,6 +190,11 @@
 		956F3C3D2C49034200F63F33 /* ReservationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationData.swift; sourceTree = "<group>"; };
 		956F3C3F2C49035500F63F33 /* ReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationModel.swift; sourceTree = "<group>"; };
 		956F3C412C49036100F63F33 /* ReservationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationManager.swift; sourceTree = "<group>"; };
+		956FFD992C5123DA00DD7995 /* WriteLessonNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteManager.swift; sourceTree = "<group>"; };
+		956FFD9B2C5123F300DD7995 /* WriteLessonNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteView.swift; sourceTree = "<group>"; };
+		956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteViewController.swift; sourceTree = "<group>"; };
+		956FFD9F2C512B7600DD7995 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		956FFDA12C51401A00DD7995 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		9570F0952C4CFBD00004AA67 /* MyReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationViewController.swift; sourceTree = "<group>"; };
 		9570F0972C4CFBF80004AA67 /* MyReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationView.swift; sourceTree = "<group>"; };
 		9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationTableViewCell.swift; sourceTree = "<group>"; };
@@ -363,6 +373,7 @@
 		9542B63D2BCD69690060E1BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				956FFD8E2C5122EA00DD7995 /* Lesson */,
 				95A0D4402C43AD76002A768B /* MyPage */,
 				95A4240E2C3FC09F00DDD571 /* Cells */,
 				9541D37D2BD2AFC900B36977 /* Challenge */,
@@ -389,6 +400,7 @@
 		9542B6432BCD7F880060E1BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				956FFD8D2C5122DE00DD7995 /* Lesson */,
 				9541D3802BD2AFDD00B36977 /* MyPage */,
 				9541D37A2BD2AFA800B36977 /* Challenge */,
 				9541D3772BD2AF8B00B36977 /* Reservation */,
@@ -404,6 +416,7 @@
 		9542B6442BCD7F910060E1BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				956FFD902C5122FC00DD7995 /* Lesson */,
 				956F3C3C2C49033600F63F33 /* Reservation */,
 				958FE7C82C42C31500F2954D /* Home */,
 				959B57572C412BF3009428D7 /* Auth */,
@@ -492,6 +505,101 @@
 			path = Reservation;
 			sourceTree = "<group>";
 		};
+		956FFD8D2C5122DE00DD7995 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD942C51238A00DD7995 /* Student */,
+				956FFD932C51238600DD7995 /* Coach */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		956FFD8E2C5122EA00DD7995 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD922C51237400DD7995 /* Student */,
+				956FFD912C51231A00DD7995 /* Coach */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		956FFD8F2C5122F400DD7995 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD962C51239600DD7995 /* Student */,
+				956FFD952C51239200DD7995 /* Coach */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		956FFD902C5122FC00DD7995 /* Lesson */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD982C5123A200DD7995 /* Student */,
+				956FFD972C51239E00DD7995 /* Coach */,
+			);
+			path = Lesson;
+			sourceTree = "<group>";
+		};
+		956FFD912C51231A00DD7995 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD9B2C5123F300DD7995 /* WriteLessonNoteView.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		956FFD922C51237400DD7995 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		956FFD932C51238600DD7995 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		956FFD942C51238A00DD7995 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		956FFD952C51239200DD7995 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				956FFD992C5123DA00DD7995 /* WriteLessonNoteManager.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		956FFD962C51239600DD7995 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		956FFD972C51239E00DD7995 /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
+		956FFD982C5123A200DD7995 /* Student */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
 		957E3E132C344D9000936617 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +676,7 @@
 		959D941E2C2AEEC30014F086 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				956FFD8F2C5122F400DD7995 /* Lesson */,
 				956F3C3B2C49032C00F63F33 /* Reservation */,
 				958FE7C52C42C2AC00F2954D /* Home */,
 				959D941F2C2AEEDE0014F086 /* Onboarding */,
@@ -728,6 +837,8 @@
 			children = (
 				95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */,
 				9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */,
+				956FFD9F2C512B7600DD7995 /* CustomTextField.swift */,
+				956FFDA12C51401A00DD7995 /* CustomTextView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -988,7 +1099,9 @@
 				956F3C3A2C48E58200F63F33 /* CustomCollectionViewCell.swift in Sources */,
 				95B661642C3D1C8D0091F241 /* RoleSelectionManager.swift in Sources */,
 				958FE7CA2C42C32900F2954D /* HomeModel.swift in Sources */,
+				956FFD9E2C51240D00DD7995 /* WriteLessonNoteViewController.swift in Sources */,
 				957E3E122C344D1700936617 /* NicknameVerifyData.swift in Sources */,
+				956FFD9C2C5123F300DD7995 /* WriteLessonNoteView.swift in Sources */,
 				954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */,
 				959D943A2C2EF6ED0014F086 /* EmailFinderManager.swift in Sources */,
 				958FE7C42C42AE7F00F2954D /* BaseViewController.swift in Sources */,
@@ -1006,6 +1119,7 @@
 				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				9541D3732BD2AEB100B36977 /* MainTabBarController.swift in Sources */,
+				956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */,
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
@@ -1035,6 +1149,7 @@
 				9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */,
 				956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */,
 				959D943D2C2EF7520014F086 /* EmailFinderModel.swift in Sources */,
+				956FFD9A2C5123DA00DD7995 /* WriteLessonNoteManager.swift in Sources */,
 				9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
@@ -1054,6 +1169,7 @@
 				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
 				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
 				959B57562C41268D009428D7 /* AuthInterceptor.swift in Sources */,
+				956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
 				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,

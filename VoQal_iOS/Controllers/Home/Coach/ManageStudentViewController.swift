@@ -62,6 +62,10 @@ class ManageStudentViewController: BaseViewController {
         }
     }
     
+    @objc private func didTapLessonSongLabel() {
+        print("레슨곡 자리입니다!")
+    }
+    
 }
 
 extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSource {
@@ -74,7 +78,7 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
             print("StudentsTableViewCell 불러오기 실패")
             return UITableViewCell()
         }
-        cell.configure(students[indexPath.row].name)
+        cell.configure(students[indexPath.row].name, target: self, #selector(didTapLessonSongLabel))
         
         return cell
     }
@@ -92,10 +96,13 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
         
         let write = UIContextualAction(style: .normal, title: "Write") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             print("수업 일지 작성 tap!")
+            let vc = WriteLessonNoteViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
             success(true)
         }
         write.image = UIImage(systemName: "pencil")
         write.backgroundColor = UIColor(hexCode: "747474")
+        
         
         
         let chat = UIContextualAction(style: .normal, title: "Chat") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
