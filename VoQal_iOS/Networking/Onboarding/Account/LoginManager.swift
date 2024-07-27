@@ -24,7 +24,7 @@ struct LoginManager {
         AF.request(loginUrl, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default).responseDecodable(of: LoginData.self) { response in
             switch response.result {
             case .success(let res):
-                print(res.status)
+                print(res)
                 let status = res.status
                 let accessToken = res.accessToken
                 let refreshToken = res.refreshToken

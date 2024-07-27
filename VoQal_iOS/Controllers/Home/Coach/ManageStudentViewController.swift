@@ -64,6 +64,12 @@ class ManageStudentViewController: BaseViewController {
     
     @objc private func didTapLessonSongLabel() {
         print("레슨곡 자리입니다!")
+        let vc = SetLessonSongViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        vc.setLessonSongCompletion = { () in
+            
+        }
+        present(vc, animated: false)
     }
     
 }
@@ -98,6 +104,7 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
             print("수업 일지 작성 tap!")
             let vc = WriteLessonNoteViewController()
             self.navigationController?.pushViewController(vc, animated: true)
+            vc.studentId = self.students[indexPath.row].id
             success(true)
         }
         write.image = UIImage(systemName: "pencil")

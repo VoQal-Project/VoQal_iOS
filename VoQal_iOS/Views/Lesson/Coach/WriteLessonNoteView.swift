@@ -56,6 +56,10 @@ class WriteLessonNoteView: BaseView {
         return view
     }()
     
+    internal var datePicker: UIDatePicker {
+        return lessonDateView.subviews.compactMap { $0 as? UIDatePicker }.first!
+    }
+    
     fileprivate let titleView: UIView = {
         let view = UIView()
         let title = UILabel()
@@ -86,11 +90,15 @@ class WriteLessonNoteView: BaseView {
         return view
     }()
     
+    internal var titleTextField: UITextField {
+        return titleView.subviews.compactMap { $0 as? UITextField }.first!
+    }
+    
     fileprivate let lessonSongView: UIView = {
         let view = UIView()
         let title = UILabel()
         let artistTextField = CustomTextField()
-        let titleTextField = CustomTextField()
+        let songTitleTextField = CustomTextField()
         
         title.text = "레슨곡"
         title.font = UIFont(name: "SUIT-Regular", size: 14)
@@ -100,13 +108,13 @@ class WriteLessonNoteView: BaseView {
         artistTextField.placeholder = "가수명"
         artistTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        titleTextField.placeholder = "곡명"
-        titleTextField.translatesAutoresizingMaskIntoConstraints = false
+        songTitleTextField.placeholder = "곡명"
+        songTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(title)
         view.addSubview(artistTextField)
-        view.addSubview(titleTextField)
+        view.addSubview(songTitleTextField)
         
         NSLayoutConstraint.activate([
             title.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -117,14 +125,24 @@ class WriteLessonNoteView: BaseView {
             artistTextField.heightAnchor.constraint(equalToConstant: 40),
             artistTextField.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -25),
             
-            titleTextField.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -15),
-            titleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            titleTextField.topAnchor.constraint(equalTo: artistTextField.topAnchor),
-            titleTextField.heightAnchor.constraint(equalTo: artistTextField.heightAnchor),
+            songTitleTextField.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: -15),
+            songTitleTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            songTitleTextField.topAnchor.constraint(equalTo: artistTextField.topAnchor),
+            songTitleTextField.heightAnchor.constraint(equalTo: artistTextField.heightAnchor),
         ])
         
         return view
     }()
+    
+    internal var artistTextField: UITextField {
+        return lessonSongView.subviews.compactMap { $0 as? UITextField }.first!
+    }
+    
+    internal var songTitleTextField: UITextField? {
+        let textFields = lessonSongView.subviews.compactMap { $0 as? UITextField }
+        guard textFields.count > 1 else { return nil }
+        return textFields[1]
+    }
 
     internal let lessonContentView: UIView = {
         let view = UIView()
@@ -132,7 +150,7 @@ class WriteLessonNoteView: BaseView {
         let textView = UITextView()
         let textCountLabel = UILabel()
         
-        title.text = "내용"
+        title.text = "본문"
         title.font = UIFont(name: "SUIT-Regular", size: 14)
         title.textColor = .white
         title.translatesAutoresizingMaskIntoConstraints = false
@@ -230,15 +248,69 @@ class WriteLessonNoteView: BaseView {
         return recordFileView.subviews.compactMap { $0 as? UIButton }.first!
     }
     
+    internal var recordTextField: UITextField {
+        return recordFileView.subviews.compactMap { $0 as? UITextField }.first!
+    }
+    
+    internal let recordNoticeView: UIView = {
+        let view = UIView()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        let imageView = UIImageView(image: UIImage(systemName: "exclamationmark.circle", withConfiguration: configuration))
+        let content = UILabel()
+        
+        content.text = "아직 녹음 파일과 제목이 입력되지 않았어요.\n우측 버튼을 통해 입력해주세요!"
+        content.textColor = .white
+        content.font = UIFont(name: "SUIT-Regular", size: 14)
+        content.numberOfLines = 3
+        content.translatesAutoresizingMaskIntoConstraints = false
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        view.addSubview(imageView)
+        view.addSubview(content)
+        
+        NSLayoutConstraint.activate([
+            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            content.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
+            content.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor),
+            content.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+        
+        return view
+    }()
+    
+    internal var recordTitleLabel: UILabel {
+        return recordNoticeView.subviews.compactMap { $0 as? UILabel }.first!
+    }
+    internal var recordIcon: UIImageView {
+        return recordNoticeView.subviews.compactMap { $0 as? UIImageView }.first!
+    }
+    
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        return gesture
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = UIColor(hexCode: "111111")
-        
+        addGestureRecognizer(tapGesture)
+        setDelegate()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setDelegate() {
+        titleTextField.delegate = self
+        artistTextField.delegate = self
+        songTitleTextField?.delegate = self
     }
 
     override func addSubViews() {
@@ -250,6 +322,7 @@ class WriteLessonNoteView: BaseView {
         contentView.addSubview(lessonContentView)
         contentView.addSubview(textCountLabel)
         contentView.addSubview(recordFileView)
+        contentView.addSubview(recordNoticeView)
     }
     
     override func setConstraints() {
@@ -296,9 +369,35 @@ class WriteLessonNoteView: BaseView {
             recordFileView.topAnchor.constraint(equalTo: lessonContentView.bottomAnchor, constant: 30),
             recordFileView.heightAnchor.constraint(equalToConstant: 65),
             
-            contentView.bottomAnchor.constraint(equalTo: recordFileView.bottomAnchor, constant: 30),
+            recordNoticeView.topAnchor.constraint(equalTo: recordFileView.bottomAnchor),
+            recordNoticeView.leadingAnchor.constraint(equalTo: recordFileView.leadingAnchor, constant: -5),
+            recordNoticeView.trailingAnchor.constraint(equalTo: recordFileView.trailingAnchor),
+            recordNoticeView.heightAnchor.constraint(equalToConstant: 50),
+            
+            contentView.bottomAnchor.constraint(equalTo: recordFileView.bottomAnchor, constant: 100),
         ])
         
     }
     
+    @objc private func dismissKeyboard() {
+        print("외부 탭")
+        endEditing(true)
+    }
+    
+}
+
+extension WriteLessonNoteView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == titleTextField {
+            artistTextField.becomeFirstResponder()
+        }
+        else if textField == artistTextField {
+            songTitleTextField?.becomeFirstResponder()
+        }
+        else if textField == songTitleTextField {
+            contentViewTextView.becomeFirstResponder()
+        }
+        
+        return true
+    }
 }

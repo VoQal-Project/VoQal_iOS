@@ -8,11 +8,7 @@
 import Foundation
 
 struct HomeData: Codable {
-    let nickName: String?
-    let email: String?
-    let name: String?
-    let phoneNum: String?
-    let role: String?
+    let data: HomeUserData?
     let status: Int
     
     let message: String?
@@ -20,4 +16,12 @@ struct HomeData: Codable {
     let code: String?
 }
 
+struct HomeUserData: Codable {
+    let nickName: String
+    let email: String
+    let name: String
+    let phoneNum: String
+    let role: String
+    let lessonSongUrl: String?
+}
 

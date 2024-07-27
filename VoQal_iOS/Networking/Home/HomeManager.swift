@@ -16,12 +16,16 @@ struct HomeManager {
             switch response.result {
             case .success(let res):
                 if (200...299).contains(res.status) {
-                    let successModel = HomeSuccessModel(nickname: res.nickName,
-                                                 email: res.email,
-                                                 name: res.name,
-                                                 phoneNum: res.phoneNum,
-                                                 role: res.role,
-                                                 status: res.status)
+                    print("getUserInform: \(res)\nAccess Token: \(KeychainHelper.shared.getAccessToken())\nRefresh Token: \(KeychainHelper.shared.getRefreshToken())")
+                    guard let data = res.data else { print("getUserInform data 프로퍼티 에러"); return }
+                    let successModel = HomeSuccessModel(nickname: data.nickName,
+                                                        email: data.email,
+                                                        name: data.name,
+                                                        phoneNum: data.phoneNum,
+                                                        role: data.role,
+                                                        status: res.status,
+                                                        lessonSongUrl: data.lessonSongUrl
+                    )
                     let model = HomeModel(successModel: successModel, errorModel: nil)
                     completion(model)
                 } else {

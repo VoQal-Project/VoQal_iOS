@@ -2,20 +2,22 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>UIUserInterfaceStyle</key>
 	<string>Dark</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Fonts/SUIT-Regular.otf</string>
-    	<string>Fonts/SUIT-Bold.otf</string>
-    	<string>Fonts/SUIT-ExtraBold.otf</string>
-    	<string>Fonts/SUIT-ExtraLight.otf</string>
-    	<string>Fonts/SUIT-Heavy.otf</string>
-   	 	<string>Fonts/SUIT-Light.otf</string>
-   	 	<string>Fonts/SUIT-Medium.otf</string>
-    	<string>Fonts/SUIT-SemiBold.otf</string>
-    	<string>Fonts/SUIT-Thin.otf</string>
-		</array>
+		<string>Fonts/SUIT-Bold.otf</string>
+		<string>Fonts/SUIT-ExtraBold.otf</string>
+		<string>Fonts/SUIT-ExtraLight.otf</string>
+		<string>Fonts/SUIT-Heavy.otf</string>
+		<string>Fonts/SUIT-Light.otf</string>
+		<string>Fonts/SUIT-Medium.otf</string>
+		<string>Fonts/SUIT-SemiBold.otf</string>
+		<string>Fonts/SUIT-Thin.otf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
