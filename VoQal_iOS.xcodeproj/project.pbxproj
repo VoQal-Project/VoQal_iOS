@@ -29,6 +29,12 @@
 		954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */; };
 		954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */; };
 		954F56962BD0AF8400288A7D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F56952BD0AF8400288A7D /* Extension.swift */; };
+		955B55A42C5297A5004C097E /* UploadRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B55A32C5297A5004C097E /* UploadRecordViewController.swift */; };
+		955B55A62C5297BE004C097E /* UploadRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955B55A52C5297BE004C097E /* UploadRecordView.swift */; };
+		955BD9092C55101B005FA69B /* WriteLessonNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD9082C55101B005FA69B /* WriteLessonNoteModel.swift */; };
+		955BD90B2C551024005FA69B /* WriteLessonNoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */; };
+		955BD90D2C552F30005FA69B /* SetLessonSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90C2C552F30005FA69B /* SetLessonSongView.swift */; };
+		955BD90F2C552F47005FA69B /* SetLessonSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */; };
 		956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C062C4E18FB00ECAADA /* EditReservationView.swift */; };
 		956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */; };
 		956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */; };
@@ -175,6 +181,12 @@
 		954E1DF42C3FD4F4007D72B4 /* CoachSelectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionData.swift; sourceTree = "<group>"; };
 		954E1DF62C3FD50C007D72B4 /* CoachSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionModel.swift; sourceTree = "<group>"; };
 		954F56952BD0AF8400288A7D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		955B55A32C5297A5004C097E /* UploadRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRecordViewController.swift; sourceTree = "<group>"; };
+		955B55A52C5297BE004C097E /* UploadRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRecordView.swift; sourceTree = "<group>"; };
+		955BD9082C55101B005FA69B /* WriteLessonNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteModel.swift; sourceTree = "<group>"; };
+		955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteData.swift; sourceTree = "<group>"; };
+		955BD90C2C552F30005FA69B /* SetLessonSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongView.swift; sourceTree = "<group>"; };
+		955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongViewController.swift; sourceTree = "<group>"; };
 		956C1C062C4E18FB00ECAADA /* EditReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationView.swift; sourceTree = "<group>"; };
 		956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationViewController.swift; sourceTree = "<group>"; };
 		956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeUtility.swift; sourceTree = "<group>"; };
@@ -545,6 +557,8 @@
 			isa = PBXGroup;
 			children = (
 				956FFD9B2C5123F300DD7995 /* WriteLessonNoteView.swift */,
+				955B55A52C5297BE004C097E /* UploadRecordView.swift */,
+				955BD90C2C552F30005FA69B /* SetLessonSongView.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -560,6 +574,8 @@
 			isa = PBXGroup;
 			children = (
 				956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */,
+				955B55A32C5297A5004C097E /* UploadRecordViewController.swift */,
+				955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -589,6 +605,8 @@
 		956FFD972C51239E00DD7995 /* Coach */ = {
 			isa = PBXGroup;
 			children = (
+				955BD9082C55101B005FA69B /* WriteLessonNoteModel.swift */,
+				955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -1102,6 +1120,7 @@
 				956FFD9E2C51240D00DD7995 /* WriteLessonNoteViewController.swift in Sources */,
 				957E3E122C344D1700936617 /* NicknameVerifyData.swift in Sources */,
 				956FFD9C2C5123F300DD7995 /* WriteLessonNoteView.swift in Sources */,
+				955B55A42C5297A5004C097E /* UploadRecordViewController.swift in Sources */,
 				954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */,
 				959D943A2C2EF6ED0014F086 /* EmailFinderManager.swift in Sources */,
 				958FE7C42C42AE7F00F2954D /* BaseViewController.swift in Sources */,
@@ -1125,6 +1144,7 @@
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
 				956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */,
 				9541D37C2BD2AFC200B36977 /* ChallengeViewController.swift in Sources */,
+				955BD90B2C551024005FA69B /* WriteLessonNoteData.swift in Sources */,
 				954F56962BD0AF8400288A7D /* Extension.swift in Sources */,
 				9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */,
 				9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */,
@@ -1137,6 +1157,7 @@
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
 				956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */,
 				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
+				955BD9092C55101B005FA69B /* WriteLessonNoteModel.swift in Sources */,
 				956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
 				9570F09E2C4D002D0004AA67 /* MyReservationData.swift in Sources */,
@@ -1162,6 +1183,7 @@
 				9541D3302BD29C0300B36977 /* HomeView.swift in Sources */,
 				9577AC032C4FE0370019396E /* ManageStudentModel.swift in Sources */,
 				959D942B2C2C7A800014F086 /* RegistrationData.swift in Sources */,
+				955B55A62C5297BE004C097E /* UploadRecordView.swift in Sources */,
 				956F3C322C47DC3A00F63F33 /* RequestListModel.swift in Sources */,
 				956F3C362C47E1AD00F63F33 /* RequestListTableViewCell.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
@@ -1189,6 +1211,8 @@
 				9542B6482BCD7FE40060E1BB /* LoginView.swift in Sources */,
 				959D942F2C2D66070014F086 /* EmailFinderView.swift in Sources */,
 				95786E8C2C40210B00F77146 /* KeychainHelper.swift in Sources */,
+				955BD90F2C552F47005FA69B /* SetLessonSongViewController.swift in Sources */,
+				955BD90D2C552F30005FA69B /* SetLessonSongView.swift in Sources */,
 				959D94492C2F07F10014F086 /* PasswordResetViewController.swift in Sources */,
 				95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */,
 			);

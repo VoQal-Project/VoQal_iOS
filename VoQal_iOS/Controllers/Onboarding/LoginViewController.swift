@@ -96,8 +96,7 @@ class LoginViewController: BaseViewController {
                                             self.present(alert, animated: true)
                                         }
                                         else {
-                                            let coachSelectionVC = CoachSelectionViewController()
-                                            self.navigationController?.pushViewController(coachSelectionVC, animated: true)
+                                            print("err: 게스트인데 아무역할 선택하지도 않은것도 아니고 pending도 아닌 상태.")
                                         }
                                     }
                                 }

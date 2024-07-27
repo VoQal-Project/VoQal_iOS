@@ -14,6 +14,7 @@ struct HomeSuccessModel: Codable {
     let phoneNum: String?
     let role: String?
     let status: Int
+    let lessonSongUrl: String?
 }
 
 struct HomeErrorModel: Codable {

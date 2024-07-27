@@ -46,14 +46,28 @@ class CoachSelectionTableViewCell: UITableViewCell {
 
     func configure(with name: String) {
         let fullName = "\(name) 코치님"
-        let attributedText = NSMutableAttributedString(string: fullName, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 23), NSAttributedString.Key.kern: 1.5])
+        let attributedText = NSMutableAttributedString(string: fullName, attributes: [
+            NSAttributedString.Key.kern: 1.5,
+            NSAttributedString.Key.font: UIFont(name: "SUIT-SemiBold", size: 23)!
+        ])
         
         // "코치님" 부분의 범위를 찾아서 작은 글씨로 설정
         let coachRange = (fullName as NSString).range(of: "코치님")
-        attributedText.addAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17)], range: coachRange)
+        attributedText.addAttributes([
+            NSAttributedString.Key.font: UIFont(name: "SUIT-Regular", size: 17)!
+        ], range: coachRange)
         
+        // NSParagraphStyle을 사용하여 전체 텍스트 좌측 정렬 설정
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .left
+        
+        // NSParagraphStyle을 포함한 속성 추가
+        attributedText.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+        
+        // UILabel에 적용
         nameLabel.attributedText = attributedText
     }
+    // 이름만 좌로 정렬
     
     private func addSubViews() {
         contentView.addSubview(containerView)
