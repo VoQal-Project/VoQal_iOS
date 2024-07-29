@@ -18,6 +18,8 @@ class HomeView: BaseView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(named: "bottomBarColor")
         
+        button.imageView?.contentMode = .scaleAspectFill
+        
         return button
     }()
     
@@ -57,6 +59,15 @@ class HomeView: BaseView {
         configureButton(user.role)
         
     }
+    
+    
+    func updateThumbnail(_ thumbnail: UIImage?) {
+        
+        if let thumbnail = thumbnail {
+            lessonSongButton.setImage(thumbnail, for: .normal)
+        }
+    }
+    
     
     override func addSubViews() {
         addSubview(introLabel)

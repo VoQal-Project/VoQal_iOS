@@ -42,4 +42,48 @@ struct HomeManager {
             }
         }
     }
+    
+    func getLessonSongThumbnail(_ url: String, completion: @escaping (HomeThumbnailModel?) -> Void) {
+        // 유튜브 ID 추출
+        if let youtubeID = extractYouTubeID(from: url) {
+            // 썸네일 URL 생성
+            if let thumbnailURL = youtubeThumbnailURL(from: youtubeID) {
+                // 이미지 다운로드
+                AF.download(thumbnailURL).responseData { response in
+                    switch response.result {
+                    case .success(let data):
+                        if let image = UIImage(data: data) {
+                            let model = HomeThumbnailModel(thumbnail: image)
+                            completion(model)
+                        } else {
+                            completion(nil)
+                        }
+                    case .failure(let error):
+                        print("Error downloading image: \(error)")
+                        completion(nil)
+                    }
+                }
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(nil)
+        }
+    }
+    
+    func extractYouTubeID(from url: String) -> String? {
+        let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]+)"
+        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let range = NSRange(location: 0, length: url.count)
+        let matches = regex?.matches(in: url, options: [], range: range)
+        if let match = matches?.first, let range = Range(match.range, in: url) {
+            return String(url[range])
+        }
+        return nil
+    }
+    
+    func youtubeThumbnailURL(from youtubeID: String) -> URL? {
+        return URL(string: "https://img.youtube.com/vi/\(youtubeID)/hqdefault.jpg")
+    }
+    
 }

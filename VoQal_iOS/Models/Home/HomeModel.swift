@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct HomeSuccessModel: Codable {
     let nickname: String?
@@ -27,4 +28,8 @@ struct HomeErrorModel: Codable {
 struct HomeModel {
     let successModel: HomeSuccessModel?
     let errorModel: HomeErrorModel?
+}
+
+struct HomeThumbnailModel {
+    let thumbnail: UIImage
 }

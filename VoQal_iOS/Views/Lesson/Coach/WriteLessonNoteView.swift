@@ -201,95 +201,6 @@ class WriteLessonNoteView: BaseView {
         return label
     }()
     
-    fileprivate let recordFileView: UIView = {
-        let view = UIView()
-        let title = UILabel()
-        let field = CustomTextField()
-        let uploadButton = UIButton()
-        
-        title.text = "녹음 파일"
-        title.font = UIFont(name: "SUIT-Regular", size: 14)
-        title.textColor = UIColor.white
-        title.translatesAutoresizingMaskIntoConstraints = false
-        
-        field.text = nil
-        field.isUserInteractionEnabled = false
-        field.translatesAutoresizingMaskIntoConstraints = false
-        
-        let configuration = UIImage.SymbolConfiguration(pointSize: 21)
-        uploadButton.setImage(UIImage(systemName: "square.and.arrow.up", withConfiguration: configuration), for: .normal)
-        uploadButton.tintColor = .white
-        uploadButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(title)
-        view.addSubview(field)
-        view.addSubview(uploadButton)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            title.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            title.topAnchor.constraint(equalTo: view.topAnchor),
-            
-            field.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: -3),
-            field.heightAnchor.constraint(equalToConstant: 40),
-            field.topAnchor.constraint(equalTo: title.bottomAnchor, constant: 8),
-            field.trailingAnchor.constraint(equalTo: uploadButton.leadingAnchor, constant: -5),
-            
-            uploadButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            uploadButton.widthAnchor.constraint(equalToConstant: 35),
-            uploadButton.heightAnchor.constraint(equalToConstant: 40),
-            uploadButton.centerYAnchor.constraint(equalTo: field.centerYAnchor, constant: -2),
-        ])
-        
-        return view
-    }()
-    
-    internal var uploadButton: UIButton {
-        return recordFileView.subviews.compactMap { $0 as? UIButton }.first!
-    }
-    
-    internal var recordTextField: UITextField {
-        return recordFileView.subviews.compactMap { $0 as? UITextField }.first!
-    }
-    
-    internal let recordNoticeView: UIView = {
-        let view = UIView()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
-        let imageView = UIImageView(image: UIImage(systemName: "exclamationmark.circle", withConfiguration: configuration))
-        let content = UILabel()
-        
-        content.text = "아직 녹음 파일과 제목이 입력되지 않았어요.\n우측 버튼을 통해 입력해주세요!"
-        content.textColor = .white
-        content.font = UIFont(name: "SUIT-Regular", size: 14)
-        content.numberOfLines = 3
-        content.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(imageView)
-        view.addSubview(content)
-        
-        NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            
-            content.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 10),
-            content.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor),
-            content.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
-        
-        return view
-    }()
-    
-    internal var recordTitleLabel: UILabel {
-        return recordNoticeView.subviews.compactMap { $0 as? UILabel }.first!
-    }
-    internal var recordIcon: UIImageView {
-        return recordNoticeView.subviews.compactMap { $0 as? UIImageView }.first!
-    }
-    
     private lazy var tapGesture: UITapGestureRecognizer = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         return gesture
@@ -321,8 +232,6 @@ class WriteLessonNoteView: BaseView {
         contentView.addSubview(lessonSongView)
         contentView.addSubview(lessonContentView)
         contentView.addSubview(textCountLabel)
-        contentView.addSubview(recordFileView)
-        contentView.addSubview(recordNoticeView)
     }
     
     override func setConstraints() {
@@ -364,17 +273,7 @@ class WriteLessonNoteView: BaseView {
             textCountLabel.widthAnchor.constraint(equalToConstant: 100),
             textCountLabel.topAnchor.constraint(equalTo: lessonContentView.bottomAnchor, constant: 5),
             
-            recordFileView.leadingAnchor.constraint(equalTo: lessonContentView.leadingAnchor),
-            recordFileView.trailingAnchor.constraint(equalTo: lessonContentView.trailingAnchor),
-            recordFileView.topAnchor.constraint(equalTo: lessonContentView.bottomAnchor, constant: 30),
-            recordFileView.heightAnchor.constraint(equalToConstant: 65),
-            
-            recordNoticeView.topAnchor.constraint(equalTo: recordFileView.bottomAnchor),
-            recordNoticeView.leadingAnchor.constraint(equalTo: recordFileView.leadingAnchor, constant: -5),
-            recordNoticeView.trailingAnchor.constraint(equalTo: recordFileView.trailingAnchor),
-            recordNoticeView.heightAnchor.constraint(equalToConstant: 50),
-            
-            contentView.bottomAnchor.constraint(equalTo: recordFileView.bottomAnchor, constant: 100),
+            contentView.bottomAnchor.constraint(equalTo: lessonContentView.bottomAnchor, constant: 70),
         ])
         
     }
