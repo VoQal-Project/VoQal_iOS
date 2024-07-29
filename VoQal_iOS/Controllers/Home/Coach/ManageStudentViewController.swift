@@ -62,12 +62,22 @@ class ManageStudentViewController: BaseViewController {
         }
     }
     
-    @objc private func didTapLessonSongLabel() {
-        print("레슨곡 자리입니다!")
+    @objc private func didTapLessonSongLabel(_ sender: UIButton) {
+        let indexPath = IndexPath(row: sender.tag, section: 0)
         let vc = SetLessonSongViewController()
+        let studentId = students[indexPath.row].id
+        print("tapped, \(indexPath.row)")
+        print("레슨곡 자리입니다! 학생 ID: \(studentId)")
         vc.modalPresentationStyle = .overFullScreen
+        vc.studentId = studentId
         vc.setLessonSongCompletion = { () in
-            
+            self.manageStudentManager.getStudents { model in
+                guard let model = model else { return }
+                if model.status == 200 {
+                    self.students = model.students
+                    self.manageStudentView.tableView.reloadData()
+                }
+            }
         }
         present(vc, animated: false)
     }
@@ -84,7 +94,7 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
             print("StudentsTableViewCell 불러오기 실패")
             return UITableViewCell()
         }
-        cell.configure(students[indexPath.row].name, target: self, #selector(didTapLessonSongLabel))
+        cell.configure(students[indexPath.row].name, target: self, #selector(didTapLessonSongLabel(_:)), indexPath)
         
         return cell
     }
@@ -101,10 +111,11 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
         // 왼쪽에 만들기
         
         let write = UIContextualAction(style: .normal, title: "Write") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
-            print("수업 일지 작성 tap!")
-            let vc = WriteLessonNoteViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = SelectModeViewController()
+            vc.modalPresentationStyle = .overFullScreen
             vc.studentId = self.students[indexPath.row].id
+            self.present(vc, animated: false)
+            
             success(true)
         }
         write.image = UIImage(systemName: "pencil")

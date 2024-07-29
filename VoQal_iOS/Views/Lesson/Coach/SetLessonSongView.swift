@@ -38,64 +38,44 @@ class SetLessonSongView: BaseView {
         return button
     }()
     
-    private let artistLabel: UILabel = {
+    private let pageTitle: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "SUIT-SemiBold", size: 17)
         label.textColor = .white
-        label.text = "가수명"
-        label.font = UIFont(name: "SUIT-Regular", size: 16)
-        label.textAlignment = .center
+        label.text = "레슨곡 설정"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
     }()
     
-    internal let artistField: UITextFieldWithBottomBorder = {
-        let textfield = UITextFieldWithBottomBorder()
+    internal let artistField: TextFieldWithBottomBorder = {
+        let textfield = TextFieldWithBottomBorder()
         textfield.backgroundColor = UIColor(named: "mainBackgroundColor")
+        textfield.placeholder = "가수명을 입력해주세요."
         textfield.translatesAutoresizingMaskIntoConstraints = false
         
         return textfield
     }()
     
-    private let songTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = "곡명"
-        label.font = UIFont(name: "SUIT-Regular", size: 16)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    internal let songTitleField: UITextFieldWithBottomBorder = {
-        let textfield = UITextFieldWithBottomBorder()
+    internal let songTitleField: TextFieldWithBottomBorder = {
+        let textfield = TextFieldWithBottomBorder()
         textfield.backgroundColor = UIColor(named: "mainBackgroundColor")
+        textfield.placeholder = "곡명을 입력해주세요."
         textfield.translatesAutoresizingMaskIntoConstraints = false
         
         return textfield
     }()
     
-    private let urlLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = "주소"
-        label.font = UIFont(name: "SUIT-Regular", size: 16)
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        return label
-    }()
-    
-    internal let urlTitleField: UITextFieldWithBottomBorder = {
-        let textfield = UITextFieldWithBottomBorder()
+    internal let urlTitleField: TextFieldWithBottomBorder = {
+        let textfield = TextFieldWithBottomBorder()
         textfield.backgroundColor = UIColor(named: "mainBackgroundColor")
+        textfield.placeholder = "곡 URL을 입력해주세요."
         textfield.translatesAutoresizingMaskIntoConstraints = false
         
         return textfield
     }()
     
-    private let completeButton: UIButton = {
+    internal let completeButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(named: "mainButtonColor")
         button.tintColor = .white
@@ -127,11 +107,9 @@ class SetLessonSongView: BaseView {
         addSubview(dimmedView)
         addSubview(contentView)
         addSubview(closeButton)
-        contentView.addSubview(artistLabel)
+        contentView.addSubview(pageTitle)
         contentView.addSubview(artistField)
-        contentView.addSubview(songTitleLabel)
         contentView.addSubview(songTitleField)
-        contentView.addSubview(urlLabel)
         contentView.addSubview(urlTitleField)
         contentView.addSubview(completeButton)
     }
@@ -147,38 +125,29 @@ class SetLessonSongView: BaseView {
             contentView.centerXAnchor.constraint(equalTo: dimmedView.centerXAnchor),
             contentView.centerYAnchor.constraint(equalTo: dimmedView.centerYAnchor),
             contentView.widthAnchor.constraint(equalToConstant: 300),
-            contentView.heightAnchor.constraint(equalToConstant: 250),
+            contentView.heightAnchor.constraint(equalToConstant: 320),
             
             closeButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -3),
             closeButton.bottomAnchor.constraint(equalTo: contentView.topAnchor, constant: -5),
             closeButton.widthAnchor.constraint(equalToConstant: 40),
             closeButton.heightAnchor.constraint(equalToConstant: 40),
             
-            artistLabel.widthAnchor.constraint(equalToConstant: 50),
-            artistLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 35),
-            artistLabel.trailingAnchor.constraint(equalTo: artistField.leadingAnchor, constant: -10),
+            pageTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            pageTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             
-            artistField.widthAnchor.constraint(equalToConstant: 190),
-            artistField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            artistField.centerYAnchor.constraint(equalTo: artistLabel.centerYAnchor),
+            artistField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            artistField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
+            artistField.topAnchor.constraint(equalTo: pageTitle.bottomAnchor, constant: 40),
             artistField.heightAnchor.constraint(equalToConstant: 40),
-            
-            songTitleLabel.topAnchor.constraint(equalTo: artistLabel.bottomAnchor, constant: 30),
-            songTitleLabel.widthAnchor.constraint(equalToConstant: 50),
-            songTitleLabel.trailingAnchor.constraint(equalTo: songTitleField.leadingAnchor, constant: -10),
             
             songTitleField.widthAnchor.constraint(equalTo: artistField.widthAnchor),
             songTitleField.trailingAnchor.constraint(equalTo: artistField.trailingAnchor),
-            songTitleField.centerYAnchor.constraint(equalTo: songTitleLabel.centerYAnchor),
+            songTitleField.topAnchor.constraint(equalTo: artistField.bottomAnchor, constant: 20),
             songTitleField.heightAnchor.constraint(equalToConstant: 40),
-            
-            urlLabel.topAnchor.constraint(equalTo: songTitleLabel.bottomAnchor, constant: 30),
-            urlLabel.widthAnchor.constraint(equalToConstant: 50),
-            urlLabel.trailingAnchor.constraint(equalTo: urlTitleField.leadingAnchor, constant: -10),
             
             urlTitleField.widthAnchor.constraint(equalTo: songTitleField.widthAnchor),
             urlTitleField.trailingAnchor.constraint(equalTo: songTitleField.trailingAnchor),
-            urlTitleField.centerYAnchor.constraint(equalTo: urlLabel.centerYAnchor),
+            urlTitleField.topAnchor.constraint(equalTo: songTitleField.bottomAnchor, constant: 20),
             urlTitleField.heightAnchor.constraint(equalToConstant: 40),
             
             completeButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -197,13 +166,3 @@ class SetLessonSongView: BaseView {
 
 }
 
-class UITextFieldWithBottomBorder: UITextField {
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let bottomLine = CALayer()
-        bottomLine.frame = CGRect(x: 0, y: self.frame.height - 1, width: self.frame.width, height: 1)
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
-        self.layer.addSublayer(bottomLine)
-    }
-}

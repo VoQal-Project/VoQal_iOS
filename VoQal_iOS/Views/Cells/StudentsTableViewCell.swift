@@ -80,9 +80,9 @@ class StudentsTableViewCell: UITableViewCell {
         
     }
     
-    internal func configure(_ name: String, target: Any, _ action: Selector) {
+    internal func configure(_ name: String, target: Any, _ action: Selector, _ indexPath: IndexPath) {
         studentName.text = name
-        
+        lessonSongButton.tag = indexPath.row
         lessonSongButton.addTarget(target, action: action, for: .touchUpInside)
     }
     

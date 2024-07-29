@@ -17,12 +17,6 @@ struct WriteLessonNoteParameter: Encodable {
     let lessonDate: String
 }
 
-struct UploadRequest: Encodable {
-    let studentId: Int
-    let recordDate: String
-    let recordTitle: String
-}
-
 struct WriteLessonNoteManager {
     
     func writeLessonNote(_ studentId: Int, _ songTitle: String, _ lessonNoteTitle: String, _ contents: String, _ singer: String, _ lessonDate: String, completion: @escaping (WriteLessonNoteModel?) -> Void) {
@@ -47,49 +41,7 @@ struct WriteLessonNoteManager {
         }
     }
     
-    func encodeToJSONData<T: Encodable>(_ value: T) -> Data? {
-        return try? JSONEncoder().encode(value)
-    }
     
-    func uploadRecordFile(studentId: Int, recordDate: String, recordTitle: String, fileURL: URL, completion: @escaping (UploadRecordFileModel?) -> Void) {
-        let url = "https://www.voqal.today/create/record"
-        
-        let uploadRequest = UploadRequest(studentId: studentId, recordDate: recordDate, recordTitle: recordTitle)
-        
-        guard let jsonData = encodeToJSONData(uploadRequest) else {
-            completion(nil)
-            return
-        }
-        
-        AF.upload(
-            multipartFormData: { multipartFormData in
-                // 파일 추가
-                multipartFormData.append(fileURL, withName: "recordFile")
-                
-                // JSON 데이터 추가
-                multipartFormData.append(jsonData, withName: "request", mimeType: "application/json")
-            },
-            to: url,
-            method: .post
-        )
-        .validate() // 응답 검증
-        .responseDecodable(of: UploadRecordFileData.self) { response in
-            switch response.result {
-            case .success(let res):
-                print(res)
-                let status = res.status
-                let message = res.message
-                let code = res.code
-                let errors = res.errors
-                let data = res.data
-                let model = UploadRecordFileModel(status: status, message: message, errors: errors, code: code, data: data)
-                completion(model)
-            case .failure(let err):
-                print(err)
-                completion(nil)
-            }
-        }
-    }
     
 }
 

@@ -12,6 +12,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
     private let homeManager = HomeManager()
     
     private var currentUser: UserModel?
+    internal var thumbnail: UIImage?
     
     override func loadView() {
         view = homeView
@@ -22,6 +23,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         print("home viewDidLoad!")
         homeView.homeViewController = self
         setupNavigationBar()
+        loadLessonSongThumbnail()
         NotificationCenter.default.addObserver(self, selector: #selector(userModelUpdated), name: .userModelUpdated, object: nil)
         print("Notification observer registered")
         
@@ -78,7 +80,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                 if let model = homeModel {
                     if let successModel = model.successModel {
                         print("User information updated: \(successModel)")
-                        
+                        let lessonSongUrl = successModel.lessonSongUrl
                         if let email = successModel.email,
                            let nickname = successModel.nickname,
                            let name = successModel.name,
@@ -95,10 +97,12 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                                 nickname: nickname,
                                 name: name,
                                 phoneNum: phoneNum,
-                                role: role
+                                role: role,
+                                lessonSongUrl: lessonSongUrl
                             )
                             
                             UserManager.shared.userModel = user
+                            self?.loadLessonSongThumbnail()
                         }
                     } else if let errorModel = model.errorModel {
                         print("Error Data: \(errorModel)")
@@ -115,11 +119,26 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         print("Handle Login Success")
         updateUserInformationIfNeeded()
     }
+    
+    private func loadLessonSongThumbnail() {
+        if let url = UserManager.shared.userModel?.lessonSongUrl {
+            homeManager.getLessonSongThumbnail(url) { [weak self] model in
+                guard let self = self else { return }
+                self.thumbnail = model?.thumbnail
+                print("썸네일 저장 완료")
+                DispatchQueue.main.async {
+                    self.homeView.updateThumbnail(self.thumbnail)
+                }
+            }
+        }
+    }
 
     @objc private func userModelUpdated(_ notification: Notification) {
+        
         print(UserManager.shared.userModel)
         if let user = UserManager.shared.userModel {
             print("UserModel updated notification")
+            
             updateUIIfNeeded(with: user)
         }
     }
@@ -140,11 +159,17 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
             print("Updating UI with new user")
             currentUser = user
             homeView.updateUI(with: user)
+            homeView.updateThumbnail(self.thumbnail)
         } else {
             print("No need to update UI - user is the same")
         }
     }
 
+    @objc private func didTapLessonSongButton() {
+        let vc = LessonSongWebViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc internal func didTapManageStudentBtn() {
         print("학생 관리 탭!")
         let vc = ManageStudentViewController()

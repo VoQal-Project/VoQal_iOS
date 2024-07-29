@@ -38,6 +38,15 @@
 		956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C062C4E18FB00ECAADA /* EditReservationView.swift */; };
 		956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */; };
 		956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */; };
+		956EC07F2C56071200983AE6 /* TextFieldWithBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC07E2C56071200983AE6 /* TextFieldWithBottomBorder.swift */; };
+		956EC0812C56257D00983AE6 /* SetLessonSongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0802C56257D00983AE6 /* SetLessonSongManager.swift */; };
+		956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0822C5625CB00983AE6 /* SetLessonSongModel.swift */; };
+		956EC0852C5625DA00983AE6 /* SetLessonSongData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0842C5625DA00983AE6 /* SetLessonSongData.swift */; };
+		956EC0872C565A7000983AE6 /* LessonSongWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0862C565A7000983AE6 /* LessonSongWebView.swift */; };
+		956EC0892C565AD400983AE6 /* LessonSongWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0882C565AD400983AE6 /* LessonSongWebViewController.swift */; };
+		956EC08B2C5776F700983AE6 /* SelectModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08A2C5776F700983AE6 /* SelectModeViewController.swift */; };
+		956EC08D2C57771400983AE6 /* SelectModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08C2C57771400983AE6 /* SelectModeView.swift */; };
+		956EC08F2C5796FC00983AE6 /* UploadRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */; };
 		956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C252C47C9E400F63F33 /* RequestListViewController.swift */; };
 		956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C272C47C9FE00F63F33 /* RequestListView.swift */; };
 		956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */; };
@@ -190,6 +199,15 @@
 		956C1C062C4E18FB00ECAADA /* EditReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationView.swift; sourceTree = "<group>"; };
 		956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationViewController.swift; sourceTree = "<group>"; };
 		956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeUtility.swift; sourceTree = "<group>"; };
+		956EC07E2C56071200983AE6 /* TextFieldWithBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithBottomBorder.swift; sourceTree = "<group>"; };
+		956EC0802C56257D00983AE6 /* SetLessonSongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongManager.swift; sourceTree = "<group>"; };
+		956EC0822C5625CB00983AE6 /* SetLessonSongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongModel.swift; sourceTree = "<group>"; };
+		956EC0842C5625DA00983AE6 /* SetLessonSongData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongData.swift; sourceTree = "<group>"; };
+		956EC0862C565A7000983AE6 /* LessonSongWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSongWebView.swift; sourceTree = "<group>"; };
+		956EC0882C565AD400983AE6 /* LessonSongWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonSongWebViewController.swift; sourceTree = "<group>"; };
+		956EC08A2C5776F700983AE6 /* SelectModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeViewController.swift; sourceTree = "<group>"; };
+		956EC08C2C57771400983AE6 /* SelectModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeView.swift; sourceTree = "<group>"; };
+		956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRecordFileManager.swift; sourceTree = "<group>"; };
 		956F3C252C47C9E400F63F33 /* RequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		956F3C272C47C9FE00F63F33 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListManager.swift; sourceTree = "<group>"; };
@@ -323,6 +341,7 @@
 				9587DDF92C46C4590039B6D0 /* Student */,
 				9587DDF82C46C4530039B6D0 /* Coach */,
 				9541D32F2BD29C0300B36977 /* HomeView.swift */,
+				956EC0862C565A7000983AE6 /* LessonSongWebView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -333,6 +352,7 @@
 				9587DDF52C46C4150039B6D0 /* Student */,
 				9587DDF42C46C3FC0039B6D0 /* Coach */,
 				9541D3322BD29CCA00B36977 /* HomeViewController.swift */,
+				956EC0882C565AD400983AE6 /* LessonSongWebViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -559,6 +579,7 @@
 				956FFD9B2C5123F300DD7995 /* WriteLessonNoteView.swift */,
 				955B55A52C5297BE004C097E /* UploadRecordView.swift */,
 				955BD90C2C552F30005FA69B /* SetLessonSongView.swift */,
+				956EC08C2C57771400983AE6 /* SelectModeView.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -591,6 +612,8 @@
 			isa = PBXGroup;
 			children = (
 				956FFD992C5123DA00DD7995 /* WriteLessonNoteManager.swift */,
+				956EC0802C56257D00983AE6 /* SetLessonSongManager.swift */,
+				956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -607,6 +630,8 @@
 			children = (
 				955BD9082C55101B005FA69B /* WriteLessonNoteModel.swift */,
 				955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */,
+				956EC0822C5625CB00983AE6 /* SetLessonSongModel.swift */,
+				956EC0842C5625DA00983AE6 /* SetLessonSongData.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -634,6 +659,7 @@
 			children = (
 				9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */,
 				956F3C252C47C9E400F63F33 /* RequestListViewController.swift */,
+				956EC08A2C5776F700983AE6 /* SelectModeViewController.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -857,6 +883,7 @@
 				9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */,
 				956FFD9F2C512B7600DD7995 /* CustomTextField.swift */,
 				956FFDA12C51401A00DD7995 /* CustomTextView.swift */,
+				956EC07E2C56071200983AE6 /* TextFieldWithBottomBorder.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -941,7 +968,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					95B5C6682BCABE490067432A = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -1121,6 +1148,7 @@
 				957E3E122C344D1700936617 /* NicknameVerifyData.swift in Sources */,
 				956FFD9C2C5123F300DD7995 /* WriteLessonNoteView.swift in Sources */,
 				955B55A42C5297A5004C097E /* UploadRecordViewController.swift in Sources */,
+				956EC07F2C56071200983AE6 /* TextFieldWithBottomBorder.swift in Sources */,
 				954E1DF52C3FD4F4007D72B4 /* CoachSelectionData.swift in Sources */,
 				959D943A2C2EF6ED0014F086 /* EmailFinderManager.swift in Sources */,
 				958FE7C42C42AE7F00F2954D /* BaseViewController.swift in Sources */,
@@ -1128,6 +1156,7 @@
 				959D94412C2F07A80014F086 /* PasswordResetManager.swift in Sources */,
 				9542B63F2BCD6BEB0060E1BB /* LoginViewController.swift in Sources */,
 				959D94472C2F07DD0014F086 /* PasswordResetView.swift in Sources */,
+				956EC0892C565AD400983AE6 /* LessonSongWebViewController.swift in Sources */,
 				9570F0A02C4D00380004AA67 /* MyReservationModel.swift in Sources */,
 				9541D3762BD2AF8600B36977 /* ReservationView.swift in Sources */,
 				9577AC012C4FDDB90019396E /* StudentsTableViewCell.swift in Sources */,
@@ -1136,13 +1165,18 @@
 				9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */,
 				95786E8E2C40233800F77146 /* LoginData.swift in Sources */,
 				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
+				956EC08F2C5796FC00983AE6 /* UploadRecordFileManager.swift in Sources */,
+				956EC0872C565A7000983AE6 /* LessonSongWebView.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
+				956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */,
 				9541D3732BD2AEB100B36977 /* MainTabBarController.swift in Sources */,
+				956EC0852C5625DA00983AE6 /* SetLessonSongData.swift in Sources */,
 				956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */,
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
 				956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */,
+				956EC0812C56257D00983AE6 /* SetLessonSongManager.swift in Sources */,
 				9541D37C2BD2AFC200B36977 /* ChallengeViewController.swift in Sources */,
 				955BD90B2C551024005FA69B /* WriteLessonNoteData.swift in Sources */,
 				954F56962BD0AF8400288A7D /* Extension.swift in Sources */,
@@ -1163,6 +1197,7 @@
 				9570F09E2C4D002D0004AA67 /* MyReservationData.swift in Sources */,
 				9541D37F2BD2AFD900B36977 /* ChallengeView.swift in Sources */,
 				95786E902C40234100F77146 /* LoginModel.swift in Sources */,
+				956EC08B2C5776F700983AE6 /* SelectModeViewController.swift in Sources */,
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
 				95A0D4422C43AD8E002A768B /* MyPageView.swift in Sources */,
 				9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */,
@@ -1177,6 +1212,7 @@
 				959D94452C2F07C80014F086 /* PasswordResetData.swift in Sources */,
 				958FE7C72C42C2BB00F2954D /* HomeManager.swift in Sources */,
 				956F3C382C48E2F500F63F33 /* ReservationCustomView.swift in Sources */,
+				956EC08D2C57771400983AE6 /* SelectModeView.swift in Sources */,
 				95A424102C3FC0BC00DDD571 /* CoachSelectionTableViewCell.swift in Sources */,
 				95B661682C3D1D370091F241 /* RoleSelectionView.swift in Sources */,
 				9570F0A22C4D20220004AA67 /* DateUtility.swift in Sources */,
@@ -1298,6 +1334,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1358,6 +1395,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1391,6 +1429,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1422,6 +1461,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
