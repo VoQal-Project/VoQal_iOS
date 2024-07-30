@@ -18,6 +18,9 @@ struct ManageStudentData: Codable {
 struct ApprovedStudent: Codable {
     let id: Int
     let name: String
+    let lessonSongUrl: String?
+    let singer: String?
+    let songTitle: String?
 }
 
 struct DeleteStudentData: Codable {

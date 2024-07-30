@@ -94,7 +94,7 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
             print("StudentsTableViewCell 불러오기 실패")
             return UITableViewCell()
         }
-        cell.configure(students[indexPath.row].name, target: self, #selector(didTapLessonSongLabel(_:)), indexPath)
+        cell.configure(students[indexPath.row].name, target: self, #selector(didTapLessonSongLabel(_:)), indexPath, students[indexPath.row].singer, students[indexPath.row].songTitle)
         
         return cell
     }

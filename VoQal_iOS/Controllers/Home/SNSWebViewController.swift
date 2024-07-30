@@ -1,29 +1,29 @@
 //
-//  LessonSongWebViewController.swift
+//  SNSWebViewController.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 7/28/24.
+//  Created by 송규섭 on 7/30/24.
 //
 
 import UIKit
 
-class LessonSongWebViewController: BaseViewController {
-    
+class SNSWebViewController: BaseViewController {
+
     private var lessonSongUrl: String?
-    private let lessonSongWebView = LessonSongWebView()
+    private let snsWebView = SNSWebView()
 
     override func loadView() {
-        view = lessonSongWebView
+        view = snsWebView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         if let url = lessonSongUrl {
-            lessonSongWebView.setWebViewUrl(url)
+            snsWebView.setWebViewUrl(url)
         }
         else {
-            print("LessonSongWebViewController - url 로드 실패!")
+            print("SNSWebViewController - url 로드 실패!")
         }
     }
     
