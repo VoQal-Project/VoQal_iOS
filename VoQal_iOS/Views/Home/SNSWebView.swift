@@ -1,14 +1,14 @@
 //
-//  LessonSongWebView.swift
+//  SNSWebView.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 7/28/24.
+//  Created by 송규섭 on 7/30/24.
 //
 
 import UIKit
 import WebKit
 
-class LessonSongWebView: BaseView {
+class SNSWebView: BaseView {
 
     private let webView: WKWebView = {
         let webView = WKWebView()

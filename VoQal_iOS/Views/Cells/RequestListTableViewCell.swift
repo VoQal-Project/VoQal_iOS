@@ -52,7 +52,7 @@ class RequestListTableViewCell: UITableViewCell {
     
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexCode: "474747", alpha: 1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

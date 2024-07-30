@@ -18,14 +18,21 @@ class CustomButtonView: UIView {
         return button
     }()
     
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .white
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont(name: "SUIT-Regular", size: 11)
+        label.font = UIFont(name: "SUIT-Regular", size: 10)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,12 +45,19 @@ class CustomButtonView: UIView {
     
     private func setupUI() {
         addSubview(button)
+        button.addSubview(iconImageView)
         addSubview(label)
         
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor),
-            button.leadingAnchor.constraint(equalTo: leadingAnchor),
-            button.trailingAnchor.constraint(equalTo: trailingAnchor),
+            button.centerXAnchor.constraint(equalTo: centerXAnchor),
+            button.widthAnchor.constraint(equalToConstant: 58),
+            button.heightAnchor.constraint(equalToConstant: 58),
+            
+            iconImageView.centerXAnchor.constraint(equalTo: button.centerXAnchor),
+            iconImageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
+            iconImageView.widthAnchor.constraint(equalToConstant: 37), // 고정된 너비
+            iconImageView.heightAnchor.constraint(equalToConstant: 37), // 고정된 높이
             
             label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -57,7 +71,7 @@ class CustomButtonView: UIView {
     }
     
     func setIcon(_ icon: UIImage) {
-        button.setImage(icon, for: .normal)
+        iconImageView.image = icon
     }
     
     func setTitleLabel(_ title: String) {
@@ -68,4 +82,8 @@ class CustomButtonView: UIView {
         return button
     }
     
+    func setSizeForExternalImage() {
+        iconImageView.widthAnchor.constraint(equalToConstant: 27).isActive = true
+        iconImageView.heightAnchor.constraint(equalToConstant: 27).isActive = true
+    }
 }

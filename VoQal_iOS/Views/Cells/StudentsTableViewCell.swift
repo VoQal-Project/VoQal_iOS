@@ -22,7 +22,7 @@ class StudentsTableViewCell: UITableViewCell {
 
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(hexCode: "474747", alpha: 1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
         
         return view
@@ -80,10 +80,24 @@ class StudentsTableViewCell: UITableViewCell {
         
     }
     
-    internal func configure(_ name: String, target: Any, _ action: Selector, _ indexPath: IndexPath) {
+    internal func configure(_ name: String, target: Any, _ action: Selector, _ indexPath: IndexPath, _ singer: String?, _ songTitle: String?) {
         studentName.text = name
         lessonSongButton.tag = indexPath.row
         lessonSongButton.addTarget(target, action: action, for: .touchUpInside)
+        
+        if let singer = singer, let songTitle = songTitle {
+            lessonSongButton.setTitle("\(singer) - \(songTitle)", for: .normal)
+        } else {
+            lessonSongButton.setTitle("레슨곡을 설정해주세요.", for: .normal)
+            lessonSongButton.setTitleColor(UIColor(hexCode: "474747"), for: .normal)
+        }
+        
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.lessonSongButton.setTitleColor(.none, for: .normal)
     }
     
 }

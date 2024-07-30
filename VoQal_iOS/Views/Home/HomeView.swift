@@ -8,26 +8,19 @@
 import UIKit
 
 class HomeView: BaseView {
-    
+
     weak var homeViewController: HomeViewController?
-    
+
     private let lessonSongButton: UIButton = {
         let button = UIButton()
         button.layer.cornerRadius = 15.0
         button.layer.cornerCurve = .continuous
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(named: "bottomBarColor")
-        
+        button.imageView?.layer.cornerRadius = 15.0
+        button.imageView?.layer.cornerCurve = .continuous
         button.imageView?.contentMode = .scaleAspectFill
-        
         return button
-    }()
-    
-    private let manageRequestButton: CustomButtonView = {
-        let customButtonView = CustomButtonView()
-        customButtonView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return customButtonView
     }()
     
     private let introLabel: UILabel = {
@@ -37,46 +30,80 @@ class HomeView: BaseView {
         label.numberOfLines = 2
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         return label
     }()
     
+    private let firstButton: CustomButtonView = {
+        let customButtonView = CustomButtonView()
+        customButtonView.setIcon(UIImage(systemName: "list.bullet")!)
+        customButtonView.setTitleLabel("예약 관리")
+        customButtonView.translatesAutoresizingMaskIntoConstraints = false
+        return customButtonView
+    }()
+    
+    private let secondButton: CustomButtonView = {
+        let customButtonView = CustomButtonView()
+        if let icon = UIImage(named: "snsIcon")?.withTintColor(.white) {
+            customButtonView.setIcon(icon)
+        }
+        customButtonView.setSizeForExternalImage()
+        customButtonView.setTitleLabel("SNS 연결")
+        customButtonView.translatesAutoresizingMaskIntoConstraints = false
+        return customButtonView
+    }()
+    private let thirdButton: CustomButtonView = {
+        let customButtonView = CustomButtonView()
+        customButtonView.translatesAutoresizingMaskIntoConstraints = false
+        return customButtonView
+    }()
+    
+    private let fourthButton: CustomButtonView = {
+        let customButtonView = CustomButtonView()
+        customButtonView.setIcon(UIImage(systemName: "pencil")!)
+        customButtonView.setTitleLabel("수업 관리")
+        customButtonView.translatesAutoresizingMaskIntoConstraints = false
+        return customButtonView
+    }()
+    
+    private lazy var buttonStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [firstButton, secondButton, thirdButton, fourthButton])
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
+        addSubViews()
+        setConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func updateUI(with user: UserModel) {
-        
         print("Home UI updated!")
-        
         setIntroText(user.name)
-        configureButton(user.role)
-        
+        configureButtons()
+        configureThirdButton(user.role)
     }
-    
-    
+
     func updateThumbnail(_ thumbnail: UIImage?) {
-        
         if let thumbnail = thumbnail {
             lessonSongButton.setImage(thumbnail, for: .normal)
         }
     }
-    
-    
+
     override func addSubViews() {
         addSubview(introLabel)
         addSubview(lessonSongButton)
-        addSubview(manageRequestButton)
+        addSubview(buttonStackView)
     }
-    
+
     override func setConstraints() {
-        
         NSLayoutConstraint.activate([
             introLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             introLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -88,64 +115,56 @@ class HomeView: BaseView {
             lessonSongButton.widthAnchor.constraint(equalToConstant: 320),
             lessonSongButton.heightAnchor.constraint(equalToConstant: 170),
             
-            manageRequestButton.topAnchor.constraint(equalTo: lessonSongButton.bottomAnchor, constant: 50),
-            manageRequestButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            manageRequestButton.widthAnchor.constraint(equalToConstant: 58),
-            manageRequestButton.heightAnchor.constraint(equalToConstant: 77),
+            buttonStackView.topAnchor.constraint(equalTo: lessonSongButton.bottomAnchor, constant: 35),
+            buttonStackView.leadingAnchor.constraint(equalTo: lessonSongButton.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: lessonSongButton.trailingAnchor),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 77),
         ])
-        
-        
-        
     }
-    
+
     private func setIntroText(_ name: String?) {
         if let name = name {
             let message = "님,\n오늘 연습할 곡은 무엇인가요?"
-            
-            // 커스텀 폰트 로드
             let boldFont = UIFont(name: "SUIT-SemiBold", size: 23) ?? UIFont.systemFont(ofSize: 23, weight: .semibold)
             let regularFont = UIFont(name: "SUIT-Regular", size: 23) ?? UIFont.systemFont(ofSize: 23)
-            
-            // 전체 텍스트를 NSMutableAttributedString으로 생성
-            let attributedText = NSMutableAttributedString(string: name, attributes: [
-                .font: boldFont // 이름 부분을 굵게 설정
-            ])
-            
-            // 나머지 텍스트 추가
-            let normalText = NSAttributedString(string: message, attributes: [
-                .font: regularFont // 나머지 부분은 기본 폰트 설정
-            ])
-            
-            // 나머지 텍스트를 추가
+            let attributedText = NSMutableAttributedString(string: name, attributes: [.font: boldFont])
+            let normalText = NSAttributedString(string: message, attributes: [.font: regularFont])
             attributedText.append(normalText)
-            
-            // UILabel에 attributed text 설정
             introLabel.attributedText = attributedText
         }
     }
     
-    private func configureButton(_ userRole: String?) {
-        print(userRole ?? "userRole이 없는데요?")
+    private func configureButtons() {
         
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: userRole == "COACH" ? 13 : 20 , weight: .bold, scale: .large)
-        let iconName = userRole == "COACH" ? "person.3.fill" : "pencil"
+        self.lessonSongButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapLessonSongButton), for: .touchUpInside)
+        self.firstButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapManageReservationButton), for: .touchUpInside)
+        self.secondButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapSNSButton), for: .touchUpInside)
+        self.fourthButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapManageLessonBtn), for: .touchUpInside)
+        
+    }
+
+    private func configureThirdButton(_ userRole: String?) {
+        print(userRole ?? "userRole이 없는데요?")
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: userRole == "COACH" ? 13 : 20, weight: .bold, scale: .large)
+        let iconName = userRole == "COACH" ? "person.3.fill" : "ellipsis.bubble"
         let icon = UIImage(systemName: iconName, withConfiguration: largeConfig)
         
         if let icon = icon {
-            
-            manageRequestButton.setIcon(icon)
+            thirdButton.setIcon(icon)
         }
         
-        let title = userRole == "COACH" ? "학생 관리" : "수업 관리"
-        manageRequestButton.setTitleLabel(title)
+        let title = userRole == "COACH" ? "학생 관리" : "코치님과 채팅"
+        thirdButton.setTitleLabel(title)
         
-        let action = userRole == "COACH" ? #selector(homeViewController?.didTapManageStudentBtn) : #selector(homeViewController?.didTapManageLessonBtn)
-        manageRequestButton.addTarget(homeViewController, action: action, for: .touchUpInside)
+        let action = userRole == "COACH" ? #selector(homeViewController?.didTapManageStudentBtn) : #selector(homeViewController?.didTapChatBtn)
+        thirdButton.addTarget(homeViewController, action: action, for: .touchUpInside)
     }
-    
+
     func resetButtonTargets() {
         print("target 제거 완료")
-        manageRequestButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
+        firstButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
+        secondButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
+        thirdButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
+        fourthButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
     }
-    
 }

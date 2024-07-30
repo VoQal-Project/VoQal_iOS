@@ -47,6 +47,9 @@
 		956EC08B2C5776F700983AE6 /* SelectModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08A2C5776F700983AE6 /* SelectModeViewController.swift */; };
 		956EC08D2C57771400983AE6 /* SelectModeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08C2C57771400983AE6 /* SelectModeView.swift */; };
 		956EC08F2C5796FC00983AE6 /* UploadRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */; };
+		956EC0912C590C2B00983AE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956EC0902C590C2B00983AE6 /* WebKit.framework */; };
+		956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0922C5912EA00983AE6 /* SNSWebView.swift */; };
+		956EC0952C59131300983AE6 /* SNSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0942C59131300983AE6 /* SNSWebViewController.swift */; };
 		956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C252C47C9E400F63F33 /* RequestListViewController.swift */; };
 		956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C272C47C9FE00F63F33 /* RequestListView.swift */; };
 		956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */; };
@@ -208,6 +211,9 @@
 		956EC08A2C5776F700983AE6 /* SelectModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeViewController.swift; sourceTree = "<group>"; };
 		956EC08C2C57771400983AE6 /* SelectModeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectModeView.swift; sourceTree = "<group>"; };
 		956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRecordFileManager.swift; sourceTree = "<group>"; };
+		956EC0902C590C2B00983AE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		956EC0922C5912EA00983AE6 /* SNSWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebView.swift; sourceTree = "<group>"; };
+		956EC0942C59131300983AE6 /* SNSWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebViewController.swift; sourceTree = "<group>"; };
 		956F3C252C47C9E400F63F33 /* RequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		956F3C272C47C9FE00F63F33 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListManager.swift; sourceTree = "<group>"; };
@@ -299,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				956EC0912C590C2B00983AE6 /* WebKit.framework in Frameworks */,
 				510CE854531D364C46E26F0E /* Pods_VoQal_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,6 +349,7 @@
 				9587DDF82C46C4530039B6D0 /* Coach */,
 				9541D32F2BD29C0300B36977 /* HomeView.swift */,
 				956EC0862C565A7000983AE6 /* LessonSongWebView.swift */,
+				956EC0922C5912EA00983AE6 /* SNSWebView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -353,6 +361,7 @@
 				9587DDF42C46C3FC0039B6D0 /* Coach */,
 				9541D3322BD29CCA00B36977 /* HomeViewController.swift */,
 				956EC0882C565AD400983AE6 /* LessonSongWebViewController.swift */,
+				956EC0942C59131300983AE6 /* SNSWebViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -891,6 +900,7 @@
 		F51CF055449274C9165E5BE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				956EC0902C590C2B00983AE6 /* WebKit.framework */,
 				09D91452D996409DA64C59AF /* Pods_VoQal_iOS.framework */,
 				6D82197EA947CA09B02FC649 /* Pods_VoQal_iOS_VoQal_iOSUITests.framework */,
 				64BA13640785F683CF68E9D9 /* Pods_VoQal_iOSTests.framework */,
@@ -1158,6 +1168,7 @@
 				959D94472C2F07DD0014F086 /* PasswordResetView.swift in Sources */,
 				956EC0892C565AD400983AE6 /* LessonSongWebViewController.swift in Sources */,
 				9570F0A02C4D00380004AA67 /* MyReservationModel.swift in Sources */,
+				956EC0952C59131300983AE6 /* SNSWebViewController.swift in Sources */,
 				9541D3762BD2AF8600B36977 /* ReservationView.swift in Sources */,
 				9577AC012C4FDDB90019396E /* StudentsTableViewCell.swift in Sources */,
 				956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */,
@@ -1228,6 +1239,7 @@
 				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
 				959B57562C41268D009428D7 /* AuthInterceptor.swift in Sources */,
 				956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */,
+				956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
 				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,

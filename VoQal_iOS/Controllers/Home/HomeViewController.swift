@@ -165,8 +165,21 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         }
     }
 
-    @objc private func didTapLessonSongButton() {
+    @objc internal func didTapLessonSongButton() {
         let vc = LessonSongWebViewController()
+        vc.setLessonSongUrl(UserManager.shared.userModel?.lessonSongUrl)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc internal func didTapManageReservationButton() {
+        let vc = MyReservationViewController()
+        vc.title = "예약 관리"
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc internal func didTapSNSButton() {
+        let vc = SNSWebViewController()
+        vc.setLessonSongUrl("https://github.com/VoQal-Project")
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -177,8 +190,20 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         vc.title = "학생 관리"
     }
     
+    @objc internal func didTapChatBtn() {
+        print("담당 코치와의 채팅!")
+    }
+    
     @objc internal func didTapManageLessonBtn() {
-        print("수업 관리 탭!")
+        
+        guard let role = UserManager.shared.userModel?.role else { print("userModel에 role이 없습니다."); return }
+        
+        if role == "STUDENT" {
+            print("학생 기준 수업 관리 탭")
+        }
+        else if role == "COACH" {
+            print("코치 기준 수업 관리 탭")
+        }
     }
     
     func removeTarget() {
