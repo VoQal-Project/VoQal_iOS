@@ -93,7 +93,12 @@ class HomeView: BaseView {
 
     func updateThumbnail(_ thumbnail: UIImage?) {
         if let thumbnail = thumbnail {
+            print("updateThumbnail - updated")
             lessonSongButton.setImage(thumbnail, for: .normal)
+        }
+        else {
+            print("updateThumbnail - nil")
+            lessonSongButton.setImage(nil, for: .normal)
         }
     }
 

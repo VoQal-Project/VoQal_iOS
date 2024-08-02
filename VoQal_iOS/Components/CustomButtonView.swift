@@ -34,6 +34,9 @@ class CustomButtonView: UIView {
         return label
     }()
     
+    private var iconImageViewWidthConstraint: NSLayoutConstraint?
+    private var iconImageViewHeightConstraint: NSLayoutConstraint?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -41,12 +44,16 @@ class CustomButtonView: UIView {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupUI()
     }
     
     private func setupUI() {
         addSubview(button)
         button.addSubview(iconImageView)
         addSubview(label)
+        
+        iconImageViewWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 37)
+        iconImageViewHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 37)
         
         NSLayoutConstraint.activate([
             button.topAnchor.constraint(equalTo: topAnchor),
@@ -56,8 +63,8 @@ class CustomButtonView: UIView {
             
             iconImageView.centerXAnchor.constraint(equalTo: button.centerXAnchor),
             iconImageView.centerYAnchor.constraint(equalTo: button.centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 37), // 고정된 너비
-            iconImageView.heightAnchor.constraint(equalToConstant: 37), // 고정된 높이
+            iconImageViewWidthConstraint!,
+            iconImageViewHeightConstraint!,
             
             label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 8),
             label.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -83,7 +90,16 @@ class CustomButtonView: UIView {
     }
     
     func setSizeForExternalImage() {
-        iconImageView.widthAnchor.constraint(equalToConstant: 27).isActive = true
-        iconImageView.heightAnchor.constraint(equalToConstant: 27).isActive = true
+        // 기존 제약 조건 해제
+        iconImageViewWidthConstraint?.isActive = false
+        iconImageViewHeightConstraint?.isActive = false
+        
+        // 새로운 제약 조건 설정
+        iconImageViewWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 27)
+        iconImageViewHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 27)
+        
+        // 새로운 제약 조건 활성화
+        iconImageViewWidthConstraint?.isActive = true
+        iconImageViewHeightConstraint?.isActive = true
     }
 }
