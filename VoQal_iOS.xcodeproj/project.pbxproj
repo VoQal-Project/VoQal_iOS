@@ -50,6 +50,8 @@
 		956EC0912C590C2B00983AE6 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 956EC0902C590C2B00983AE6 /* WebKit.framework */; };
 		956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0922C5912EA00983AE6 /* SNSWebView.swift */; };
 		956EC0952C59131300983AE6 /* SNSWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0942C59131300983AE6 /* SNSWebViewController.swift */; };
+		956EC0972C5A57AB00983AE6 /* StudentLessonManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0962C5A57AB00983AE6 /* StudentLessonManageViewController.swift */; };
+		956EC0992C5A636700983AE6 /* StudentLessonManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0982C5A636700983AE6 /* StudentLessonManageView.swift */; };
 		956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C252C47C9E400F63F33 /* RequestListViewController.swift */; };
 		956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C272C47C9FE00F63F33 /* RequestListView.swift */; };
 		956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */; };
@@ -89,6 +91,17 @@
 		957E3E152C344DD800936617 /* EmailVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E142C344DD800936617 /* EmailVerifyModel.swift */; };
 		957E3E172C344DE500936617 /* NicknameVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E162C344DE500936617 /* NicknameVerifyModel.swift */; };
 		957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E182C344E0100936617 /* PasswordResetModel.swift */; };
+		9581B0CE2C5CB75C008D7701 /* LessonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */; };
+		9581B0D02C5CBF74008D7701 /* LessonNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */; };
+		9581B0D22C5CBF8D008D7701 /* RecordFileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */; };
+		9581B0D82C5CC6C3008D7701 /* LessonNoteTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0D72C5CC6C3008D7701 /* LessonNoteTableView.swift */; };
+		9581B0DA2C5CC6D1008D7701 /* RecordFileTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0D92C5CC6D1008D7701 /* RecordFileTableView.swift */; };
+		9581B0DE2C5CD418008D7701 /* StudentLessonNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0DD2C5CD418008D7701 /* StudentLessonNoteManager.swift */; };
+		9581B0E02C5CD435008D7701 /* StudentRecordFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0DF2C5CD435008D7701 /* StudentRecordFileManager.swift */; };
+		9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E12C5CD506008D7701 /* StudentLessonNoteData.swift */; };
+		9581B0E42C5CD511008D7701 /* StudentLessonNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E32C5CD511008D7701 /* StudentLessonNoteModel.swift */; };
+		9581B0E62C5CD51C008D7701 /* StudentRecordFileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E52C5CD51C008D7701 /* StudentRecordFileData.swift */; };
+		9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E72C5CD524008D7701 /* StudentRecordFileModel.swift */; };
 		9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */; };
 		9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */; };
 		9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */; };
@@ -214,6 +227,8 @@
 		956EC0902C590C2B00983AE6 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		956EC0922C5912EA00983AE6 /* SNSWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebView.swift; sourceTree = "<group>"; };
 		956EC0942C59131300983AE6 /* SNSWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSWebViewController.swift; sourceTree = "<group>"; };
+		956EC0962C5A57AB00983AE6 /* StudentLessonManageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonManageViewController.swift; sourceTree = "<group>"; };
+		956EC0982C5A636700983AE6 /* StudentLessonManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonManageView.swift; sourceTree = "<group>"; };
 		956F3C252C47C9E400F63F33 /* RequestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListViewController.swift; sourceTree = "<group>"; };
 		956F3C272C47C9FE00F63F33 /* RequestListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListView.swift; sourceTree = "<group>"; };
 		956F3C2B2C47CA6100F63F33 /* RequestListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestListManager.swift; sourceTree = "<group>"; };
@@ -251,6 +266,17 @@
 		957E3E142C344DD800936617 /* EmailVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E162C344DE500936617 /* NicknameVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E182C344E0100936617 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
+		9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTabViewController.swift; sourceTree = "<group>"; };
+		9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteTableViewController.swift; sourceTree = "<group>"; };
+		9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFileTableViewController.swift; sourceTree = "<group>"; };
+		9581B0D72C5CC6C3008D7701 /* LessonNoteTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteTableView.swift; sourceTree = "<group>"; };
+		9581B0D92C5CC6D1008D7701 /* RecordFileTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFileTableView.swift; sourceTree = "<group>"; };
+		9581B0DD2C5CD418008D7701 /* StudentLessonNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonNoteManager.swift; sourceTree = "<group>"; };
+		9581B0DF2C5CD435008D7701 /* StudentRecordFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileManager.swift; sourceTree = "<group>"; };
+		9581B0E12C5CD506008D7701 /* StudentLessonNoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonNoteData.swift; sourceTree = "<group>"; };
+		9581B0E32C5CD511008D7701 /* StudentLessonNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonNoteModel.swift; sourceTree = "<group>"; };
+		9581B0E52C5CD51C008D7701 /* StudentRecordFileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileData.swift; sourceTree = "<group>"; };
+		9581B0E72C5CD524008D7701 /* StudentRecordFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileModel.swift; sourceTree = "<group>"; };
 		9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentViewController.swift; sourceTree = "<group>"; };
 		9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentView.swift; sourceTree = "<group>"; };
@@ -596,6 +622,9 @@
 		956FFD922C51237400DD7995 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				956EC0982C5A636700983AE6 /* StudentLessonManageView.swift */,
+				9581B0D72C5CC6C3008D7701 /* LessonNoteTableView.swift */,
+				9581B0D92C5CC6D1008D7701 /* RecordFileTableView.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -613,6 +642,10 @@
 		956FFD942C51238A00DD7995 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				956EC0962C5A57AB00983AE6 /* StudentLessonManageViewController.swift */,
+				9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */,
+				9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */,
+				9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -630,6 +663,8 @@
 		956FFD962C51239600DD7995 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				9581B0DD2C5CD418008D7701 /* StudentLessonNoteManager.swift */,
+				9581B0DF2C5CD435008D7701 /* StudentRecordFileManager.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -648,6 +683,10 @@
 		956FFD982C5123A200DD7995 /* Student */ = {
 			isa = PBXGroup;
 			children = (
+				9581B0E12C5CD506008D7701 /* StudentLessonNoteData.swift */,
+				9581B0E32C5CD511008D7701 /* StudentLessonNoteModel.swift */,
+				9581B0E52C5CD51C008D7701 /* StudentRecordFileData.swift */,
+				9581B0E72C5CD524008D7701 /* StudentRecordFileModel.swift */,
 			);
 			path = Student;
 			sourceTree = "<group>";
@@ -1163,6 +1202,7 @@
 				959D943A2C2EF6ED0014F086 /* EmailFinderManager.swift in Sources */,
 				958FE7C42C42AE7F00F2954D /* BaseViewController.swift in Sources */,
 				95786E922C40239900F77146 /* LoginManager.swift in Sources */,
+				956EC0992C5A636700983AE6 /* StudentLessonManageView.swift in Sources */,
 				959D94412C2F07A80014F086 /* PasswordResetManager.swift in Sources */,
 				9542B63F2BCD6BEB0060E1BB /* LoginViewController.swift in Sources */,
 				959D94472C2F07DD0014F086 /* PasswordResetView.swift in Sources */,
@@ -1182,8 +1222,10 @@
 				956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */,
 				9541D3732BD2AEB100B36977 /* MainTabBarController.swift in Sources */,
 				956EC0852C5625DA00983AE6 /* SetLessonSongData.swift in Sources */,
+				9581B0E42C5CD511008D7701 /* StudentLessonNoteModel.swift in Sources */,
 				956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */,
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
+				9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
 				956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */,
@@ -1195,6 +1237,7 @@
 				9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */,
 				954E1DF32C3FD4D3007D72B4 /* CoachSelectionManager.swift in Sources */,
 				956F3C2E2C47CAB800F63F33 /* ManageStudentManager.swift in Sources */,
+				9581B0CE2C5CB75C008D7701 /* LessonTabViewController.swift in Sources */,
 				9542B6422BCD6C470060E1BB /* RegistrationViewController.swift in Sources */,
 				959D943F2C2EF75E0014F086 /* EmailFinderData.swift in Sources */,
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
@@ -1202,6 +1245,8 @@
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
 				956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */,
 				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
+				9581B0E62C5CD51C008D7701 /* StudentRecordFileData.swift in Sources */,
+				9581B0DA2C5CC6D1008D7701 /* RecordFileTableView.swift in Sources */,
 				955BD9092C55101B005FA69B /* WriteLessonNoteModel.swift in Sources */,
 				956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
@@ -1211,15 +1256,18 @@
 				956EC08B2C5776F700983AE6 /* SelectModeViewController.swift in Sources */,
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
 				95A0D4422C43AD8E002A768B /* MyPageView.swift in Sources */,
+				9581B0DE2C5CD418008D7701 /* StudentLessonNoteManager.swift in Sources */,
 				9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */,
 				954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */,
 				9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */,
 				956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */,
 				959D943D2C2EF7520014F086 /* EmailFinderModel.swift in Sources */,
+				9581B0E02C5CD435008D7701 /* StudentRecordFileManager.swift in Sources */,
 				956FFD9A2C5123DA00DD7995 /* WriteLessonNoteManager.swift in Sources */,
 				9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
+				9581B0D82C5CC6C3008D7701 /* LessonNoteTableView.swift in Sources */,
 				959D94452C2F07C80014F086 /* PasswordResetData.swift in Sources */,
 				958FE7C72C42C2BB00F2954D /* HomeManager.swift in Sources */,
 				956F3C382C48E2F500F63F33 /* ReservationCustomView.swift in Sources */,
@@ -1233,11 +1281,13 @@
 				955B55A62C5297BE004C097E /* UploadRecordView.swift in Sources */,
 				956F3C322C47DC3A00F63F33 /* RequestListModel.swift in Sources */,
 				956F3C362C47E1AD00F63F33 /* RequestListTableViewCell.swift in Sources */,
+				9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
 				959B57592C412C02009428D7 /* AuthModel.swift in Sources */,
 				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
 				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
 				959B57562C41268D009428D7 /* AuthInterceptor.swift in Sources */,
+				9581B0D02C5CBF74008D7701 /* LessonNoteTableViewController.swift in Sources */,
 				956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */,
 				956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
@@ -1257,6 +1307,8 @@
 				956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */,
 				9541D3792BD2AFA000B36977 /* ReservationViewController.swift in Sources */,
 				9542B6482BCD7FE40060E1BB /* LoginView.swift in Sources */,
+				9581B0D22C5CBF8D008D7701 /* RecordFileTableViewController.swift in Sources */,
+				956EC0972C5A57AB00983AE6 /* StudentLessonManageViewController.swift in Sources */,
 				959D942F2C2D66070014F086 /* EmailFinderView.swift in Sources */,
 				95786E8C2C40210B00F77146 /* KeychainHelper.swift in Sources */,
 				955BD90F2C552F47005FA69B /* SetLessonSongViewController.swift in Sources */,

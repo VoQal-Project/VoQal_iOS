@@ -24,6 +24,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         homeView.homeViewController = self
         setupNavigationBar()
         loadLessonSongThumbnail()
+        homeView.updateThumbnail(nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userModelUpdated), name: .userModelUpdated, object: nil)
         print("Notification observer registered")
         
@@ -35,9 +36,11 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         
         DispatchQueue.main.async {
             self.updateUserInformationIfNeeded()
-            
             self.refreshUI()
         }
+        
+        self.thumbnail = nil
+        homeView.updateThumbnail(nil)
         
     }
     
@@ -200,6 +203,8 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         
         if role == "STUDENT" {
             print("학생 기준 수업 관리 탭")
+            let vc = StudentLessonManageViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if role == "COACH" {
             print("코치 기준 수업 관리 탭")
