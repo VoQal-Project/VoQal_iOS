@@ -33,23 +33,27 @@ class RecordFileTableViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchRecordFiles()
     }
     
     private func fetchRecordFiles() {
-        recordFileManager.fetchRecordFiles { model in
-            guard let model = model else { return }
-            
-            if model.status == 200 {
-                guard let data = model.sortedData else { print("model.data 바인딩 실패 - RecordFileTableViewController"); return }
+            recordFileManager.fetchRecordFiles { [weak self] model in
+                guard let self = self, let model = model else { return }
                 
-                self.recordFiles = data
-            }
-            else {
-                print("녹음 파일 조회 실패 - RecordFileTableViewController")
+                if model.status == 200 {
+                    Task {
+                        await model.loadDurations {
+                            DispatchQueue.main.async {
+                                self.recordFiles = model.sortedData ?? []
+                            }
+                        }
+                    }
+                } else {
+                    print("녹음 파일 조회 실패 - RecordFileTableViewController")
+                }
             }
         }
-    }
     
     func formatDuration(_ duration: TimeInterval?) -> String {
         

@@ -26,23 +26,34 @@ class StudentRecordFileModel {
         })
     }
     
-    func loadDurations() async {
-            guard var data = data else { return }
-            
-            await withTaskGroup(of: Void.self) { group in
-                for i in 0..<data.count {
-                    if let s3Url = URL(string: data[i].s3Url), data[i].s3Url.hasSuffix(".mp3") {
-                        group.addTask {
-                            if let duration = try? await StudentRecordFileManager().getAudioDuration(from: s3Url) {
-                                DispatchQueue.main.async {
-                                    data[i].duration = duration
-                                }
-                            }
+    func loadDurations(completion: @escaping () -> Void) async {
+        guard let currentData = data else { return }
+        
+        var durations = [(Int, TimeInterval)]()
+        let queue = DispatchQueue(label: "duration.queue", attributes: .concurrent)
+        let group = DispatchGroup()
+        
+        for (index, record) in currentData.enumerated() {
+            if let s3Url = URL(string: "\(PrivateUrl.shared.getS3UrlHead())\(record.s3Url)"), record.s3Url.hasSuffix(".mp3") {
+                group.enter()
+                Task {
+                    if let duration = try? await StudentRecordFileManager().getAudioDuration(from: s3Url) {
+                        queue.async(flags: .barrier) {
+                            durations.append((index, duration))
+                            group.leave()
                         }
+                    } else {
+                        group.leave()
                     }
                 }
             }
-            
-            self.data = data
         }
+        
+        group.notify(queue: .main) {
+            for (index, duration) in durations {
+                self.data?[index].duration = duration
+            }
+            completion()
+        }
+    }
 }
