@@ -20,5 +20,6 @@ struct StudentRecordFile: Codable {
     let recordDate: String
     let recordTitle: String
     let s3Url: String
+    var duration: TimeInterval?
 }
 

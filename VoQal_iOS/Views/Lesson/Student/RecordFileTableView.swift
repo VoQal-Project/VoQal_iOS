@@ -11,8 +11,7 @@ class RecordFileTableView: BaseView {
 
     internal let tableView: UITableView = {
         let tableView = UITableView()
-//        tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
-        tableView.backgroundColor = .lightGray
+        tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
         tableView.separatorStyle = .none
         tableView.allowsMultipleSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false

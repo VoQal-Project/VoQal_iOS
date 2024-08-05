@@ -69,6 +69,8 @@
 		956FFD9E2C51240D00DD7995 /* WriteLessonNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */; };
 		956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFD9F2C512B7600DD7995 /* CustomTextField.swift */; };
 		956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956FFDA12C51401A00DD7995 /* CustomTextView.swift */; };
+		95708F522C608B630034F6FD /* StudentRecordFileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95708F512C608B630034F6FD /* StudentRecordFileTableViewCell.swift */; };
+		95708F562C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95708F552C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift */; };
 		9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0952C4CFBD00004AA67 /* MyReservationViewController.swift */; };
 		9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0972C4CFBF80004AA67 /* MyReservationView.swift */; };
 		9570F09A2C4CFD070004AA67 /* MyReservationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */; };
@@ -102,6 +104,7 @@
 		9581B0E42C5CD511008D7701 /* StudentLessonNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E32C5CD511008D7701 /* StudentLessonNoteModel.swift */; };
 		9581B0E62C5CD51C008D7701 /* StudentRecordFileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E52C5CD51C008D7701 /* StudentRecordFileData.swift */; };
 		9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0E72C5CD524008D7701 /* StudentRecordFileModel.swift */; };
+		9582059B2C60F2E700C1A280 /* PrivateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582059A2C60F2E700C1A280 /* PrivateUrl.swift */; };
 		9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */; };
 		9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */; };
 		9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */; };
@@ -246,6 +249,8 @@
 		956FFD9D2C51240D00DD7995 /* WriteLessonNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteViewController.swift; sourceTree = "<group>"; };
 		956FFD9F2C512B7600DD7995 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		956FFDA12C51401A00DD7995 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
+		95708F512C608B630034F6FD /* StudentRecordFileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileTableViewCell.swift; sourceTree = "<group>"; };
+		95708F552C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonNoteTableViewCell.swift; sourceTree = "<group>"; };
 		9570F0952C4CFBD00004AA67 /* MyReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationViewController.swift; sourceTree = "<group>"; };
 		9570F0972C4CFBF80004AA67 /* MyReservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationView.swift; sourceTree = "<group>"; };
 		9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationTableViewCell.swift; sourceTree = "<group>"; };
@@ -277,6 +282,7 @@
 		9581B0E32C5CD511008D7701 /* StudentLessonNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentLessonNoteModel.swift; sourceTree = "<group>"; };
 		9581B0E52C5CD51C008D7701 /* StudentRecordFileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileData.swift; sourceTree = "<group>"; };
 		9581B0E72C5CD524008D7701 /* StudentRecordFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentRecordFileModel.swift; sourceTree = "<group>"; };
+		9582059A2C60F2E700C1A280 /* PrivateUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUrl.swift; sourceTree = "<group>"; };
 		9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentViewController.swift; sourceTree = "<group>"; };
 		9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentView.swift; sourceTree = "<group>"; };
@@ -514,6 +520,7 @@
 				959B57552C41268D009428D7 /* AuthInterceptor.swift */,
 				9570F0A12C4D20220004AA67 /* DateUtility.swift */,
 				956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */,
+				9582059A2C60F2E700C1A280 /* PrivateUrl.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -691,6 +698,25 @@
 			path = Student;
 			sourceTree = "<group>";
 		};
+		95708F532C608B660034F6FD /* Student */ = {
+			isa = PBXGroup;
+			children = (
+				95A4240F2C3FC0BC00DDD571 /* CoachSelectionTableViewCell.swift */,
+				95708F512C608B630034F6FD /* StudentRecordFileTableViewCell.swift */,
+				95708F552C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift */,
+			);
+			path = Student;
+			sourceTree = "<group>";
+		};
+		95708F542C608B770034F6FD /* Coach */ = {
+			isa = PBXGroup;
+			children = (
+				956F3C352C47E1AD00F63F33 /* RequestListTableViewCell.swift */,
+				9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */,
+			);
+			path = Coach;
+			sourceTree = "<group>";
+		};
 		957E3E132C344D9000936617 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
@@ -857,11 +883,10 @@
 		95A4240E2C3FC09F00DDD571 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				95708F542C608B770034F6FD /* Coach */,
+				95708F532C608B660034F6FD /* Student */,
 				956F3C392C48E58200F63F33 /* CustomCollectionViewCell.swift */,
-				95A4240F2C3FC0BC00DDD571 /* CoachSelectionTableViewCell.swift */,
-				956F3C352C47E1AD00F63F33 /* RequestListTableViewCell.swift */,
 				9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */,
-				9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1224,6 +1249,7 @@
 				956EC0852C5625DA00983AE6 /* SetLessonSongData.swift in Sources */,
 				9581B0E42C5CD511008D7701 /* StudentLessonNoteModel.swift in Sources */,
 				956FFDA02C512B7600DD7995 /* CustomTextField.swift in Sources */,
+				95708F562C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift in Sources */,
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
 				9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
@@ -1257,6 +1283,7 @@
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
 				95A0D4422C43AD8E002A768B /* MyPageView.swift in Sources */,
 				9581B0DE2C5CD418008D7701 /* StudentLessonNoteManager.swift in Sources */,
+				9582059B2C60F2E700C1A280 /* PrivateUrl.swift in Sources */,
 				9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */,
 				954E1DF72C3FD50C007D72B4 /* CoachSelectionModel.swift in Sources */,
 				9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */,
@@ -1313,6 +1340,7 @@
 				95786E8C2C40210B00F77146 /* KeychainHelper.swift in Sources */,
 				955BD90F2C552F47005FA69B /* SetLessonSongViewController.swift in Sources */,
 				955BD90D2C552F30005FA69B /* SetLessonSongView.swift in Sources */,
+				95708F522C608B630034F6FD /* StudentRecordFileTableViewCell.swift in Sources */,
 				959D94492C2F07F10014F086 /* PasswordResetViewController.swift in Sources */,
 				95B5C66D2BCABE490067432A /* AppDelegate.swift in Sources */,
 			);
