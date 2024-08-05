@@ -131,7 +131,7 @@ extension MyReservationViewController: UITableViewDelegate, UITableViewDataSourc
         }
         let reservation = reservations[indexPath.row]
         print("reservation: \(reservation)")
-        let date = DateUtility.convertStringToDate(reservation.startTime)
+        let date = DateUtility.convertISO8601StringToString(reservation.startTime)
         let roomId = reservation.roomId
         guard let time = DateUtility.iSO8601timeRangeString(from: reservation.startTime) else {
             print("TimeRangeString failed")

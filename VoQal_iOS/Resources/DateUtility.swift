@@ -118,7 +118,7 @@ class DateUtility {
         return dateFormatter.string(from: endDate)
     }
     
-    static func convertStringToDate(_ dateString: String) -> String {
+    static func convertISO8601StringToString(_ dateString: String) -> String {
         let inputFormatter = DateFormatter()
         inputFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss" // 원래 문자열의 형식
         
@@ -132,6 +132,14 @@ class DateUtility {
         
         return outputFormatter.string(from: date)
     }
+
+    static func convertStringToDate(_ date: String) -> Date {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd"
+        guard let date = inputFormatter.date(from: date) else { return Date() }
+        
+        return date
+    }
     
     static func convertToDateString(_ date: String) -> String? {
         let inputFormatter = DateFormatter()
@@ -143,4 +151,6 @@ class DateUtility {
         
         return outputFormatter.string(from: newDate)
     }
+    
+    
 }
