@@ -24,8 +24,9 @@ struct StudentRecordFileManager {
                 let model = StudentRecordFileModel(status: status, data: data)
                 
                 Task {
-                    await model.loadDurations()
-                    completion(model)
+                    await model.loadDurations {
+                        completion(model)
+                    }
                 }
                 
             case .failure(let err):
@@ -33,9 +34,7 @@ struct StudentRecordFileManager {
                 completion(nil)
             }
         }
-        
     }
-    
     
     func getAudioDuration(from url: URL) async throws -> TimeInterval? {
         
