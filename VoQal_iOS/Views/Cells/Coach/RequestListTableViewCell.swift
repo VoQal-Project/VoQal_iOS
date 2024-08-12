@@ -14,7 +14,7 @@ protocol RequestListTableViewCellDelegate: AnyObject {
 
 class RequestListTableViewCell: UITableViewCell {
 
-    static let identifier: String = "RequestListTableViewCell"
+    static let identifier: String = "requestListTableViewCell"
     
     weak var delegate: RequestListTableViewCellDelegate?
     

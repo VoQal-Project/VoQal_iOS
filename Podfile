@@ -10,6 +10,7 @@ target 'VoQal_iOS' do
 pod 'Alamofire'
 pod 'KeychainAccess'
 pod 'Tabman', '~> 3.2'
+pod 'JJFloatingActionButton'
 
   target 'VoQal_iOSTests' do
     inherit! :search_paths

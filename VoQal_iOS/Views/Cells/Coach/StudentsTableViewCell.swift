@@ -9,7 +9,7 @@ import UIKit
 
 class StudentsTableViewCell: UITableViewCell {
     
-    static let identifier: String = "StudentsTableViewCell"
+    static let identifier: String = "studentsTableViewCell"
     
     private let studentName: UILabel = {
         let label = UILabel()
