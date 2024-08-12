@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.9.1)
+  - JJFloatingActionButton (3.0.1)
   - KeychainAccess (4.2.2)
   - Pageboy (4.2.0)
   - Tabman (3.2.0):
@@ -7,22 +8,25 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - JJFloatingActionButton
   - KeychainAccess
   - Tabman (~> 3.2)
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - JJFloatingActionButton
     - KeychainAccess
     - Pageboy
     - Tabman
 
 SPEC CHECKSUMS:
   Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
+  JJFloatingActionButton: 6a20da0a36bc2c5e2097e754b5e765aa9e4b6365
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Pageboy: 7f7886f61c76633df635861bf7839caf2cabdb3e
   Tabman: 49f9181a2bfe5c29d002864dac2de8e0b7ea9180
 
-PODFILE CHECKSUM: 0081d6944d7fe7cd6b1cf0fabe029224fb760480
+PODFILE CHECKSUM: bb0b8bc3c59354eecc214426ec024f244bcecc63
 
 COCOAPODS: 1.15.2

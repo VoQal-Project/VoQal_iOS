@@ -2,7 +2,7 @@ import UIKit
 
 class CoachSelectionTableViewCell: UITableViewCell {
 
-    static let identifier: String = "CoachTableViewCell"
+    static let identifier: String = "coachTableViewCell"
     
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()

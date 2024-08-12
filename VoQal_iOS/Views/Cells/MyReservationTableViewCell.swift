@@ -14,7 +14,7 @@ protocol MyReservationTableViewCellDelegate: AnyObject {
 
 class MyReservationTableViewCell: UITableViewCell {
     
-    static let identifier = "MyReservationCell"
+    static let identifier = "myReservationCell"
     weak var delegate: MyReservationTableViewCellDelegate?
     
     private let containerView: UIView = {

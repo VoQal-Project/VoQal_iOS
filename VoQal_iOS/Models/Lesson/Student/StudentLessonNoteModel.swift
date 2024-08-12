@@ -10,4 +10,13 @@ import Foundation
 struct StudentLessonNoteModel {
     let status: Int
     let data: [StudentLessonNote]
+    
+    var sortedData: [StudentLessonNote] {
+        data.sorted(by: { firstLessonNote, secondLessonNote in
+            let firstDate = firstLessonNote.lessonDate
+            let secondDate = secondLessonNote.lessonDate
+            
+            return firstDate > secondDate
+        })
+    }
 }

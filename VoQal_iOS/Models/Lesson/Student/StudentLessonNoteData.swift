@@ -22,4 +22,3 @@ struct StudentLessonNote: Codable {
     let singer: String
     let lessonDate: String
 }
-

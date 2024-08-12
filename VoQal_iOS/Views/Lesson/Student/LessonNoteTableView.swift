@@ -11,8 +11,7 @@ class LessonNoteTableView: BaseView {
 
     internal let tableView: UITableView = {
         let tableView = UITableView()
-//        tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
-        tableView.backgroundColor = .blue
+        tableView.backgroundColor = UIColor(named: "mainBackgroundColor")
         tableView.separatorStyle = .none
         tableView.allowsMultipleSelection = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
