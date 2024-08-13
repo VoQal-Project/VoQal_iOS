@@ -11,6 +11,7 @@ pod 'Alamofire'
 pod 'KeychainAccess'
 pod 'Tabman', '~> 3.2'
 pod 'JJFloatingActionButton'
+pod 'CropViewController'
 
   target 'VoQal_iOSTests' do
     inherit! :search_paths
