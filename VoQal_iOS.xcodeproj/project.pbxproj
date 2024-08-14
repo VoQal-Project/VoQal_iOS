@@ -91,6 +91,9 @@
 		95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95715A9E2C4673130010D4B7 /* UserModel.swift */; };
 		95715AA02C4678020010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
 		95715AA12C4678030010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
+		957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957595982C6D137500DA65D1 /* PostChallengeManager.swift */; };
+		9575959C2C6D157300DA65D1 /* postChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959B2C6D157300DA65D1 /* postChallengeData.swift */; };
+		9575959E2C6D157A00DA65D1 /* postChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */; };
 		9577AC012C4FDDB90019396E /* StudentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */; };
 		9577AC032C4FE0370019396E /* ManageStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC022C4FE0370019396E /* ManageStudentModel.swift */; };
 		9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC042C4FE03E0019396E /* ManageStudentData.swift */; };
@@ -283,6 +286,9 @@
 		9570F09F2C4D00380004AA67 /* MyReservationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReservationModel.swift; sourceTree = "<group>"; };
 		9570F0A12C4D20220004AA67 /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
 		95715A9E2C4673130010D4B7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		957595982C6D137500DA65D1 /* PostChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeManager.swift; sourceTree = "<group>"; };
+		9575959B2C6D157300DA65D1 /* postChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postChallengeData.swift; sourceTree = "<group>"; };
+		9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postChallengeModel.swift; sourceTree = "<group>"; };
 		9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsTableViewCell.swift; sourceTree = "<group>"; };
 		9577AC022C4FE0370019396E /* ManageStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentModel.swift; sourceTree = "<group>"; };
 		9577AC042C4FE03E0019396E /* ManageStudentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentData.swift; sourceTree = "<group>"; };
@@ -523,6 +529,7 @@
 		9542B6442BCD7F910060E1BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				9575959A2C6D155B00DA65D1 /* Challenge */,
 				956FFD902C5122FC00DD7995 /* Lesson */,
 				956F3C3C2C49033600F63F33 /* Reservation */,
 				958FE7C82C42C31500F2954D /* Home */,
@@ -757,6 +764,23 @@
 			path = Coach;
 			sourceTree = "<group>";
 		};
+		957595972C6D136700DA65D1 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				957595982C6D137500DA65D1 /* PostChallengeManager.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
+		9575959A2C6D155B00DA65D1 /* Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				9575959B2C6D157300DA65D1 /* postChallengeData.swift */,
+				9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */,
+			);
+			path = Challenge;
+			sourceTree = "<group>";
+		};
 		957E3E132C344D9000936617 /* Verification */ = {
 			isa = PBXGroup;
 			children = (
@@ -834,6 +858,7 @@
 		959D941E2C2AEEC30014F086 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				957595972C6D136700DA65D1 /* Challenge */,
 				956FFD8F2C5122F400DD7995 /* Lesson */,
 				956F3C3B2C49032C00F63F33 /* Reservation */,
 				958FE7C52C42C2AC00F2954D /* Home */,
@@ -1285,6 +1310,7 @@
 				9581D8BC2C6243F7009BE1B2 /* LessonNoteDetailData.swift in Sources */,
 				9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */,
 				95786E8E2C40233800F77146 /* LoginData.swift in Sources */,
+				9575959C2C6D157300DA65D1 /* postChallengeData.swift in Sources */,
 				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
 				956EC08F2C5796FC00983AE6 /* UploadRecordFileManager.swift in Sources */,
 				956EC0872C565A7000983AE6 /* LessonSongWebView.swift in Sources */,
@@ -1316,6 +1342,7 @@
 				956325822C6A381500C801A4 /* PostChallengeViewController.swift in Sources */,
 				959D943F2C2EF75E0014F086 /* EmailFinderData.swift in Sources */,
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
+				9575959E2C6D157A00DA65D1 /* postChallengeModel.swift in Sources */,
 				9541D3822BD2AFEE00B36977 /* MyPageViewController.swift in Sources */,
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
 				956EDA482C6495F70071EBEC /* RecordFileDetailViewController.swift in Sources */,
@@ -1361,6 +1388,7 @@
 				956F3C322C47DC3A00F63F33 /* RequestListModel.swift in Sources */,
 				956F3C362C47E1AD00F63F33 /* RequestListTableViewCell.swift in Sources */,
 				9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */,
+				957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
 				959B57592C412C02009428D7 /* AuthModel.swift in Sources */,
 				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
