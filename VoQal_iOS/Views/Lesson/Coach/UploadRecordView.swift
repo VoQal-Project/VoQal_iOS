@@ -123,7 +123,6 @@ class UploadRecordView: BaseView {
         super.init(frame: frame)
         
         backgroundColor = .clear
-//        recordFileNameLabel.text = uploadRecordViewController.
         addGestureRecognizer(tapGesture)
     }
     

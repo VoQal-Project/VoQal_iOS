@@ -8,7 +8,9 @@
 import UIKit
 
 class PostChallengeView: BaseView {
-
+    
+    private var thumbnailTapGestureRecognizer: UITapGestureRecognizer?
+    
     private let dimmedView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +59,9 @@ class PostChallengeView: BaseView {
         textField.layer.cornerCurve = .continuous
         textField.layer.borderColor = UIColor(hexCode: "474747", alpha: 1.0).cgColor
         textField.layer.borderWidth = 2.0
+        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        textField.leftViewMode = .always
+        textField.font = UIFont(name: "SUIT-Regular", size: 16)
         textField.isEnabled = false
         textField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -125,9 +130,15 @@ class PostChallengeView: BaseView {
         return view
     }()
     
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        return gesture
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
+        addGestureRecognizer(tapGesture)
     }
     
     required init?(coder: NSCoder) {
@@ -168,7 +179,7 @@ class PostChallengeView: BaseView {
             recordFileField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
             recordFileField.heightAnchor.constraint(equalToConstant: 40),
             recordFileField.topAnchor.constraint(equalTo: closeButton.bottomAnchor, constant: 35),
-            recordFileField.trailingAnchor.constraint(equalTo: uploadRecordFileButton.leadingAnchor, constant: -15),
+            recordFileField.trailingAnchor.constraint(equalTo: uploadRecordFileButton.leadingAnchor, constant: -10),
             
             uploadRecordFileButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             uploadRecordFileButton.centerYAnchor.constraint(equalTo: recordFileField.centerYAnchor),
@@ -180,8 +191,8 @@ class PostChallengeView: BaseView {
             uploadThumbnailButton.widthAnchor.constraint(equalToConstant: 115),
             uploadThumbnailButton.heightAnchor.constraint(equalToConstant: 115),
             
-            ThumbnailImageView.topAnchor.constraint(equalTo: recordFileField.bottomAnchor, constant: 15),
-            ThumbnailImageView.bottomAnchor.constraint(equalTo: songTitleField.topAnchor, constant: -15),
+            ThumbnailImageView.topAnchor.constraint(equalTo: recordFileField.bottomAnchor, constant: 25),
+            ThumbnailImageView.bottomAnchor.constraint(equalTo: songTitleField.topAnchor, constant: -25),
             ThumbnailImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             ThumbnailImageView.widthAnchor.constraint(equalTo: ThumbnailImageView.heightAnchor, multiplier: 3.0/4.0),
             
@@ -207,6 +218,11 @@ class PostChallengeView: BaseView {
         ])
     }
     
+    @objc private func dismissKeyboard() {
+        print("외부 탭")
+        endEditing(true)
+    }
+    
     func getSongTitleValue() -> String? {
         return songTitleField.text
     }
@@ -214,10 +230,33 @@ class PostChallengeView: BaseView {
     func getArtistValue() -> String? {
         return artistField.text
     }
-
-    func setupThumbnailImageView(_ image: UIImage) {
+    
+    func setupThumbnailImageView(_ image: UIImage, _ target: Any, _ action: Selector) {
         self.ThumbnailImageView.image = image
         self.ThumbnailImageView.isHidden = false
+        self.ThumbnailImageView.isUserInteractionEnabled = true
+        
+        let tapGesture = UITapGestureRecognizer(target: target, action: action)
+        self.ThumbnailImageView.addGestureRecognizer(tapGesture)
+        self.thumbnailTapGestureRecognizer = tapGesture
+        
+        self.uploadThumbnailButton.isHidden = true
     }
     
+    func resetThumbnailImageView() {
+        self.ThumbnailImageView.image = nil
+        self.ThumbnailImageView.isHidden = true
+        self.ThumbnailImageView.isUserInteractionEnabled = false
+        
+        if let tapGesture = thumbnailTapGestureRecognizer {
+            self.ThumbnailImageView.removeGestureRecognizer(tapGesture)
+            self.thumbnailTapGestureRecognizer = nil
+        }
+        
+        self.uploadThumbnailButton.isHidden = false
+    }
+    
+    func setupRecordFileField(_ url: URL) {
+        self.recordFileField.text = url.lastPathComponent
+    }
 }
