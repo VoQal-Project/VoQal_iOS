@@ -14,7 +14,8 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     private let postChallengeView = PostChallengeView()
     private let postChallengeManager = PostChallengeManager()
     private var recordFileURL: URL? = nil
-    private var thumbnailImage: UIImage? = nil
+    private var thumbnailImage: Data? = nil
+    private var thumbnailName: String? = nil
     
     override func loadView() {
         view = postChallengeView
@@ -76,7 +77,7 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
             return
         }
         
-        postChallengeManager.postChallenge(thumbnail: self.thumbnailImage!, songTitle: postChallengeView.getSongTitleValue()!, singer: postChallengeView.getArtistValue()!, fileURL: self.recordFileURL!) { model in
+        postChallengeManager.postChallenge(thumbnail: self.thumbnailImage!, thumbnailName: self.thumbnailName!, songTitle: postChallengeView.getSongTitleValue()!, singer: postChallengeView.getArtistValue()!, fileURL: self.recordFileURL!) { model in
             guard let model = model else { print("postChallengeViewController - model 바인딩 실패"); return }
             
             if model.status == 200 {
@@ -102,10 +103,19 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
         picker.dismiss(animated: true, completion: nil)
         
         if let result = results.first {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
-                if let selectedImage = image as? UIImage {
-                    DispatchQueue.main.async {
-                        self.presentImageCropper(with: selectedImage)
+            // 파일 이름 추출을 위해 loadFileRepresentation 사용
+            result.itemProvider.loadFileRepresentation(forTypeIdentifier: UTType.image.identifier) { (url, error) in
+                if let url = url {
+                    let fileName = url.lastPathComponent // 파일 이름 추출
+                    
+                    // 이미지 로드
+                    result.itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                        if let selectedImage = image as? UIImage {
+                            DispatchQueue.main.async {
+                                self.thumbnailName = fileName // 추출한 파일 이름 저장
+                                self.presentImageCropper(with: selectedImage)
+                            }
+                        }
                     }
                 }
             }
@@ -122,8 +132,10 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        thumbnailImage = image
         self.postChallengeView.setupThumbnailImageView(image, self, #selector(didTapThumbnailImageView))
+        if let jpegImage = image.jpegData(compressionQuality: 0.7) {
+            self.thumbnailImage = jpegImage
+        }
         
         cropViewController.dismiss(animated: true)
     }

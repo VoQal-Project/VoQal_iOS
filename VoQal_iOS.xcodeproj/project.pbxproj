@@ -92,8 +92,8 @@
 		95715AA02C4678020010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
 		95715AA12C4678030010D4B7 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 9542B63B2BCD688E0060E1BB /* Fonts */; };
 		957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957595982C6D137500DA65D1 /* PostChallengeManager.swift */; };
-		9575959C2C6D157300DA65D1 /* postChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959B2C6D157300DA65D1 /* postChallengeData.swift */; };
-		9575959E2C6D157A00DA65D1 /* postChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */; };
+		9575959C2C6D157300DA65D1 /* PostChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959B2C6D157300DA65D1 /* PostChallengeData.swift */; };
+		9575959E2C6D157A00DA65D1 /* PostChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9575959D2C6D157A00DA65D1 /* PostChallengeModel.swift */; };
 		9577AC012C4FDDB90019396E /* StudentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */; };
 		9577AC032C4FE0370019396E /* ManageStudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC022C4FE0370019396E /* ManageStudentModel.swift */; };
 		9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9577AC042C4FE03E0019396E /* ManageStudentData.swift */; };
@@ -122,6 +122,12 @@
 		9581D8BC2C6243F7009BE1B2 /* LessonNoteDetailData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581D8BB2C6243F7009BE1B2 /* LessonNoteDetailData.swift */; };
 		9581D8BE2C624402009BE1B2 /* LessonNoteDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581D8BD2C624402009BE1B2 /* LessonNoteDetailModel.swift */; };
 		9582059B2C60F2E700C1A280 /* PrivateUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9582059A2C60F2E700C1A280 /* PrivateUrl.swift */; };
+		9584A22C2C6E087200E0BC99 /* ChallengeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A22B2C6E087200E0BC99 /* ChallengeData.swift */; };
+		9584A22E2C6E087A00E0BC99 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A22D2C6E087A00E0BC99 /* ChallengeModel.swift */; };
+		9584A2302C6E095900E0BC99 /* MyChallengePostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A22F2C6E095900E0BC99 /* MyChallengePostData.swift */; };
+		9584A2322C6E096100E0BC99 /* MyChallengePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A2312C6E096100E0BC99 /* MyChallengePostModel.swift */; };
+		9584A2362C6E0A9C00E0BC99 /* ChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A2352C6E0A9C00E0BC99 /* ChallengeManager.swift */; };
+		9584A2382C6E0AAD00E0BC99 /* MyChallengePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9584A2372C6E0AAD00E0BC99 /* MyChallengePostManager.swift */; };
 		9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */; };
 		9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */; };
 		9587DDFB2C46C4670039B6D0 /* ManageStudentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */; };
@@ -287,8 +293,8 @@
 		9570F0A12C4D20220004AA67 /* DateUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtility.swift; sourceTree = "<group>"; };
 		95715A9E2C4673130010D4B7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		957595982C6D137500DA65D1 /* PostChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeManager.swift; sourceTree = "<group>"; };
-		9575959B2C6D157300DA65D1 /* postChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postChallengeData.swift; sourceTree = "<group>"; };
-		9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postChallengeModel.swift; sourceTree = "<group>"; };
+		9575959B2C6D157300DA65D1 /* PostChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeData.swift; sourceTree = "<group>"; };
+		9575959D2C6D157A00DA65D1 /* PostChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeModel.swift; sourceTree = "<group>"; };
 		9577AC002C4FDDB90019396E /* StudentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsTableViewCell.swift; sourceTree = "<group>"; };
 		9577AC022C4FE0370019396E /* ManageStudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentModel.swift; sourceTree = "<group>"; };
 		9577AC042C4FE03E0019396E /* ManageStudentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentData.swift; sourceTree = "<group>"; };
@@ -317,6 +323,12 @@
 		9581D8BB2C6243F7009BE1B2 /* LessonNoteDetailData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteDetailData.swift; sourceTree = "<group>"; };
 		9581D8BD2C624402009BE1B2 /* LessonNoteDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteDetailModel.swift; sourceTree = "<group>"; };
 		9582059A2C60F2E700C1A280 /* PrivateUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateUrl.swift; sourceTree = "<group>"; };
+		9584A22B2C6E087200E0BC99 /* ChallengeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeData.swift; sourceTree = "<group>"; };
+		9584A22D2C6E087A00E0BC99 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
+		9584A22F2C6E095900E0BC99 /* MyChallengePostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostData.swift; sourceTree = "<group>"; };
+		9584A2312C6E096100E0BC99 /* MyChallengePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostModel.swift; sourceTree = "<group>"; };
+		9584A2352C6E0A9C00E0BC99 /* ChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeManager.swift; sourceTree = "<group>"; };
+		9584A2372C6E0AAD00E0BC99 /* MyChallengePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostManager.swift; sourceTree = "<group>"; };
 		9587DDF22C46BA880039B6D0 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		9587DDF62C46C43D0039B6D0 /* ManageStudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentViewController.swift; sourceTree = "<group>"; };
 		9587DDFA2C46C4670039B6D0 /* ManageStudentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStudentView.swift; sourceTree = "<group>"; };
@@ -768,6 +780,8 @@
 			isa = PBXGroup;
 			children = (
 				957595982C6D137500DA65D1 /* PostChallengeManager.swift */,
+				9584A2352C6E0A9C00E0BC99 /* ChallengeManager.swift */,
+				9584A2372C6E0AAD00E0BC99 /* MyChallengePostManager.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -775,8 +789,12 @@
 		9575959A2C6D155B00DA65D1 /* Challenge */ = {
 			isa = PBXGroup;
 			children = (
-				9575959B2C6D157300DA65D1 /* postChallengeData.swift */,
-				9575959D2C6D157A00DA65D1 /* postChallengeModel.swift */,
+				9575959B2C6D157300DA65D1 /* PostChallengeData.swift */,
+				9575959D2C6D157A00DA65D1 /* PostChallengeModel.swift */,
+				9584A22B2C6E087200E0BC99 /* ChallengeData.swift */,
+				9584A22D2C6E087A00E0BC99 /* ChallengeModel.swift */,
+				9584A22F2C6E095900E0BC99 /* MyChallengePostData.swift */,
+				9584A2312C6E096100E0BC99 /* MyChallengePostModel.swift */,
 			);
 			path = Challenge;
 			sourceTree = "<group>";
@@ -1300,6 +1318,7 @@
 				9542B63F2BCD6BEB0060E1BB /* LoginViewController.swift in Sources */,
 				959D94472C2F07DD0014F086 /* PasswordResetView.swift in Sources */,
 				956EC0892C565AD400983AE6 /* LessonSongWebViewController.swift in Sources */,
+				9584A2302C6E095900E0BC99 /* MyChallengePostData.swift in Sources */,
 				9570F0A02C4D00380004AA67 /* MyReservationModel.swift in Sources */,
 				956EC0952C59131300983AE6 /* SNSWebViewController.swift in Sources */,
 				9541D3762BD2AF8600B36977 /* ReservationView.swift in Sources */,
@@ -1310,10 +1329,11 @@
 				9581D8BC2C6243F7009BE1B2 /* LessonNoteDetailData.swift in Sources */,
 				9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */,
 				95786E8E2C40233800F77146 /* LoginData.swift in Sources */,
-				9575959C2C6D157300DA65D1 /* postChallengeData.swift in Sources */,
+				9575959C2C6D157300DA65D1 /* PostChallengeData.swift in Sources */,
 				959D94382C2EE7C80014F086 /* EmailResultViewController.swift in Sources */,
 				956EC08F2C5796FC00983AE6 /* UploadRecordFileManager.swift in Sources */,
 				956EC0872C565A7000983AE6 /* LessonSongWebView.swift in Sources */,
+				9584A2362C6E0A9C00E0BC99 /* ChallengeManager.swift in Sources */,
 				955B4ACC2C67AE9600AC2E20 /* ChallengeCollectionViewCell.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */,
@@ -1342,7 +1362,7 @@
 				956325822C6A381500C801A4 /* PostChallengeViewController.swift in Sources */,
 				959D943F2C2EF75E0014F086 /* EmailFinderData.swift in Sources */,
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
-				9575959E2C6D157A00DA65D1 /* postChallengeModel.swift in Sources */,
+				9575959E2C6D157A00DA65D1 /* PostChallengeModel.swift in Sources */,
 				9541D3822BD2AFEE00B36977 /* MyPageViewController.swift in Sources */,
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
 				956EDA482C6495F70071EBEC /* RecordFileDetailViewController.swift in Sources */,
@@ -1369,6 +1389,7 @@
 				956F3C262C47C9E400F63F33 /* RequestListViewController.swift in Sources */,
 				959D943D2C2EF7520014F086 /* EmailFinderModel.swift in Sources */,
 				9581B0E02C5CD435008D7701 /* StudentRecordFileManager.swift in Sources */,
+				9584A22C2C6E087200E0BC99 /* ChallengeData.swift in Sources */,
 				956FFD9A2C5123DA00DD7995 /* WriteLessonNoteManager.swift in Sources */,
 				9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
@@ -1388,8 +1409,10 @@
 				956F3C322C47DC3A00F63F33 /* RequestListModel.swift in Sources */,
 				956F3C362C47E1AD00F63F33 /* RequestListTableViewCell.swift in Sources */,
 				9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */,
+				9584A2322C6E096100E0BC99 /* MyChallengePostModel.swift in Sources */,
 				957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
+				9584A2382C6E0AAD00E0BC99 /* MyChallengePostManager.swift in Sources */,
 				959B57592C412C02009428D7 /* AuthModel.swift in Sources */,
 				95B661602C3D1C390091F241 /* RoleSelectionModel.swift in Sources */,
 				95B661622C3D1C5F0091F241 /* RoleSelectionData.swift in Sources */,
@@ -1399,6 +1422,7 @@
 				956FFDA22C51401A00DD7995 /* CustomTextView.swift in Sources */,
 				956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
+				9584A22E2C6E087A00E0BC99 /* ChallengeModel.swift in Sources */,
 				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
 				956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */,
