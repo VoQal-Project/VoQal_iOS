@@ -83,7 +83,7 @@ class ChallengeViewController: BaseViewController {
     }
     
     @objc private func didTapLikeButton(_ sender: UIButton) {
-        var post = challengePosts[sender.tag]
+        let post = challengePosts[sender.tag]
         let postId = Int64(post.challengeId)
         var liked = post.liked
         
@@ -129,6 +129,19 @@ class ChallengeViewController: BaseViewController {
             if let challengeCell = cell as? ChallengeCollectionViewCell {
                 challengeCell.player?.pause()
                 challengeCell.player = nil
+            }
+        }
+    }
+    
+    internal func temporarilyStopOrPlayPlayers(_ pause: Bool) {
+        for cell in challengeView.collectionView.visibleCells {
+            if let challengeCell = cell as? ChallengeCollectionViewCell {
+                if pause {
+                    challengeCell.player?.pause()
+                }
+                else {
+                    challengeCell.player?.play()
+                }
             }
         }
     }

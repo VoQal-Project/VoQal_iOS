@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let mainTC = MainTabBarController()
-        let challengeVC = ChallengeViewController()
+        let myPageTC = MyPageViewController()
         window?.rootViewController = mainTC
         
         window?.makeKeyAndVisible()
