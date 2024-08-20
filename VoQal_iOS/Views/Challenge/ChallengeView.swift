@@ -106,6 +106,7 @@ class ChallengeView: BaseView {
         firstItem.imageSize = CGSize(width: 30, height: 30)
         firstItem.action = { [weak self] item in
             self?.challengeViewController?.didTapPostChallengeBtn()
+            self?.challengeViewController?.temporarilyStopOrPlayPlayers(true)
         }
         
         let secondItem = floatingButton.addItem()
@@ -115,6 +116,7 @@ class ChallengeView: BaseView {
         secondItem.imageSize = CGSize(width: 30, height: 30)
         secondItem.action = { [weak self] item in
             self?.challengeViewController?.didTapMyPostBtn()
+            self?.challengeViewController?.temporarilyStopOrPlayPlayers(true)
         }
         
         let thirdItem = floatingButton.addItem()
@@ -124,6 +126,7 @@ class ChallengeView: BaseView {
         thirdItem.imageSize = CGSize(width: 30, height: 30)
         thirdItem.action = { [weak self] item in
             self?.challengeViewController?.didTapMyLikePostBtn()
+            self?.challengeViewController?.temporarilyStopOrPlayPlayers(true)
         }
     }
     

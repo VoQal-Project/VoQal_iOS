@@ -22,6 +22,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         super.viewDidLoad()
         print("home viewDidLoad!")
         homeView.homeViewController = self
+        
         setupNavigationBar()
         homeView.updateThumbnail(nil)
         NotificationCenter.default.addObserver(self, selector: #selector(userModelUpdated), name: .userModelUpdated, object: nil)
