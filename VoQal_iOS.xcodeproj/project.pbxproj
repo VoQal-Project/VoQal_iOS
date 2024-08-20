@@ -170,6 +170,8 @@
 		95B661682C3D1D370091F241 /* RoleSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B661672C3D1D370091F241 /* RoleSelectionView.swift */; };
 		95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */; };
 		95E9C8582C74B8F500FE2042 /* MyPageMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9C8572C74B8F500FE2042 /* MyPageMenuTableViewCell.swift */; };
+		95E9C85A2C74CD0D00FE2042 /* CancelAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9C8592C74CD0D00FE2042 /* CancelAccountViewController.swift */; };
+		95E9C85C2C74CD3100FE2042 /* CancelAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E9C85B2C74CD3100FE2042 /* CancelAccountView.swift */; };
 		95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA47172BE25CCE00E6631B /* RoleSelectionViewController.swift */; };
 		D77B1A535F242C1C20539760 /* Pods_VoQal_iOS_VoQal_iOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D82197EA947CA09B02FC649 /* Pods_VoQal_iOS_VoQal_iOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -376,6 +378,8 @@
 		95B661672C3D1D370091F241 /* RoleSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionView.swift; sourceTree = "<group>"; };
 		95B6616A2C3D309F0091F241 /* RoleSelectionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionButton.swift; sourceTree = "<group>"; };
 		95E9C8572C74B8F500FE2042 /* MyPageMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageMenuTableViewCell.swift; sourceTree = "<group>"; };
+		95E9C8592C74CD0D00FE2042 /* CancelAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountViewController.swift; sourceTree = "<group>"; };
+		95E9C85B2C74CD3100FE2042 /* CancelAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountView.swift; sourceTree = "<group>"; };
 		95EA47172BE25CCE00E6631B /* RoleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleSelectionViewController.swift; sourceTree = "<group>"; };
 		F7C0DA43103FFB8E50C9692C /* Pods-VoQal_iOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VoQal_iOSTests.debug.xcconfig"; path = "Target Support Files/Pods-VoQal_iOSTests/Pods-VoQal_iOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -493,6 +497,7 @@
 			isa = PBXGroup;
 			children = (
 				9541D3812BD2AFEE00B36977 /* MyPageViewController.swift */,
+				95E9C8592C74CD0D00FE2042 /* CancelAccountViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -961,6 +966,7 @@
 			isa = PBXGroup;
 			children = (
 				95A0D4412C43AD8E002A768B /* MyPageView.swift */,
+				95E9C85B2C74CD3100FE2042 /* CancelAccountView.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -1367,7 +1373,9 @@
 				958D42452C37DDEC00088EA3 /* ValidationUtility.swift in Sources */,
 				9575959E2C6D157A00DA65D1 /* PostChallengeModel.swift in Sources */,
 				9541D3822BD2AFEE00B36977 /* MyPageViewController.swift in Sources */,
+				95E9C85C2C74CD3100FE2042 /* CancelAccountView.swift in Sources */,
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
+				95E9C85A2C74CD0D00FE2042 /* CancelAccountViewController.swift in Sources */,
 				956EDA482C6495F70071EBEC /* RecordFileDetailViewController.swift in Sources */,
 				956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */,
 				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
