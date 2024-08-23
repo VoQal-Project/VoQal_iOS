@@ -26,12 +26,15 @@ class MyPageViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUserInformation()
-        
         myPageView.menuTableView.dataSource = self
         myPageView.menuTableView.delegate = self
         myPageView.menuTableView.register(MyPageMenuTableViewCell.self, forCellReuseIdentifier: MyPageMenuTableViewCell.identifier)
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUserInformation()
     }
     
     override func setAddTarget() {
@@ -40,9 +43,10 @@ class MyPageViewController: BaseViewController {
     
     private func setUserInformation() {
         if let userModel = UserManager.shared.userModel {
+            let assignedCoach = userModel.assignedCoach
             if let name = userModel.name,
                let nickname = userModel.nickname {
-                myPageView.configure(name, nickname, "박효신")
+                myPageView.configure(name, nickname, assignedCoach)
             }
         }
     }
@@ -96,7 +100,19 @@ class MyPageViewController: BaseViewController {
         
     }
     
-    
+    private func didTapCancelAccountButton() {
+        let cancelAccountVC = CancelAccountViewController()
+        cancelAccountVC.cancelCompletion = {
+            KeychainHelper.shared.clearTokens()
+            UserManager.shared.deleteUserModel()
+            print("after cancelAccount: \(UserManager.shared.userModel)")
+            self.delegate?.removeTarget()
+            self.resetAllNavigationStacks()
+            self.showLoginScreen()
+        }
+        navigationController?.pushViewController(cancelAccountVC, animated: true)
+        
+    }
     
     private func didTapLogoutButton() {
         
@@ -106,8 +122,8 @@ class MyPageViewController: BaseViewController {
             UserManager.shared.deleteUserModel()
             print("after logout: \(UserManager.shared.userModel)")
             self.delegate?.removeTarget()
-            self.showLoginScreen()
             self.resetAllNavigationStacks()
+            self.showLoginScreen()
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
         
@@ -194,6 +210,7 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
             print("2번째 셀")
         case 2:
             print("3번째 셀")
+            didTapCancelAccountButton()
         case 3:
             print("4번째 셀")
             didTapLogoutButton()

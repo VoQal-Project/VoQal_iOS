@@ -22,6 +22,7 @@ struct HomeUserData: Codable {
     let name: String
     let phoneNum: String
     let role: String
+    let assignedCoach: String?
     let lessonSongUrl: String?
 }
 

@@ -84,6 +84,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                     if let successModel = model.successModel {
                         print("User information updated: \(successModel)")
                         let lessonSongUrl = successModel.lessonSongUrl
+                        let assignedCoach = successModel.assignedCoach
                         if let email = successModel.email,
                            let nickname = successModel.nickname,
                            let name = successModel.name,
@@ -101,7 +102,8 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                                 name: name,
                                 phoneNum: phoneNum,
                                 role: role,
-                                lessonSongUrl: lessonSongUrl
+                                lessonSongUrl: lessonSongUrl,
+                                assignedCoach: assignedCoach
                             )
                             
                             UserManager.shared.userModel = user

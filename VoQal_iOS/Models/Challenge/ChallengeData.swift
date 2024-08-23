@@ -14,7 +14,6 @@ struct ChallengeData: Codable {
 
 struct ChallengePost: Codable {
     let challengeId: Int
-    let todayKeyword: String
     let thumbnailUrl: String
     let recordUrl: String
     let songTitle: String

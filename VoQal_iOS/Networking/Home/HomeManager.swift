@@ -24,7 +24,8 @@ struct HomeManager {
                                                         phoneNum: data.phoneNum,
                                                         role: data.role,
                                                         status: res.status,
-                                                        lessonSongUrl: data.lessonSongUrl
+                                                        lessonSongUrl: data.lessonSongUrl,
+                                                        assignedCoach: data.assignedCoach
                     )
                     let model = HomeModel(successModel: successModel, errorModel: nil)
                     completion(model)

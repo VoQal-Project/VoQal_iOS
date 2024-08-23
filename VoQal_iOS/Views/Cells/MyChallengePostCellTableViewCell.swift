@@ -1,16 +1,16 @@
 //
-//  ChallengeCollectionViewCell.swift
+//  MyChallengePostCellTableViewCell.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 8/10/24.
+//  Created by 송규섭 on 8/23/24.
 //
 
 import UIKit
 import AVFoundation
 
-class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
-    
-    static let identifier: String = "challengeCollectionViewCell"
+class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
+
+    static let identifier: String = "MyChallengePostCell"
     internal var player: AVPlayer?
     
     private let thumbnailImageView: UIImageView = {
@@ -59,23 +59,33 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
     internal let likeButton: UIButton = {
         let button = UIButton()
         let configuration = UIImage.SymbolConfiguration(pointSize: 30)
-        let image = UIImage(systemName: "heart", withConfiguration: configuration)
+        let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
         button.setImage(image, for: .normal)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    private let likeCountLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont(name: "SUIT-Regular", size: 15)
+        label.textColor = .white
+        label.textAlignment = .center
+        
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor(named: "mainBackgroundColor")
+        
         addSubViews()
         setConstraints()
         setupGesture()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented.")
     }
     
     private func addSubViews() {
@@ -84,6 +94,7 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         contentView.addSubview(songLabel)
         contentView.addSubview(nicknameLabel)
         contentView.addSubview(likeButton)
+        contentView.addSubview(likeCountLabel)
     }
     
     private func setConstraints() {
@@ -99,9 +110,13 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
             coverImageView.bottomAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor),
             
             likeButton.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor),
-            likeButton.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 25),
+            likeButton.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 15),
             likeButton.widthAnchor.constraint(equalToConstant: 40),
             likeButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            likeCountLabel.topAnchor.constraint(equalTo: likeButton.bottomAnchor, constant: 5),
+            likeCountLabel.centerXAnchor.constraint(equalTo: likeButton.centerXAnchor),
+            likeCountLabel.widthAnchor.constraint(equalToConstant: 50),
             
             songLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 15),
             songLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor, constant: 5),
@@ -112,6 +127,7 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
             nicknameLabel.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: 10),
             nicknameLabel.trailingAnchor.constraint(lessThanOrEqualTo: likeButton.leadingAnchor, constant: -5),
             nicknameLabel.heightAnchor.constraint(equalToConstant: 25),
+            
             
         ])
     }
@@ -124,9 +140,9 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         contentView.addGestureRecognizer(tapGesture)
     }
     
-    func configure(_ liked: Bool, _ songTitle: String, _ singer: String, _ nickname: String) {
+    func configure(_ likeCount: Int, _ songTitle: String, _ singer: String, _ nickname: String) {
         
-        updateLikeBtn(liked)
+        updateLikeCount(likeCount)
         
         self.songLabel.text = "\(songTitle) - \(singer) cover"
         self.nicknameLabel.text = nickname
@@ -145,14 +161,8 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         print(player)
     }
     
-    func updateLikeBtn(_ liked: Bool) {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
-        
-        if liked {
-            self.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: configuration), for: .normal)
-        } else {
-            self.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: configuration), for: .normal)
-        }
+    func updateLikeCount(_ likeCount: Int) {
+        likeCountLabel.text = String(likeCount)
     }
     
     @objc func togglePlayPause() {

@@ -106,6 +106,10 @@
 		957E3E152C344DD800936617 /* EmailVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E142C344DD800936617 /* EmailVerifyModel.swift */; };
 		957E3E172C344DE500936617 /* NicknameVerifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E162C344DE500936617 /* NicknameVerifyModel.swift */; };
 		957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E3E182C344E0100936617 /* PasswordResetModel.swift */; };
+		957E6F892C78AA0700093C9E /* MyChallengePostCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F882C78AA0700093C9E /* MyChallengePostCellTableViewCell.swift */; };
+		957E6F8C2C78BF5300093C9E /* CancelAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F8B2C78BF5300093C9E /* CancelAccountManager.swift */; };
+		957E6F8F2C78BF9D00093C9E /* CancelAccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F8E2C78BF9D00093C9E /* CancelAccountData.swift */; };
+		957E6F912C78BFA600093C9E /* CancelAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F902C78BFA600093C9E /* CancelAccountModel.swift */; };
 		9581B0CE2C5CB75C008D7701 /* LessonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */; };
 		9581B0D02C5CBF74008D7701 /* LessonNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */; };
 		9581B0D22C5CBF8D008D7701 /* RecordFileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */; };
@@ -310,6 +314,10 @@
 		957E3E142C344DD800936617 /* EmailVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E162C344DE500936617 /* NicknameVerifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameVerifyModel.swift; sourceTree = "<group>"; };
 		957E3E182C344E0100936617 /* PasswordResetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetModel.swift; sourceTree = "<group>"; };
+		957E6F882C78AA0700093C9E /* MyChallengePostCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostCellTableViewCell.swift; sourceTree = "<group>"; };
+		957E6F8B2C78BF5300093C9E /* CancelAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountManager.swift; sourceTree = "<group>"; };
+		957E6F8E2C78BF9D00093C9E /* CancelAccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountData.swift; sourceTree = "<group>"; };
+		957E6F902C78BFA600093C9E /* CancelAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountModel.swift; sourceTree = "<group>"; };
 		9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTabViewController.swift; sourceTree = "<group>"; };
 		9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteTableViewController.swift; sourceTree = "<group>"; };
 		9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFileTableViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +556,7 @@
 		9542B6442BCD7F910060E1BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				957E6F8D2C78BF8F00093C9E /* MyPage */,
 				9575959A2C6D155B00DA65D1 /* Challenge */,
 				956FFD902C5122FC00DD7995 /* Lesson */,
 				956F3C3C2C49033600F63F33 /* Reservation */,
@@ -817,6 +826,23 @@
 			path = Verification;
 			sourceTree = "<group>";
 		};
+		957E6F8A2C78BF3600093C9E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				957E6F8B2C78BF5300093C9E /* CancelAccountManager.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
+		957E6F8D2C78BF8F00093C9E /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				957E6F8E2C78BF9D00093C9E /* CancelAccountData.swift */,
+				957E6F902C78BFA600093C9E /* CancelAccountModel.swift */,
+			);
+			path = MyPage;
+			sourceTree = "<group>";
+		};
 		9587DDF42C46C3FC0039B6D0 /* Coach */ = {
 			isa = PBXGroup;
 			children = (
@@ -883,6 +909,7 @@
 		959D941E2C2AEEC30014F086 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				957E6F8A2C78BF3600093C9E /* MyPage */,
 				957595972C6D136700DA65D1 /* Challenge */,
 				956FFD8F2C5122F400DD7995 /* Lesson */,
 				956F3C3B2C49032C00F63F33 /* Reservation */,
@@ -980,6 +1007,7 @@
 				9570F0992C4CFD070004AA67 /* MyReservationTableViewCell.swift */,
 				955B4ACB2C67AE9600AC2E20 /* ChallengeCollectionViewCell.swift */,
 				95E9C8572C74B8F500FE2042 /* MyPageMenuTableViewCell.swift */,
+				957E6F882C78AA0700093C9E /* MyChallengePostCellTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1315,6 +1343,7 @@
 				956FFD9E2C51240D00DD7995 /* WriteLessonNoteViewController.swift in Sources */,
 				957E3E122C344D1700936617 /* NicknameVerifyData.swift in Sources */,
 				956EDA462C6495A50071EBEC /* RecordFileDetailView.swift in Sources */,
+				957E6F8F2C78BF9D00093C9E /* CancelAccountData.swift in Sources */,
 				956FFD9C2C5123F300DD7995 /* WriteLessonNoteView.swift in Sources */,
 				955B55A42C5297A5004C097E /* UploadRecordViewController.swift in Sources */,
 				956EC07F2C56071200983AE6 /* TextFieldWithBottomBorder.swift in Sources */,
@@ -1335,6 +1364,7 @@
 				956F3C282C47C9FE00F63F33 /* RequestListView.swift in Sources */,
 				9563257E2C6A36A400C801A4 /* MyChallengePostViewController.swift in Sources */,
 				959D94362C2EE0D40014F086 /* EmailResultView.swift in Sources */,
+				957E6F892C78AA0700093C9E /* MyChallengePostCellTableViewCell.swift in Sources */,
 				9581D8BC2C6243F7009BE1B2 /* LessonNoteDetailData.swift in Sources */,
 				9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */,
 				95786E8E2C40233800F77146 /* LoginData.swift in Sources */,
@@ -1434,6 +1464,7 @@
 				956EC0932C5912EA00983AE6 /* SNSWebView.swift in Sources */,
 				959D94292C2C7A650014F086 /* RegistrationModel.swift in Sources */,
 				9584A22E2C6E087A00E0BC99 /* ChallengeModel.swift in Sources */,
+				957E6F8C2C78BF5300093C9E /* CancelAccountManager.swift in Sources */,
 				9587DDF32C46BA880039B6D0 /* CustomButtonView.swift in Sources */,
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
 				956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */,
@@ -1449,6 +1480,7 @@
 				956F3C342C47DC4500F63F33 /* RequestListData.swift in Sources */,
 				9509C3BF2C3D40AE00FE211E /* CoachSelectionView.swift in Sources */,
 				956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */,
+				957E6F912C78BFA600093C9E /* CancelAccountModel.swift in Sources */,
 				9541D3792BD2AFA000B36977 /* ReservationViewController.swift in Sources */,
 				9542B6482BCD7FE40060E1BB /* LoginView.swift in Sources */,
 				9581B0D22C5CBF8D008D7701 /* RecordFileTableViewController.swift in Sources */,

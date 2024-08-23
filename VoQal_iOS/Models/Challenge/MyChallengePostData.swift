@@ -16,8 +16,8 @@ struct MyChallengePost: Codable {
     let thumbnailUrl: String
     let recordUrl: String
     let challengePostId: Int
-    let challengeKeyword: String
     let songTitle: String
     let singer: String
     let nickName: String
+    let likeCount: Int
 }

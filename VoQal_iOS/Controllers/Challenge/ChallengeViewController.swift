@@ -68,6 +68,9 @@ class ChallengeViewController: BaseViewController {
     
     func didTapPostChallengeBtn() {
         let vc = PostChallengeViewController()
+        vc.postCompletion = {
+            self.fetchData {}
+        }
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true)
     }
@@ -174,7 +177,7 @@ extension ChallengeViewController: UICollectionViewDelegate, UICollectionViewDat
         cell.likeButton.addTarget(self, action: #selector(didTapLikeButton(_:)), for: .touchUpInside)
         
         // 썸네일 이미지 로드
-        challengeManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.recordUrl)") { [weak cell, indexPath] image in
+        challengeManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") { [weak cell, indexPath] image in
             guard let cell = cell, collectionView.indexPath(for: cell) == indexPath else {
                 return
             }
@@ -184,7 +187,7 @@ extension ChallengeViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
         // 음원 플레이어 설정
-        if let url = URL(string: "\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") {
+        if let url = URL(string: "\(PrivateUrl.shared.getS3UrlHead())\(post.recordUrl)") {
             let player = AVPlayer(url: url)
             cell.updatePlayer(player)
         }

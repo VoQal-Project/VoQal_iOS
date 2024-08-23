@@ -17,6 +17,8 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     private var thumbnailImage: Data? = nil
     private var thumbnailName: String? = nil
     
+    var postCompletion: (() -> Void)?
+    
     override func loadView() {
         view = postChallengeView
     }
@@ -83,6 +85,7 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
             if model.status == 200 {
                 let alert = UIAlertController(title: "게시 완료!", message: "챌린지 게시가 완료되었습니다.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                    self.postCompletion?()
                     self.dismiss(animated: true)
                 }))
                 
