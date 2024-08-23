@@ -33,4 +33,22 @@ struct MyChallengePostManager {
         }
     }
     
+    func downloadThumbnailImage(_ url: String, completion: @escaping (UIImage?) -> Void) {
+        AF.download(url).responseData { response in
+            switch response.result {
+            case .success(let data):
+                guard let thumbnailImage = UIImage(data: data) else {
+                    print("thumbnailImage to UIImage 실패")
+                    completion(nil)
+                    return
+                }
+                print("manager - downloadThumbnailImage: \(thumbnailImage)")
+                completion(thumbnailImage)
+            case .failure(let err):
+                print("Error downloading image: \(err)")
+                completion(nil)
+            }
+        }
+    }
+    
 }

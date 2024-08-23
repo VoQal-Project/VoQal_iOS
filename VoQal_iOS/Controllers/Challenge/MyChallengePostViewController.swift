@@ -6,13 +6,13 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MyChallengePostViewController: BaseViewController {
-
+    
     private let myChallengePostView = MyChallengePostView()
     private let myChallengePostManager = MyChallengePostManager()
-    private var isFetching: Bool = false
-    private var lastFetchTime: Date?
+    
     private var myPosts: [MyChallengePost] = []
     
     override func loadView() {
@@ -21,7 +21,15 @@ class MyChallengePostViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        myChallengePostView.collectionView.dataSource = self
+        myChallengePostView.collectionView.delegate = self
+        myChallengePostView.collectionView.register(MyChallengePostCollectionViewCell.self, forCellWithReuseIdentifier: MyChallengePostCollectionViewCell.identifier)
+        
+        fetchData()
+    }
+    
+    private func fetchData() {
         myChallengePostManager.fetchMyChallengePosts { model in
             guard let model = model else { print("myChallengePostView - model 바인딩 실패"); return }
             
@@ -34,46 +42,61 @@ class MyChallengePostViewController: BaseViewController {
         }
     }
     
-    private func fetchData() {
-        
-    }
-    
-    private func fetchMoreData() {
-        isFetching = true
-        lastFetchTime = Date()
-        
-        Task {
-            print("fetchMoreData!")
-            self.isFetching = false
-        }
-    }
-   
 }
 
 extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return myPosts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChallengeCollectionViewCell.identifier, for: indexPath) as? ChallengeCollectionViewCell else {
-            print("challengeViewController - dequeueReusableCell 실패")
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MyChallengePostCollectionViewCell.identifier, for: indexPath) as? MyChallengePostCollectionViewCell else {
+            print("MyChallengeCollectionViewCell dequeue실패.")
             return UICollectionViewCell()
+        }
+        
+        let post = myPosts[indexPath.row]
+        let likeCount = post.likeCount
+        let songTitle = post.songTitle
+        let singer = post.singer
+        let nickname = post.nickName
+        
+        cell.configure(likeCount, songTitle, singer, nickname)
+        
+        myChallengePostManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") { [weak cell, indexPath] image in
+            guard let cell = cell, collectionView.indexPath(for: cell) == indexPath else {
+                return
+            }
+            DispatchQueue.main.async {
+                cell.updateThumbnail(image)
+            }
+        }
+        
+        // 음원 플레이어 설정
+        if let url = URL(string: "\(PrivateUrl.shared.getS3UrlHead())\(post.recordUrl)") {
+            let player = AVPlayer(url: url)
+            cell.updatePlayer(player)
         }
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if indexPath.row == collectionView.numberOfItems(inSection: 0) - 1 {
-            if !isFetching {
-                fetchMoreData()
-            }
+        if let cell = cell as? MyChallengePostCollectionViewCell {
+            cell.togglePlayPause()
         }
+        
     }
     
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? MyChallengePostCollectionViewCell {
+            cell.togglePlayPause() // 셀이 사라지면 자동으로 일시정지
+        }
+    }
 }
+
+
 
 extension MyChallengePostViewController: UICollectionViewDelegateFlowLayout {
     

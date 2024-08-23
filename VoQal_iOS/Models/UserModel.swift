@@ -14,6 +14,7 @@ struct UserModel: Codable, Equatable {
     let phoneNum: String?
     let role: String?
     let lessonSongUrl: String?
+    let assignedCoach: String?
 }
 
 

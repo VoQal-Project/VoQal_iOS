@@ -117,10 +117,15 @@ class MyPageView: BaseView {
         ])
     }
     
-    func configure(_ name: String, _ nickname: String, _ coachName: String) {
+    func configure(_ name: String, _ nickname: String, _ coachName: String?) {
         nameLabel.text = name
         nicknameLabel.text = nickname
-        coachLabel.text = "with \(coachName) 코치님"
+        if let coachName = coachName {
+            coachLabel.text = "with \(coachName) 코치님"
+        }
+        else {
+            coachLabel.text = ""
+        }
     }
     
 }
