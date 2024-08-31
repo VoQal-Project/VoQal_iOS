@@ -21,3 +21,12 @@ struct MyChallengePost: Codable {
     let nickName: String
     let likeCount: Int
 }
+
+struct EditChallengePostData: Codable {
+    
+}
+
+struct DeleteChallengePostData: Codable {
+    let message: String
+    let status: Int
+}

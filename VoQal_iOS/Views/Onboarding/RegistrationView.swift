@@ -15,8 +15,6 @@ class RegistrationView: UIView, UITextFieldDelegate {
     var isEmailEditingInProgress = false
     var isNicknameAPICallInProgress = false
     var isNicknameEditingInProgress = false
-    let emailDispatchGroup = DispatchGroup()
-    let nicknameDispatchGroup = DispatchGroup()
     
     internal var originalEmail: String?
     internal var originalNickname: String?
@@ -460,7 +458,7 @@ class RegistrationView: UIView, UITextFieldDelegate {
         if textField == self.nicknameField {
             registrationVC?.isNicknameVerified = false
             if let nickname = nicknameField.text, !ValidationUtility.isValidNickname(nickname){
-                basicInfoErrorMessage = "- 닉네임은 공백, 특수문자를 제외하여 3~15자로 입력해주세요."
+                basicInfoErrorMessage = "- 닉네임은 공백, 특수문자를 제외하여 2~15자로 입력해주세요."
             }
             
             isNicknameEditingInProgress = false

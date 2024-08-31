@@ -11,3 +11,12 @@ struct MyChallengePostModel {
     let status: Int
     let data: [MyChallengePost]?
 }
+
+struct EditChallengePostModel {
+    
+}
+
+struct DeleteChallengePostModel {
+    let message: String
+    let status: Int
+}

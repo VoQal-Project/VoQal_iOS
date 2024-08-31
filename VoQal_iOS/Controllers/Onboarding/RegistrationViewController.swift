@@ -46,7 +46,6 @@ class RegistrationViewController: UIViewController {
     }
     
     @objc private func didTapEmailVerifyBtn() {
-        
         if registrationView.emailVerifyButton.titleLabel!.text == "중복확인" {
             guard let email = registrationView.emailField.text else {
                 print("email Field로부터 email값을 받아오는 데에 실패했습니다.")
@@ -63,11 +62,9 @@ class RegistrationViewController: UIViewController {
             
             registrationView.isEmailAPICallInProgress = true
             registrationView.emailVerifyButton.isEnabled = false
-            registrationView.emailDispatchGroup.enter()
             
             registrationManager.emailDuplicateCheck(email) { model in
                 self.registrationView.isEmailAPICallInProgress = false
-                self.registrationView.emailDispatchGroup.leave()
                 
                 if model?.status == 200 {
                     self.isEmailVerified = true
@@ -77,19 +74,15 @@ class RegistrationViewController: UIViewController {
                     self.isEmailVerified = false
                     self.registrationView.updateEmailVerificationButton(isVerified: false)
                 }
-            }
-            
-            registrationView.emailDispatchGroup.notify(queue: .main) {
+                
                 if !self.registrationView.isEmailEditingInProgress {
                     self.registrationView.emailVerifyButton.isEnabled = true
                 }
             }
-        }
-        else if registrationView.emailVerifyButton.titleLabel!.text == "수정" {
+        } else if registrationView.emailVerifyButton.titleLabel!.text == "수정" {
             self.registrationView.updateEmailVerificationButton(isVerified: false)
             self.isEmailVerified = false
         }
-        
     }
     
     // 닉네임 중복 확인 버튼 클릭 처리
@@ -111,11 +104,9 @@ class RegistrationViewController: UIViewController {
             
             registrationView.isNicknameAPICallInProgress = true
             registrationView.nicknameVerifyButton.isEnabled = false
-            registrationView.nicknameDispatchGroup.enter()
             
             registrationManager.nicknameDuplicateCheck(nickname) { model in
                 self.registrationView.isNicknameAPICallInProgress = false
-                self.registrationView.nicknameDispatchGroup.leave()
                 
                 if model?.status == 200 {
                     self.isNicknameVerified = true
@@ -127,11 +118,11 @@ class RegistrationViewController: UIViewController {
                 }
             }
             
-            registrationView.nicknameDispatchGroup.notify(queue: .main) {
-                if !self.registrationView.isNicknameEditingInProgress {
-                    self.registrationView.nicknameVerifyButton.isEnabled = true
-                }
+            
+            if !self.registrationView.isNicknameEditingInProgress {
+                self.registrationView.nicknameVerifyButton.isEnabled = true
             }
+            
         }
         else if registrationView.nicknameVerifyButton.titleLabel!.text == "수정" {
             self.registrationView.updateNicknameVerificationButton(isVerified: false)

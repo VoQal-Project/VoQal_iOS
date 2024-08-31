@@ -27,6 +27,17 @@ class MyPageView: BaseView {
         return label
     }()
     
+    internal let changeNicknameButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 15)
+        let image = UIImage(systemName: "pencil", withConfiguration: configuration)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
     private let coachLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,19 +45,6 @@ class MyPageView: BaseView {
         label.textColor = .white
         
         return label
-    }()
-    
-    private let editProfileButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("프로필 변경", for: .normal)
-        button.layer.cornerRadius = 5
-        button.layer.cornerCurve = .continuous
-        button.titleLabel?.textColor = .white
-        button.backgroundColor = UIColor(named: "mainButtonColor")
-        button.titleLabel?.font = UIFont(name: "SUIT-Medium", size: 13)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        
-        return button
     }()
     
     private let separatorView: UIView = {
@@ -70,6 +68,7 @@ class MyPageView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
     }
 
     required init?(coder: NSCoder) {
@@ -81,8 +80,8 @@ class MyPageView: BaseView {
         
         addSubview(nameLabel)
         addSubview(nicknameLabel)
+        addSubview(changeNicknameButton)
         addSubview(coachLabel)
-        addSubview(editProfileButton)
         addSubview(separatorView)
         addSubview(menuTableView)
     }
@@ -97,18 +96,18 @@ class MyPageView: BaseView {
             nicknameLabel.leadingAnchor.constraint(equalTo: nameLabel.trailingAnchor, constant: 10),
             nicknameLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor),
             
+            changeNicknameButton.leadingAnchor.constraint(equalTo: nicknameLabel.trailingAnchor, constant: 10),
+            changeNicknameButton.centerYAnchor.constraint(equalTo: nicknameLabel.centerYAnchor),
+            changeNicknameButton.widthAnchor.constraint(equalToConstant: 20),
+            changeNicknameButton.heightAnchor.constraint(equalToConstant: 20),
+            
             coachLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
             coachLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor),
-            
-            editProfileButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
-            editProfileButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            editProfileButton.heightAnchor.constraint(equalToConstant: 30),
-            editProfileButton.topAnchor.constraint(equalTo: coachLabel.bottomAnchor, constant: 20),
             
             separatorView.heightAnchor.constraint(equalToConstant: 10),
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            separatorView.topAnchor.constraint(equalTo: editProfileButton.bottomAnchor, constant: 20),
+            separatorView.topAnchor.constraint(equalTo: coachLabel.bottomAnchor, constant: 20),
             
             menuTableView.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 10),
             menuTableView.leadingAnchor.constraint(equalTo: leadingAnchor),

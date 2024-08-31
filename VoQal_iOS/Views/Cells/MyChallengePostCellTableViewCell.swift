@@ -13,6 +13,25 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
     static let identifier: String = "MyChallengePostCell"
     internal var player: AVPlayer?
     
+    private let menuButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 23)
+        let image = UIImage(systemName: "ellipsis", withConfiguration: configuration)
+        button.setImage(image, for: .normal)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
+    }()
+    
+    private let bodyView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(named: "mainBackgroundColor")
+        
+        return view
+    }()
+    
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 10.0
@@ -25,7 +44,7 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
         return imageView
     }()
     
-    private let coverImageView: UIView = {
+    internal let coverImageView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 10.0
@@ -61,8 +80,9 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
         let configuration = UIImage.SymbolConfiguration(pointSize: 30)
         let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
         button.setImage(image, for: .normal)
-        button.tintColor = .white
+        button.tintColor = UIColor(hexCode: "FF3B30", alpha: 1.0)
         button.translatesAutoresizingMaskIntoConstraints = false
+        
         return button
     }()
     
@@ -89,19 +109,32 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
     }
     
     private func addSubViews() {
-        contentView.addSubview(thumbnailImageView)
-        contentView.addSubview(coverImageView)
-        contentView.addSubview(songLabel)
-        contentView.addSubview(nicknameLabel)
-        contentView.addSubview(likeButton)
-        contentView.addSubview(likeCountLabel)
+        contentView.addSubview(menuButton)
+        contentView.addSubview(bodyView)
+        bodyView.addSubview(thumbnailImageView)
+        bodyView.addSubview(coverImageView)
+        bodyView.addSubview(songLabel)
+        bodyView.addSubview(nicknameLabel)
+        bodyView.addSubview(likeButton)
+        bodyView.addSubview(likeCountLabel)
     }
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            thumbnailImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            thumbnailImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            
+            menuButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            menuButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            menuButton.heightAnchor.constraint(equalToConstant: 25),
+            menuButton.widthAnchor.constraint(equalToConstant: 25),
+            
+            bodyView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            bodyView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            bodyView.topAnchor.constraint(equalTo: menuButton.bottomAnchor, constant: 10),
+            bodyView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            
+            thumbnailImageView.leadingAnchor.constraint(equalTo: bodyView.leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: bodyView.trailingAnchor),
+            thumbnailImageView.topAnchor.constraint(equalTo: bodyView.topAnchor),
             thumbnailImageView.heightAnchor.constraint(equalTo: thumbnailImageView.widthAnchor, multiplier: 4.0/3.0),
             
             coverImageView.leadingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor),
@@ -137,7 +170,7 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePlayPause))
         tapGesture.cancelsTouchesInView = false
         tapGesture.delegate = self
-        contentView.addGestureRecognizer(tapGesture)
+        bodyView.addGestureRecognizer(tapGesture)
     }
     
     func configure(_ likeCount: Int, _ songTitle: String, _ singer: String, _ nickname: String) {
@@ -191,6 +224,13 @@ class MyChallengePostCollectionViewCell: UICollectionViewCell, UIGestureRecogniz
             return false
         }
         return true
+    }
+    
+    func setMenuButton(_ firstItem: UIAction, _ secondItem: UIAction) {
+        let menu = UIMenu(title: "", children: [firstItem, secondItem])
+        
+        menuButton.menu = menu
+        menuButton.showsMenuAsPrimaryAction = true
     }
     
 }
