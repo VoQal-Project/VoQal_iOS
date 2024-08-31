@@ -16,6 +16,8 @@ class ChallengeViewController: BaseViewController {
     private var page: Int32 = 0
     var isFetching = false
     
+    private var currentVisibleIndex: IndexPath?
+    
     override func loadView() {
         view = challengeView
     }
@@ -23,12 +25,26 @@ class ChallengeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.tabBarController?.delegate = self
         challengeView.challengeViewController = self
         challengeView.collectionView.delegate = self
         challengeView.collectionView.dataSource = self
         challengeView.collectionView.register(ChallengeCollectionViewCell.self, forCellWithReuseIdentifier: ChallengeCollectionViewCell.identifier)
         
         fetchData(){}
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        playPlayer()
+        setIsHiddenCoverImageView(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        temporarilyStopPlayer()
     }
     
     private func fetchData(completion: () -> Void) {
@@ -136,15 +152,40 @@ class ChallengeViewController: BaseViewController {
         }
     }
     
-    internal func temporarilyStopOrPlayPlayers(_ pause: Bool) {
+    private func temporarilyStopPlayer() {
         for cell in challengeView.collectionView.visibleCells {
             if let challengeCell = cell as? ChallengeCollectionViewCell {
-                if pause {
-                    challengeCell.player?.pause()
-                }
-                else {
-                    challengeCell.player?.play()
-                }
+                challengeCell.player?.pause()
+            }
+        }
+    }
+    
+    private func playPlayer() {
+        for cell in challengeView.collectionView.visibleCells {
+            if let challengeCell = cell as? ChallengeCollectionViewCell {
+                challengeCell.player?.play()
+            }
+        }
+    }
+    
+    private func playCurrentCell(at indexPath: IndexPath) {
+        guard let cell = challengeView.collectionView.cellForItem(at: indexPath) as? ChallengeCollectionViewCell else {
+            print("playCurrentCell - cell 바인딩 실패")
+            return
+        }
+        
+        if let player = cell.player {
+            player.play()
+        }
+        else {
+            print("player 바인딩 실패");
+        }
+    }
+    
+    private func setIsHiddenCoverImageView(_ isHidden: Bool) {
+        for cell in challengeView.collectionView.visibleCells {
+            if let challengeCell = cell as? ChallengeCollectionViewCell {
+                challengeCell.coverImageView.isHidden = isHidden
             }
         }
     }
@@ -195,21 +236,37 @@ extension ChallengeViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        if let cell = cell as? ChallengeCollectionViewCell {
-            cell.togglePlayPause()
-        }
-        
-        if (indexPath.row + 1) % 20 == 0 {
-            if !isFetching {
-                fetchMoreData()
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let visibleIndexPaths = challengeView.collectionView.indexPathsForVisibleItems
+        if let currentVisibleIndex = visibleIndexPaths.first {
+            if self.currentVisibleIndex == nil || self.currentVisibleIndex != currentVisibleIndex {
+                
+                print("scrollViewDidEndDecelerating!!")
+                temporarilyStopPlayer()
+                playCurrentCell(at: currentVisibleIndex)
+                self.currentVisibleIndex = currentVisibleIndex
             }
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if (indexPath.row + 1) % 20 == 0, !isFetching {
+            fetchMoreData()
+        }
+        if let cell = cell as? ChallengeCollectionViewCell {
+            cell.togglePlayPause()
+        }
+        
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? ChallengeCollectionViewCell {
-            cell.togglePlayPause() // 셀이 사라지면 자동으로 일시정지
+            if let player = cell.player {
+                cell.player?.pause()
+            }
+            else {
+                print("player is nil")
+            }
         }
     }
 }
@@ -221,14 +278,5 @@ extension ChallengeViewController: UICollectionViewDelegateFlowLayout {
         let height = collectionView.bounds.height
         
         return CGSize(width: width, height: height)
-    }
-}
-
-extension ChallengeViewController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController != self {
-            stopAllPlayers()
-        }
-        return true
     }
 }

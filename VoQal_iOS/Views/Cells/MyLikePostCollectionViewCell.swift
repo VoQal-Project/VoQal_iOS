@@ -1,16 +1,16 @@
 //
-//  ChallengeCollectionViewCell.swift
+//  MyLikePostCollectionViewCell.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 8/10/24.
+//  Created by 송규섭 on 8/31/24.
 //
 
 import UIKit
 import AVFoundation
 
-class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDelegate {
-    
-    static let identifier: String = "challengeCollectionViewCell"
+class MyLikePostCollectionViewCell: UICollectionViewCell {
+
+    static let identifier: String = "myLikePostCollectionViewCell"
     internal var player: AVPlayer?
     
     private let thumbnailImageView: UIImageView = {
@@ -56,16 +56,6 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         return label
     }()
     
-    internal let likeButton: UIButton = {
-        let button = UIButton()
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
-        let image = UIImage(systemName: "heart", withConfiguration: configuration)
-        button.setImage(image, for: .normal)
-        button.tintColor = UIColor(hexCode: "FF3B30", alpha: 1.0)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor(named: "mainBackgroundColor")
@@ -83,7 +73,6 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         contentView.addSubview(coverImageView)
         contentView.addSubview(songLabel)
         contentView.addSubview(nicknameLabel)
-        contentView.addSubview(likeButton)
     }
     
     private func setConstraints() {
@@ -98,19 +87,14 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
             coverImageView.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor),
             coverImageView.bottomAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor),
             
-            likeButton.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor),
-            likeButton.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 25),
-            likeButton.widthAnchor.constraint(equalToConstant: 40),
-            likeButton.heightAnchor.constraint(equalToConstant: 40),
-            
             songLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 15),
             songLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor, constant: 5),
-            songLabel.trailingAnchor.constraint(lessThanOrEqualTo: likeButton.leadingAnchor, constant: -5),
+            songLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -40),
             songLabel.heightAnchor.constraint(equalToConstant: 25),
             
             nicknameLabel.leadingAnchor.constraint(equalTo: songLabel.leadingAnchor),
             nicknameLabel.topAnchor.constraint(equalTo: songLabel.bottomAnchor, constant: 10),
-            nicknameLabel.trailingAnchor.constraint(lessThanOrEqualTo: likeButton.leadingAnchor, constant: -5),
+            nicknameLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -40),
             nicknameLabel.heightAnchor.constraint(equalToConstant: 25),
             
         ])
@@ -119,14 +103,10 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
     
     private func setupGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(togglePlayPause))
-        tapGesture.cancelsTouchesInView = false
-        tapGesture.delegate = self
         contentView.addGestureRecognizer(tapGesture)
     }
     
-    func configure(_ liked: Bool, _ songTitle: String, _ singer: String, _ nickname: String) {
-        
-        updateLikeBtn(liked)
+    func configure(_ songTitle: String, _ singer: String, _ nickname: String) {
         
         self.songLabel.text = "\(songTitle) - \(singer) cover"
         self.nicknameLabel.text = nickname
@@ -143,16 +123,6 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
     func updatePlayer(_ player: AVPlayer?) {
         self.player = player
         print("player: \(player)")
-    }
-    
-    func updateLikeBtn(_ liked: Bool) {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
-        
-        if liked {
-            self.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: configuration), for: .normal)
-        } else {
-            self.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: configuration), for: .normal)
-        }
     }
     
     @objc func togglePlayPause() {
@@ -176,11 +146,5 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         coverImageView.isHidden = true
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        if touch.view == likeButton {
-            return false
-        }
-        return true
-    }
     
 }

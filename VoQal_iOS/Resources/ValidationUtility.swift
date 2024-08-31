@@ -24,7 +24,7 @@ class ValidationUtility {
         let forbiddenStrings = ["fuck", "shit", "bitch", "ass"]
         let specialCharacterRegex = ".*[^A-Za-z0-9가-힣].*"
         
-        return nickname.count >= 3 && nickname.count <= 15 &&
+        return nickname.count >= 2 && nickname.count <= 15 &&
                !nickname.contains(" ") &&
                !forbiddenStrings.contains { nickname.lowercased().contains($0) } &&
                nickname.range(of: specialCharacterRegex, options: .regularExpression) == nil

@@ -13,7 +13,7 @@ struct emailParameter: Encodable {
 }
 
 struct nicknameParameter: Encodable {
-    let nickname: String
+    let nickName: String
 }
 
 struct registerParameter: Encodable {
@@ -50,7 +50,8 @@ struct RegistrationManager {
     
     func nicknameDuplicateCheck(_ nickname: String, completion: @escaping (NicknameVerifyModel?) -> Void) {
         
-        let parameter = nicknameParameter(nickname: nickname)
+        let parameter = nicknameParameter(nickName: nickname)
+        print(nickname)
         
         AF.request(nicknameDuplicateURL, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default).responseDecodable(of: NicknameVerifyData.self) { (response) in
             switch response.result {

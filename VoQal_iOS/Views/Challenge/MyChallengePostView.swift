@@ -47,7 +47,7 @@ class MyChallengePostView: BaseView {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
-            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 70),
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 35),
             collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -70)
         ])
     }

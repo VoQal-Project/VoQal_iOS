@@ -51,4 +51,27 @@ struct MyChallengePostManager {
         }
     }
     
+    func deleteChallengePost(_ challengeId: Int64, completion: @escaping (DeleteChallengePostModel?) -> Void) {
+        let url = "https://www.voqal.today/challenge/\(challengeId)"
+        
+        AF.request(url, method: .delete, interceptor: AuthInterceptor()).responseDecodable(of: DeleteChallengePostData.self) { response in
+            switch response.result {
+            case .success(let res):
+                print(res)
+                let message = res.message
+                let status = res.status
+                let model = DeleteChallengePostModel(message: message, status: status)
+                completion(model)
+            case .failure(let err):
+                print(err)
+                completion(nil)
+            }
+        }
+        
+    }
+    
+    func editChallengePost() {
+        
+    }
+    
 }

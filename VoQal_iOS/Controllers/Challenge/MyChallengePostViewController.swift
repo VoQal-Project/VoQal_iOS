@@ -29,6 +29,19 @@ class MyChallengePostViewController: BaseViewController {
         fetchData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        playPlayer()
+        setIsHiddenCoverImageView(true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        temporarilyStopPlayer()
+    }
+    
     private func fetchData() {
         myChallengePostManager.fetchMyChallengePosts { model in
             guard let model = model else { print("myChallengePostView - model 바인딩 실패"); return }
@@ -38,6 +51,64 @@ class MyChallengePostViewController: BaseViewController {
                 
                 self.myPosts = data
                 self.myChallengePostView.collectionView.reloadData()
+            }
+        }
+    }
+    
+    private func didTapEditButton() {
+        print("수정 탭!")
+        
+        
+    }
+    
+    private func didTapDeleteButton(challengePostId: Int64) {
+        print("삭제 탭!")
+        
+        let alert = UIAlertController(title: "게시물을 삭제하시겠어요?", message: "게시물이 영구적으로 삭제됩니다.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in
+            self.myChallengePostManager.deleteChallengePost(challengePostId) { model in
+                guard let model = model else { print("deleteChallengePost - model 바인딩 실패!"); return }
+                if model.status == 200 {
+                    self.fetchData()
+                }
+                else {
+                    print("didTapDeleteButton failed!")
+                }
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        present(alert, animated: false)
+    }
+    
+    private func stopAllPlayers() {
+        for cell in myChallengePostView.collectionView.visibleCells {
+            if let challengeCell = cell as? MyChallengePostCollectionViewCell {
+                challengeCell.player?.pause()
+                challengeCell.player = nil
+            }
+        }
+    }
+    
+    private func temporarilyStopPlayer() {
+        for cell in myChallengePostView.collectionView.visibleCells {
+            if let challengeCell = cell as? MyChallengePostCollectionViewCell {
+                challengeCell.player?.pause()
+            }
+        }
+    }
+    
+    private func playPlayer() {
+        for cell in myChallengePostView.collectionView.visibleCells {
+            if let challengeCell = cell as? MyChallengePostCollectionViewCell {
+                challengeCell.player?.play()
+            }
+        }
+    }
+    
+    private func setIsHiddenCoverImageView(_ isHidden: Bool) {
+        for cell in myChallengePostView.collectionView.visibleCells {
+            if let challengeCell = cell as? MyChallengePostCollectionViewCell {
+                challengeCell.coverImageView.isHidden = isHidden
             }
         }
     }
@@ -63,6 +134,15 @@ extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionV
         let nickname = post.nickName
         
         cell.configure(likeCount, songTitle, singer, nickname)
+        
+        let firstAction = UIAction(title: "수정", image: UIImage(systemName: "pencil")) { _ in
+            print("수정 탭")
+        }
+        let secondAction = UIAction(title: "삭제", image: UIImage(systemName: "trash")) { _ in
+            print("삭제 탭")
+            self.didTapDeleteButton(challengePostId: Int64(post.challengePostId))
+        }
+        cell.setMenuButton(firstAction, secondAction)
         
         myChallengePostManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") { [weak cell, indexPath] image in
             guard let cell = cell, collectionView.indexPath(for: cell) == indexPath else {
@@ -105,5 +185,14 @@ extension MyChallengePostViewController: UICollectionViewDelegateFlowLayout {
         let height = collectionView.bounds.height
         
         return CGSize(width: width, height: height)
+    }
+}
+
+extension MyChallengePostViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController != self {
+            stopAllPlayers()
+        }
+        return true
     }
 }

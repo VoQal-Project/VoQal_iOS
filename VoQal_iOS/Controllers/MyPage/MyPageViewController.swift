@@ -39,6 +39,8 @@ class MyPageViewController: BaseViewController {
     
     override func setAddTarget() {
         super.setAddTarget()
+        
+        myPageView.changeNicknameButton.addTarget(self, action: #selector(didTapChangeNicknameButton), for: .touchUpInside)
     }
     
     private func setUserInformation() {
@@ -98,6 +100,15 @@ class MyPageViewController: BaseViewController {
             self.present(sendMailErrorAlert, animated: true, completion: nil)
         }
         
+    }
+    
+    @objc private func didTapChangeNicknameButton() {
+        print("닉네임 변경 Tap!")
+        
+        let vc = EditNicknameViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        
+        present(vc, animated: true)
     }
     
     private func didTapCancelAccountButton() {
