@@ -127,4 +127,8 @@ class MyPageView: BaseView {
         }
     }
     
+    func updateNicknameLabel(_ text: String) {
+        nicknameLabel.text = text
+    }
+    
 }

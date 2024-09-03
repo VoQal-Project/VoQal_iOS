@@ -8,6 +8,10 @@
 import Foundation
 import Alamofire
 
+struct editNicknameParameter: Encodable {
+    let nickname: String
+}
+
 struct EditNicknameManager {
     
     func nicknameDuplicateCheck(_ nickname: String, completion: @escaping (NicknameVerifyModel?) -> Void) {
@@ -31,10 +35,11 @@ struct EditNicknameManager {
         }
     }
     
-    func editNickname(_ id: Int64, completion: @escaping (EditNicknameModel?) -> Void) {
+    func editNickname(_ id: Int64, _ newNickname: String, completion: @escaping (EditNicknameModel?) -> Void) {
         let url = "https://www.voqal.today/\(id)/change-nickname"
+        let parameter = editNicknameParameter(nickname: newNickname)
         
-        AF.request(url, method: .patch, interceptor: AuthInterceptor()).responseDecodable(of: EditNicknameData.self) { response in
+        AF.request(url, method: .patch, parameters: parameter, encoder: JSONParameterEncoder.default, interceptor: AuthInterceptor()).responseDecodable(of: EditNicknameData.self) { response in
             switch response.result {
             case .success(let res):
                 print(res)

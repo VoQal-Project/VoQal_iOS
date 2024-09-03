@@ -14,6 +14,7 @@ class EditNicknameViewController: BaseViewController {
     private let editNicknameView = EditNicknameView()
     private let editNicknameManager = EditNicknameManager()
     
+    internal var editNicknameCompletion: (() -> Void)?
     
     override func loadView() {
         view = editNicknameView
@@ -28,6 +29,7 @@ class EditNicknameViewController: BaseViewController {
     
     override func setAddTarget() {
         editNicknameView.nicknameVerifyButton.addTarget(self, action: #selector(didTapNicknameVerifyBtn), for: .touchUpInside)
+        editNicknameView.completeButton.addTarget(self, action: #selector(didTapCompleteButton), for: .touchUpInside)
     }
     
     @objc private func didTapNicknameVerifyBtn() {
@@ -77,8 +79,37 @@ class EditNicknameViewController: BaseViewController {
         }
     }
 
-//    @objc private func didTapCompleteButton() {
-//        editNicknameManager.editNickname(<#T##id: Int64##Int64#>, completion: <#T##(EditNicknameModel?) -> Void#>)
-//    }
+    @objc private func didTapCompleteButton() {
+        guard let memberId = UserManager.shared.userModel?.memberId else {
+            print("userModel.memberId is nil입니다.")
+            return
+        }
+        
+        guard let nickname = editNicknameView.nicknameField.text else {
+            print("editNicknameView.nicknameField.text is nil")
+            return
+        }
+        
+        editNicknameManager.editNickname(Int64(memberId), nickname) { [weak self] model in
+            guard let model = model else {
+                print("editNickname - model is nil입니다.")
+                return
+            }
+            
+            if model.status == 200 {
+                let alert = UIAlertController(title: "변경 완료", message: "닉네임이 변경되었습니다.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                    self?.editNicknameCompletion?()
+                    self?.dismiss(animated: true)
+                }))
+                self?.present(alert, animated: false)
+            }
+            else {
+                let alert = UIAlertController(title: "변경 실패", message: "닉네임 변경에 실패했습니다.\n다시 시도해주세요.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                self?.present(alert, animated: false)
+            }
+        }
+    }
     
 }

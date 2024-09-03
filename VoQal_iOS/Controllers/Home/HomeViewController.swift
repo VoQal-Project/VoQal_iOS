@@ -89,6 +89,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                            let nickname = successModel.nickname,
                            let name = successModel.name,
                            let phoneNum = successModel.phoneNum,
+                           let memberId = successModel.memberId,
                            let role = successModel.role {
                             
                             if role == "GUEST" {
@@ -97,6 +98,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                             }
                             
                             let user = UserModel(
+                                memberId: memberId,
                                 email: email,
                                 nickname: nickname,
                                 name: name,

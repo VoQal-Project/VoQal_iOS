@@ -18,7 +18,8 @@ struct HomeManager {
                 if (200...299).contains(res.status) {
                     print("getUserInform: \(res)\nAccess Token: \(KeychainHelper.shared.getAccessToken())\nRefresh Token: \(KeychainHelper.shared.getRefreshToken())")
                     guard let data = res.data else { print("getUserInform data 프로퍼티 에러"); return }
-                    let successModel = HomeSuccessModel(nickname: data.nickName,
+                    let successModel = HomeSuccessModel(memberId: data.memberId,
+                                                        nickname: data.nickName,
                                                         email: data.email,
                                                         name: data.name,
                                                         phoneNum: data.phoneNum,
