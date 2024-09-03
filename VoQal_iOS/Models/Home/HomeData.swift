@@ -17,6 +17,7 @@ struct HomeData: Codable {
 }
 
 struct HomeUserData: Codable {
+    let memberId: Int
     let nickName: String
     let email: String
     let name: String

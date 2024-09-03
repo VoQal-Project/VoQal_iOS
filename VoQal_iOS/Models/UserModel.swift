@@ -8,6 +8,7 @@
 import Foundation
 
 struct UserModel: Codable, Equatable {
+    let memberId: Int?
     let email: String?
     let nickname: String?
     let name: String?

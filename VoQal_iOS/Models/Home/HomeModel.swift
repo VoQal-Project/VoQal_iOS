@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct HomeSuccessModel: Codable {
+    let memberId: Int?
     let nickname: String?
     let email: String?
     let name: String?

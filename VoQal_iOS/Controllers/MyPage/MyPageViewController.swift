@@ -15,6 +15,7 @@ protocol MyPageViewDelegate: AnyObject {
 class MyPageViewController: BaseViewController {
     
     private let myPageView = MyPageView()
+    lazy var homeManager = HomeManager()
     var delegate: MyPageViewDelegate?
     
     private let menuTitles = ["문의하기", "알림", "탈퇴하기", "로그아웃"]
@@ -106,6 +107,19 @@ class MyPageViewController: BaseViewController {
         print("닉네임 변경 Tap!")
         
         let vc = EditNicknameViewController()
+        vc.editNicknameCompletion = {
+            self.homeManager.getUserInform { [weak self] model in
+                guard let model = model, let self = self else {
+                    print("MyPageViewController - getUserInform model, self 바인딩 실패")
+                    return
+                }
+                if let successModel = model.successModel, let nickname = successModel.nickname {
+                    self.myPageView.updateNicknameLabel(nickname)
+                } else {
+                    print("successModel or nickname is nil - didTapChangeNicknameButton")
+                }
+            }
+        }
         vc.modalPresentationStyle = .overFullScreen
         
         present(vc, animated: true)
