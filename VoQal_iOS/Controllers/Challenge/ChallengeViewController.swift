@@ -37,6 +37,7 @@ class ChallengeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        fetchKeyword()
         fetchData(){}
         playPlayer()
         setIsHiddenCoverImageView(true)
@@ -46,6 +47,18 @@ class ChallengeViewController: BaseViewController {
         super.viewWillDisappear(animated)
         
         temporarilyStopPlayer()
+    }
+    
+    private func fetchKeyword() {
+        challengeManager.fetchKeyword { [weak self] model in
+            guard let self = self,
+                  let model = model else {
+                print("fetchKeyword - self, model 바인딩 실패")
+                return
+            }
+            
+            challengeView.setupKeywordLabel(with: model.keyword, keywordColor: UIColor(hexCode: "\(model.color)"))
+        }
     }
     
     private func fetchData(completion: () -> Void) {

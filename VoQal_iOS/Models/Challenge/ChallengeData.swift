@@ -31,3 +31,8 @@ struct ChallengeUnlikeData: Codable {
     let status: Int
     let message: String?
 }
+
+struct ChallengeKeywordData: Codable {
+    let keyword: String?
+    let color: String?
+}

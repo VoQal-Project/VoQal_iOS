@@ -94,10 +94,6 @@ class ChallengeView: BaseView {
         keywordLabel.attributedText = attributedText
     }
     
-    private func setupCollectionView() {
-        
-    }
-    
     private func configureFloatingButton() {
         let firstItem = floatingButton.addItem()
         firstItem.imageView.image = UIImage(systemName: "pencil")
