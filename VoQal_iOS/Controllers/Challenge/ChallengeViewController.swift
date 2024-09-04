@@ -31,12 +31,13 @@ class ChallengeViewController: BaseViewController {
         challengeView.collectionView.dataSource = self
         challengeView.collectionView.register(ChallengeCollectionViewCell.self, forCellWithReuseIdentifier: ChallengeCollectionViewCell.identifier)
         
-        fetchData(){}
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        fetchData(){}
         playPlayer()
         setIsHiddenCoverImageView(true)
     }

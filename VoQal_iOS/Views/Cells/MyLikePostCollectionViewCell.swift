@@ -11,6 +11,7 @@ import AVFoundation
 class MyLikePostCollectionViewCell: UICollectionViewCell {
 
     static let identifier: String = "myLikePostCollectionViewCell"
+    internal var liked: Bool = true
     internal var player: AVPlayer?
     
     private let thumbnailImageView: UIImageView = {
@@ -34,6 +35,17 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
         view.isHidden = true
         
         return view
+    }()
+    
+    internal let likeButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
+        button.setImage(image, for: .normal)
+        button.tintColor = UIColor(hexCode: "FF3B30", alpha: 1.0)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        return button
     }()
     
     private let songLabel: UILabel = {
@@ -71,6 +83,7 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
     private func addSubViews() {
         contentView.addSubview(thumbnailImageView)
         contentView.addSubview(coverImageView)
+        contentView.addSubview(likeButton)
         contentView.addSubview(songLabel)
         contentView.addSubview(nicknameLabel)
     }
@@ -86,6 +99,11 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
             coverImageView.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor),
             coverImageView.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor),
             coverImageView.bottomAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor),
+            
+            likeButton.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor),
+            likeButton.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 15),
+            likeButton.widthAnchor.constraint(equalToConstant: 40),
+            likeButton.heightAnchor.constraint(equalToConstant: 40),
             
             songLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 15),
             songLabel.leadingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor, constant: 5),
@@ -146,5 +164,14 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
         coverImageView.isHidden = true
     }
     
+    func updateLikeBtn(_ liked: Bool) {
+        let configuration = UIImage.SymbolConfiguration(pointSize: 30)
+        
+        if liked {
+            self.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: configuration), for: .normal)
+        } else {
+            self.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: configuration), for: .normal)
+        }
+    }
     
 }

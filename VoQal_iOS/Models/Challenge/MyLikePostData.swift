@@ -14,6 +14,7 @@ struct MyLikePostData: Codable {
 
 struct MyLikePost: Codable {
     let challengeId: Int
+    let nickName: String
     let challengeRecordUrl: String
     let thumbnailUrl: String
     let songTitle: String

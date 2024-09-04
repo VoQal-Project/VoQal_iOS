@@ -16,6 +16,7 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(showLoginScreen), name: .tokenExpired, object: nil)
         
         setAddTarget()
+        setupNavigationBar()
     }
     
     @objc func showLoginScreen() {
@@ -35,6 +36,9 @@ class BaseViewController: UIViewController {
     }
     
     internal func setupNavigationBar() {
-        
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "mainBackgroundColor")
+        navigationController?.navigationBar.isTranslucent = false // 투명도 끄기
+        navigationController?.navigationBar.barTintColor = UIColor(named: "mainBackgroundColor")
     }
 }
