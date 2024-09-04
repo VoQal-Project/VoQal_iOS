@@ -20,3 +20,8 @@ struct ChallengeLikeModel {
 struct ChallengeUnlikeModel {
     let status: Int
 }
+
+struct ChallengeKeywordModel {
+    let keyword: String
+    let color: String
+}

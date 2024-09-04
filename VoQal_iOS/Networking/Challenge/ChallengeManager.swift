@@ -80,4 +80,24 @@ struct ChallengeManager {
             }
         }
     }
+    
+    func fetchKeyword(completion: @escaping (ChallengeKeywordModel?) -> Void) {
+        let url = "https://www.voqal.today/challenge/keyword"
+        
+        AF.request(url, method: .get, interceptor: AuthInterceptor()).responseDecodable(of: ChallengeKeywordData.self) { response in
+            switch response.result {
+            case .success(let res):
+                print(res)
+                if let keyword = res.keyword,
+                   let color = res.color {
+                    let model = ChallengeKeywordModel(keyword: keyword, color: color)
+                    completion(model)
+                } else {
+                    print("keyword or color is nil")
+                }
+            case .failure(let err):
+                print(err)
+            }
+        }
+    }
 }
