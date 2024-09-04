@@ -26,12 +26,13 @@ class MyChallengePostViewController: BaseViewController {
         myChallengePostView.collectionView.delegate = self
         myChallengePostView.collectionView.register(MyChallengePostCollectionViewCell.self, forCellWithReuseIdentifier: MyChallengePostCollectionViewCell.identifier)
         
-        fetchData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        fetchData()
         playPlayer()
         setIsHiddenCoverImageView(true)
     }

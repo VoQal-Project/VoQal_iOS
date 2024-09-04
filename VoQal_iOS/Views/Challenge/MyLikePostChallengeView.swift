@@ -33,5 +33,19 @@ class MyLikePostChallengeView: BaseView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented.")
     }
+    
+    override func addSubViews() {
+        addSubview(collectionView)
+    }
 
+    override func setConstraints() {
+        
+        NSLayoutConstraint.activate([
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30),
+            collectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 35),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -70)
+        ])
+    }
+    
 }

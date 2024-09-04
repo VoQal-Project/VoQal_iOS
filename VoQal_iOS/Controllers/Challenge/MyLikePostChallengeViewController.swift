@@ -22,12 +22,15 @@ class MyLikePostChallengeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        myLikePostChallengeView.collectionView.register(MyLikePostCollectionViewCell.self, forCellWithReuseIdentifier: MyLikePostCollectionViewCell.identifier)
+        myLikePostChallengeView.collectionView.dataSource = self
+        myLikePostChallengeView.collectionView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        fetchData()
         playPlayer()
         setIsHiddenCoverImageView(true)
     }
@@ -38,6 +41,8 @@ class MyLikePostChallengeViewController: BaseViewController {
         temporarilyStopPlayer()
     }
     
+    
+    
     private func fetchData() {
         
         myLikeChallengePostManager.fetchMyLikePost { [weak self] model in
@@ -45,52 +50,58 @@ class MyLikePostChallengeViewController: BaseViewController {
             
             if model.status == 200 {
                 self.myLikePosts = model.data
+                DispatchQueue.main.async {
+                    self.myLikePostChallengeView.collectionView.reloadData()
+                }
+            }
+            else {
+                print("fetchMyLikePost - status is not 200")
             }
         }
         
     }
     
-//    @objc private func didTapLikeButton(_ sender: UIButton) {
-//        let post = myLikePosts[sender.tag]
-//        let postId = Int64(post.challengeId)
-//        var liked = post.liked
-//        
-//        guard let cell = sender.superview?.superview as? ChallengeCollectionViewCell else {
-//            print("셀을 찾을 수 없습니다.")
-//            return
-//        }
-//        
-//        if liked == false {
-//            challengeManager.likeChallengePost(postId) { model in
-//                guard let model = model else { print("challengeViewController - likeChallengePost model 바인딩 실패"); return }
-//                if model.status == 200 {
-//                    // 좋아요 성공 처리
-//                    DispatchQueue.main.async {
-//                        cell.updateLikeBtn(true)
-//                        self.myLikePosts[sender.tag].liked = true // 메모리 상에 liked를 임시로 true 설정
-//                    }
-//                }
-//                else {
-//                    print("model.status가 200이 아님 (didTapLikeButton)")
-//                }
-//            }
-//        } else {
-//            challengeManager.unlikeChallengePost(postId) { model in
-//                guard let model = model else { print("challengeViewController - unlikeChallengePost model 바인딩 실패"); return }
-//                if model.status == 200 {
-//                    // 좋아요 취소 성공 처리
-//                    DispatchQueue.main.async {
-//                        cell.updateLikeBtn(false)
-//                        self.myLikePosts[sender.tag].liked = false
-//                        
-//                    }
-//                }
-//                else {
-//                    print("model.status가 200이 아님 (didTapLikeButton)")
-//                }
-//            }
-//        }
-//    }
+    @objc private func didTapLikeButton(_ sender: UIButton) {
+        let post = myLikePosts[sender.tag]
+        let postId = Int64(post.challengeId)
+        
+        guard let cell = sender.superview?.superview as? MyLikePostCollectionViewCell else {
+            print("셀을 찾을 수 없습니다.")
+            return
+        }
+        
+        let liked = cell.liked
+        
+        if liked == false {
+            challengeManager.likeChallengePost(postId) { model in
+                guard let model = model else { print("MyLikePostChallengeViewController - likeChallengePost model 바인딩 실패"); return }
+                if model.status == 200 {
+                    // 좋아요 성공 처리
+                    DispatchQueue.main.async {
+                        cell.updateLikeBtn(true)
+                        cell.liked = true
+                    }
+                }
+                else {
+                    print("model.status가 200이 아님 (didTapLikeButton)")
+                }
+            }
+        } else {
+            challengeManager.unlikeChallengePost(postId) { model in
+                guard let model = model else { print("MyLikePostChallengeViewController - unlikeChallengePost model 바인딩 실패"); return }
+                if model.status == 200 {
+                    // 좋아요 취소 성공 처리
+                    DispatchQueue.main.async {
+                        cell.updateLikeBtn(false)
+                        cell.liked = false
+                    }
+                }
+                else {
+                    print("model.status가 200이 아님 (didTapLikeButton)")
+                }
+            }
+        }
+    }
     
     private func stopAllPlayers() {
         for cell in myLikePostChallengeView.collectionView.visibleCells {
@@ -142,6 +153,7 @@ class MyLikePostChallengeViewController: BaseViewController {
 }
 
 extension MyLikePostChallengeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return myLikePosts.count
     }
@@ -156,9 +168,12 @@ extension MyLikePostChallengeViewController: UICollectionViewDelegate, UICollect
         let post = myLikePosts[indexPath.row]
         let songTitle = post.songTitle
         let singer = post.singer
-//        let nickname = post.nickName
+        let nickname = post.nickName
         
-//        cell.configure(songTitle, singer, nickname)
+        cell.configure(songTitle, singer, nickname)
+        
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(didTapLikeButton(_:)), for: .touchUpInside)
         
         challengeManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") { [weak cell, indexPath] image in
             guard let cell = cell, collectionView.indexPath(for: cell) == indexPath else {

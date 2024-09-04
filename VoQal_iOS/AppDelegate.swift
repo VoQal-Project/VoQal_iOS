@@ -16,6 +16,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         UINavigationBar.appearance().tintColor = .white
+        let appearance = UINavigationBarAppearance()
+        appearance.backgroundColor = UIColor(named: "mainBackgroundColor")
+        appearance.shadowColor = nil
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
         
         return true
     }

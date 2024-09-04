@@ -49,6 +49,7 @@ class ManageStudentViewController: BaseViewController {
     
     @objc private func didTapRequestListButton() {
         let vc = RequestListViewController()
+        vc.title = "신청 목록"
         navigationController?.pushViewController(vc, animated: true)
     }
     
