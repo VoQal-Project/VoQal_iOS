@@ -9,7 +9,7 @@ import UIKit
 import AVFoundation
 
 class MyLikePostCollectionViewCell: UICollectionViewCell {
-
+    
     static let identifier: String = "myLikePostCollectionViewCell"
     internal var liked: Bool = true
     internal var player: AVPlayer?
@@ -132,15 +132,15 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
     }
     
     func updateThumbnail(_ thumbnail: UIImage?) {
-        DispatchQueue.main.async {
-            self.thumbnailImageView.image = thumbnail
-            print(thumbnail)
-        }
+        self.thumbnailImageView.image = thumbnail
+        print(thumbnail)
     }
     
     func updatePlayer(_ player: AVPlayer?) {
         self.player = player
         print("player: \(player)")
+        
+        configureAudioSession()
     }
     
     @objc func togglePlayPause() {
@@ -154,7 +154,7 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
             player.play()
         }
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -171,6 +171,15 @@ class MyLikePostCollectionViewCell: UICollectionViewCell {
             self.likeButton.setImage(UIImage(systemName: "heart.fill", withConfiguration: configuration), for: .normal)
         } else {
             self.likeButton.setImage(UIImage(systemName: "heart", withConfiguration: configuration), for: .normal)
+        }
+    }
+    
+    private func configureAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("오디오 세션 설정 실패: \(error.localizedDescription)")
         }
     }
     

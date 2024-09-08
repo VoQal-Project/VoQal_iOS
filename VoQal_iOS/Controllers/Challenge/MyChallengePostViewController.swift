@@ -56,10 +56,14 @@ class MyChallengePostViewController: BaseViewController {
         }
     }
     
-    private func didTapEditButton() {
+    private func didTapEditButton(_ singer: String, _ songTitle: String, _ thumbnail: UIImage, _ challengePostId: Int64) {
         print("수정 탭!")
         
+        let vc = EditChallengeViewController()
+        vc.setValues(singer, songTitle, thumbnail, challengePostId)
+        vc.modalPresentationStyle = .overFullScreen
         
+        self.present(vc, animated: true)
     }
     
     private func didTapDeleteButton(challengePostId: Int64) {
@@ -133,17 +137,10 @@ extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionV
         let songTitle = post.songTitle
         let singer = post.singer
         let nickname = post.nickName
+        var thumbnail: UIImage?
+        let challengePostId = post.challengePostId
         
         cell.configure(likeCount, songTitle, singer, nickname)
-        
-        let firstAction = UIAction(title: "수정", image: UIImage(systemName: "pencil")) { _ in
-            print("수정 탭")
-        }
-        let secondAction = UIAction(title: "삭제", image: UIImage(systemName: "trash")) { _ in
-            print("삭제 탭")
-            self.didTapDeleteButton(challengePostId: Int64(post.challengePostId))
-        }
-        cell.setMenuButton(firstAction, secondAction)
         
         myChallengePostManager.downloadThumbnailImage("\(PrivateUrl.shared.getS3UrlHead())\(post.thumbnailUrl)") { [weak cell, indexPath] image in
             guard let cell = cell, collectionView.indexPath(for: cell) == indexPath else {
@@ -151,6 +148,7 @@ extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionV
             }
             DispatchQueue.main.async {
                 cell.updateThumbnail(image)
+                thumbnail = image
             }
         }
         
@@ -159,6 +157,21 @@ extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionV
             let player = AVPlayer(url: url)
             cell.updatePlayer(player)
         }
+        
+        let firstAction = UIAction(title: "수정", image: UIImage(systemName: "pencil")) { [weak self] _ in
+            print("수정 탭")
+            guard let self = self, let thumbnail = thumbnail else { return }
+            self.didTapEditButton(singer, songTitle, thumbnail, Int64(challengePostId))
+            
+        }
+        let secondAction = UIAction(title: "삭제", image: UIImage(systemName: "trash")) { [weak self] _ in
+            print("삭제 탭")
+            guard let self = self else { return }
+            self.didTapDeleteButton(challengePostId: Int64(challengePostId))
+        }
+        cell.setMenuButton(firstAction, secondAction)
+        
+        
         
         return cell
     }
