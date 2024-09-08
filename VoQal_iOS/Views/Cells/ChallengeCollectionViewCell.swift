@@ -143,6 +143,7 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
     func updatePlayer(_ player: AVPlayer?) {
         self.player = player
         print("player: \(player)")
+        configureAudioSession()
     }
     
     func updateLikeBtn(_ liked: Bool) {
@@ -183,4 +184,12 @@ class ChallengeCollectionViewCell: UICollectionViewCell, UIGestureRecognizerDele
         return true
     }
     
+    private func configureAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("오디오 세션 설정 실패: \(error.localizedDescription)")
+        }
+    }
 }

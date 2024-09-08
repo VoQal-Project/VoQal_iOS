@@ -1,42 +1,49 @@
 //
-//  PostChallengeViewController.swift
+//  EditChallengeViewController.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 8/12/24.
+//  Created by 송규섭 on 9/7/24.
 //
 
 import UIKit
 import PhotosUI
 import CropViewController
 
-class PostChallengeViewController: BaseViewController, PHPickerViewControllerDelegate, CropViewControllerDelegate, UIDocumentPickerDelegate {
-
-    private let postChallengeView = PostChallengeView()
-    private let postChallengeManager = PostChallengeManager()
+class EditChallengeViewController: BaseViewController, PHPickerViewControllerDelegate, CropViewControllerDelegate, UIDocumentPickerDelegate {
+    
+    private let editChallengeView = EditChallengeView()
+    private let editChallengeManager = EditChallengeManager()
     private var recordFileURL: URL? = nil
     private var thumbnailImage: Data? = nil
     private var thumbnailName: String? = nil
+    private var challengePostId: Int64? = nil
+    private var previousThumbnail: UIImage? = nil
     
-    var postCompletion: (() -> Void)?
+    var editCompletion: (() -> Void)?
     
     override func loadView() {
-        view = postChallengeView
+        view = editChallengeView
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
     override func setAddTarget() {
-        postChallengeView.uploadRecordFileButton.addTarget(self, action: #selector(didTapUploadRecordFileButton), for: .touchUpInside)
-        postChallengeView.uploadThumbnailButton.addTarget(self, action: #selector(didTapUploadThumbnailButton), for: .touchUpInside)
-        postChallengeView.closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
-        postChallengeView.postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
+        editChallengeView.uploadRecordFileButton.addTarget(self, action: #selector(didTapUploadRecordFileButton), for: .touchUpInside)
+        editChallengeView.uploadThumbnailButton.addTarget(self, action: #selector(didTapUploadThumbnailButton), for: .touchUpInside)
+        editChallengeView.closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+        editChallengeView.postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
     }
 
-    
+    func setValues(_ singer: String, _ songTitle: String, _ thumbnail: UIImage, _ challengePostId: Int64) {
+        editChallengeView.setSongTitleValue(songTitle)
+        editChallengeView.setArtistValue(singer)
+        editChallengeView.setupThumbnailImageView(thumbnail, self, #selector(didTapThumbnailImageView))
+        self.challengePostId = challengePostId
+    }
     
     @objc private func didTapUploadRecordFileButton() {
         print("uploadRecordFile Tap!")
@@ -63,41 +70,39 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     }
     
     @objc private func didTapPostButton() {
-        // .post api request
-        var errorFields: [String] = []
         
-        if postChallengeView.getArtistValue() == "" { errorFields.append("가수명") }
-        if postChallengeView.getSongTitleValue() == "" { errorFields.append("제목(곡 명)") }
-        if self.thumbnailImage == nil { errorFields.append("대표 사진(썸네일)") }
-        if self.recordFileURL == nil { errorFields.append("음성 파일") }
-        
-        if !errorFields.isEmpty {
-            let alert = UIAlertController(title: "", message: "\(errorFields.joined(separator: ", "))을 입력해주세요!", preferredStyle: .alert)
+        if let artist = editChallengeView.getArtistValue(), artist != "",
+           let songTitle = editChallengeView.getSongTitleValue(), songTitle != ""
+        {
+            print("songTitle: \(songTitle), artist: \(artist)")
+            editChallengeManager.editChallenge(thumbnail: self.thumbnailImage, thumbnailName: self.thumbnailName, songTitle: songTitle, singer: artist, fileURL: self.recordFileURL, challengePostId: self.challengePostId!) { model in
+                guard let model = model else { print("postChallengeViewController - model 바인딩 실패"); return }
+                
+                if model.status == 200 {
+                    let alert = UIAlertController(title: "수정 완료!", message: "챌린지 수정이 완료되었습니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.editCompletion?()
+                        self.dismiss(animated: true)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                }
+                else {
+                    let alert = UIAlertController(title: "수정 실패", message: "챌린지 수정에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        else {
+            let alert = UIAlertController(title: "", message: "곡명 혹은 가수명을 입력해주세요!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "확인", style: .default))
             
             self.present(alert, animated: false)
-            return
         }
         
-        postChallengeManager.postChallenge(thumbnail: self.thumbnailImage!, thumbnailName: self.thumbnailName!, songTitle: postChallengeView.getSongTitleValue()!, singer: postChallengeView.getArtistValue()!, fileURL: self.recordFileURL!) { [weak self] model in
-            guard let self = self, let model = model else { print("postChallengeViewController - model, self 바인딩 실패"); return }
-            
-            if model.status == 200 {
-                let alert = UIAlertController(title: "게시 완료!", message: "챌린지 게시가 완료되었습니다.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
-                    self.postCompletion?()
-                    self.dismiss(animated: true)
-                }))
-                
-                self.present(alert, animated: true)
-            }
-            else {
-                let alert = UIAlertController(title: "게시 실패", message: "챌린지 게시에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default))
-                
-                self.present(alert, animated: true)
-            }
-        } // 이전에 null인지 검사를 했으나 이를 그대로 쓸 방법을 찾아야함.
+         
     }
     
     
@@ -135,7 +140,7 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     }
     
     func cropViewController(_ cropViewController: CropViewController, didCropToImage image: UIImage, withRect cropRect: CGRect, angle: Int) {
-        self.postChallengeView.setupThumbnailImageView(image, self, #selector(didTapThumbnailImageView))
+        self.editChallengeView.setupThumbnailImageView(image, self, #selector(didTapThumbnailImageView))
         if let jpegImage = image.jpegData(compressionQuality: 0.7) {
             self.thumbnailImage = jpegImage
         }
@@ -157,8 +162,10 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
             picker.delegate = self
             self.present(picker, animated: true)
         }))
-        alert.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
-            self.postChallengeView.resetThumbnailImageView()
+        alert.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { [weak self] _ in
+            guard let self = self,
+                let previousThumbnail = self.previousThumbnail else { return }
+            self.editChallengeView.resetThumbnailImageView(previousThumbnail)
             self.thumbnailImage = nil
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
@@ -197,11 +204,10 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
             try fileManager.copyItem(at: selectedFileURL, to: destinationURL)
             self.recordFileURL = destinationURL
             
-            self.postChallengeView.setupRecordFileField(destinationURL)
+            self.editChallengeView.setupRecordFileField(destinationURL)
             
         } catch {
             print("파일 복사 중 오류 발생: \(error)")
         }
     }
-    
 }
