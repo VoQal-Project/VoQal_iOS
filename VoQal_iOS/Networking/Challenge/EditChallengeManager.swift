@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 struct EditChallengeParameter: Encodable {
-    let songTitle: String
-    let singer: String
+    let updateSongTitle: String
+    let updateSinger: String
 }
 
 struct EditChallengeManager {
@@ -23,11 +23,7 @@ struct EditChallengeManager {
     func editChallenge(thumbnail: Data?, thumbnailName: String?, songTitle: String, singer: String, fileURL: URL?, challengePostId: Int64, completion: @escaping (EditChallengeModel?) -> Void) {
         let url = "https://www.voqal.today/challenge/\(challengePostId)"
         
-        let editChallengeRequestDTO = EditChallengeParameter(songTitle: songTitle, singer: singer)
-        
-        if thumbnail == nil {
-            
-        }
+        let editChallengeRequestDTO = EditChallengeParameter(updateSongTitle: songTitle, updateSinger: singer)
         
         // JSON 데이터를 인코딩
         guard let jsonData = try? JSONEncoder().encode(editChallengeRequestDTO) else {

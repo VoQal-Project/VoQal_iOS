@@ -61,6 +61,12 @@ class MyChallengePostViewController: BaseViewController {
         
         let vc = EditChallengeViewController()
         vc.setValues(singer, songTitle, thumbnail, challengePostId)
+        vc.editCompletion = { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.fetchData()
+            }
+        }
         vc.modalPresentationStyle = .overFullScreen
         
         self.present(vc, animated: true)
