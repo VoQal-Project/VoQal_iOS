@@ -13,6 +13,11 @@ pod 'Tabman', '~> 3.2'
 pod 'JJFloatingActionButton'
 pod 'CropViewController'
 
+pod 'FirebaseAnalytics'
+
+pod 'FirebaseAuth'
+pod 'Firebase/Firestore'
+
   target 'VoQal_iOSTests' do
     inherit! :search_paths
     # Pods for testing

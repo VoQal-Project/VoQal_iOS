@@ -36,12 +36,22 @@
 		955BD90B2C551024005FA69B /* WriteLessonNoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */; };
 		955BD90D2C552F30005FA69B /* SetLessonSongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90C2C552F30005FA69B /* SetLessonSongView.swift */; };
 		955BD90F2C552F47005FA69B /* SetLessonSongViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */; };
+		955F60382C8F197700523287 /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955F60372C8F197700523287 /* ChatManager.swift */; };
+		955F603B2C8F199700523287 /* ChatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955F603A2C8F199700523287 /* ChatData.swift */; };
+		955F603D2C8F199D00523287 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955F603C2C8F199D00523287 /* ChatModel.swift */; };
 		9563257E2C6A36A400C801A4 /* MyChallengePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563257D2C6A36A400C801A4 /* MyChallengePostViewController.swift */; };
 		956325802C6A380000C801A4 /* MyLikePostChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9563257F2C6A380000C801A4 /* MyLikePostChallengeViewController.swift */; };
 		956325822C6A381500C801A4 /* PostChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325812C6A381500C801A4 /* PostChallengeViewController.swift */; };
 		956325842C6A385800C801A4 /* PostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325832C6A385800C801A4 /* PostChallengeView.swift */; };
 		956325862C6A386300C801A4 /* MyLikePostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */; };
 		956325882C6A388100C801A4 /* MyChallengePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325872C6A388100C801A4 /* MyChallengePostView.swift */; };
+		9569DC192C9589D200EA7A17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */; };
+		9569DC1C2C95AA4300EA7A17 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */; };
+		9569DC1E2C95AA5100EA7A17 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */; };
+		9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */; };
+		9569DC242C95B49800EA7A17 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC232C95B49800EA7A17 /* ChatView.swift */; };
+		9569DC262C95C37500EA7A17 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC252C95C37500EA7A17 /* ChatInputView.swift */; };
+		9569DC282C95C3A900EA7A17 /* ChatInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */; };
 		956C1AA42C8C7DAC0035ABFC /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */; };
 		956C1AA62C8C7EF20035ABFC /* EditChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */; };
 		956C1AA82C8C82440035ABFC /* EditChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */; };
@@ -265,12 +275,22 @@
 		955BD90A2C551024005FA69B /* WriteLessonNoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteLessonNoteData.swift; sourceTree = "<group>"; };
 		955BD90C2C552F30005FA69B /* SetLessonSongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongView.swift; sourceTree = "<group>"; };
 		955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongViewController.swift; sourceTree = "<group>"; };
+		955F60372C8F197700523287 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
+		955F603A2C8F199700523287 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
+		955F603C2C8F199D00523287 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		9563257D2C6A36A400C801A4 /* MyChallengePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostViewController.swift; sourceTree = "<group>"; };
 		9563257F2C6A380000C801A4 /* MyLikePostChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengeViewController.swift; sourceTree = "<group>"; };
 		956325812C6A381500C801A4 /* PostChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeViewController.swift; sourceTree = "<group>"; };
 		956325832C6A385800C801A4 /* PostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeView.swift; sourceTree = "<group>"; };
 		956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengeView.swift; sourceTree = "<group>"; };
 		956325872C6A388100C801A4 /* MyChallengePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostView.swift; sourceTree = "<group>"; };
+		9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
+		9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
+		9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		9569DC232C95B49800EA7A17 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		9569DC252C95C37500EA7A17 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
+		9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputViewController.swift; sourceTree = "<group>"; };
 		956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
 		956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeView.swift; sourceTree = "<group>"; };
 		956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeManager.swift; sourceTree = "<group>"; };
@@ -555,6 +575,7 @@
 		9542B63D2BCD69690060E1BB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9569DC222C95B48900EA7A17 /* Chatting */,
 				956FFD8E2C5122EA00DD7995 /* Lesson */,
 				95A0D4402C43AD76002A768B /* MyPage */,
 				95A4240E2C3FC09F00DDD571 /* Cells */,
@@ -582,6 +603,7 @@
 		9542B6432BCD7F880060E1BB /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9569DC1F2C95B3DE00EA7A17 /* Chatting */,
 				956FFD8D2C5122DE00DD7995 /* Lesson */,
 				9541D3802BD2AFDD00B36977 /* MyPage */,
 				9541D37A2BD2AFA800B36977 /* Challenge */,
@@ -598,6 +620,7 @@
 		9542B6442BCD7F910060E1BB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				955F60392C8F198700523287 /* Chatting */,
 				957E6F8D2C78BF8F00093C9E /* MyPage */,
 				9575959A2C6D155B00DA65D1 /* Challenge */,
 				956FFD902C5122FC00DD7995 /* Lesson */,
@@ -634,6 +657,50 @@
 				9582059A2C60F2E700C1A280 /* PrivateUrl.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		955F60362C8F196700523287 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				955F60372C8F197700523287 /* ChatManager.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		955F60392C8F198700523287 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				955F603A2C8F199700523287 /* ChatData.swift */,
+				955F603C2C8F199D00523287 /* ChatModel.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		9569DC1A2C95A87900EA7A17 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */,
+				9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		9569DC1F2C95B3DE00EA7A17 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */,
+				9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */,
+			);
+			path = Chatting;
+			sourceTree = "<group>";
+		};
+		9569DC222C95B48900EA7A17 /* Chatting */ = {
+			isa = PBXGroup;
+			children = (
+				9569DC232C95B49800EA7A17 /* ChatView.swift */,
+				9569DC252C95C37500EA7A17 /* ChatInputView.swift */,
+			);
+			path = Chatting;
 			sourceTree = "<group>";
 		};
 		956F3C292C47CA3E00F63F33 /* Student */ = {
@@ -963,6 +1030,7 @@
 		959D941E2C2AEEC30014F086 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				955F60362C8F196700523287 /* Chatting */,
 				957E6F8A2C78BF3600093C9E /* MyPage */,
 				957595972C6D136700DA65D1 /* Challenge */,
 				956FFD8F2C5122F400DD7995 /* Lesson */,
@@ -1057,6 +1125,7 @@
 		95A4240E2C3FC09F00DDD571 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9569DC1A2C95A87900EA7A17 /* Chatting */,
 				95708F542C608B770034F6FD /* Coach */,
 				95708F532C608B660034F6FD /* Student */,
 				956F3C392C48E58200F63F33 /* CustomCollectionViewCell.swift */,
@@ -1094,6 +1163,7 @@
 		95B5C66B2BCABE490067432A /* VoQal_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */,
 				9542B63B2BCD688E0060E1BB /* Fonts */,
 				95B661692C3D30850091F241 /* Components */,
 				954F56942BD0AF2600288A7D /* Resources */,
@@ -1262,6 +1332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9542B63C2BCD688E0060E1BB /* Fonts in Resources */,
+				9569DC192C9589D200EA7A17 /* GoogleService-Info.plist in Resources */,
 				95B5C6792BCABE4B0067432A /* LaunchScreen.storyboard in Resources */,
 				95B5C6762BCABE4B0067432A /* Assets.xcassets in Resources */,
 			);
@@ -1445,6 +1516,7 @@
 				956C1AA62C8C7EF20035ABFC /* EditChallengeView.swift in Sources */,
 				956325882C6A388100C801A4 /* MyChallengePostView.swift in Sources */,
 				95708F562C608BB60034F6FD /* StudentLessonNoteTableViewCell.swift in Sources */,
+				9569DC242C95B49800EA7A17 /* ChatView.swift in Sources */,
 				9570F09C2C4CFF590004AA67 /* MyReservationManager.swift in Sources */,
 				9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */,
 				9582937C2C7B3C390041CC14 /* EditNicknameViewController.swift in Sources */,
@@ -1456,8 +1528,10 @@
 				955BD90B2C551024005FA69B /* WriteLessonNoteData.swift in Sources */,
 				954F56962BD0AF8400288A7D /* Extension.swift in Sources */,
 				9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */,
+				955F603B2C8F199700523287 /* ChatData.swift in Sources */,
 				956C1AAC2C8C8CE70035ABFC /* EditChallengeModel.swift in Sources */,
 				9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */,
+				955F60382C8F197700523287 /* ChatManager.swift in Sources */,
 				956325802C6A380000C801A4 /* MyLikePostChallengeViewController.swift in Sources */,
 				954E1DF32C3FD4D3007D72B4 /* CoachSelectionManager.swift in Sources */,
 				956F3C2E2C47CAB800F63F33 /* ManageStudentManager.swift in Sources */,
@@ -1473,6 +1547,7 @@
 				956F3C402C49035500F63F33 /* ReservationModel.swift in Sources */,
 				95E9C85A2C74CD0D00FE2042 /* CancelAccountViewController.swift in Sources */,
 				956EDA482C6495F70071EBEC /* RecordFileDetailViewController.swift in Sources */,
+				9569DC1C2C95AA4300EA7A17 /* ReceiverMessageCell.swift in Sources */,
 				956C1C072C4E18FB00ECAADA /* EditReservationView.swift in Sources */,
 				95EA47182BE25CCE00E6631B /* RoleSelectionViewController.swift in Sources */,
 				9581B0E62C5CD51C008D7701 /* StudentRecordFileData.swift in Sources */,
@@ -1481,6 +1556,7 @@
 				956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */,
 				956325842C6A385800C801A4 /* PostChallengeView.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
+				955F603D2C8F199D00523287 /* ChatModel.swift in Sources */,
 				9570F09E2C4D002D0004AA67 /* MyReservationData.swift in Sources */,
 				9541D37F2BD2AFD900B36977 /* ChallengeView.swift in Sources */,
 				95786E902C40234100F77146 /* LoginModel.swift in Sources */,
@@ -1503,6 +1579,7 @@
 				9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
+				9569DC262C95C37500EA7A17 /* ChatInputView.swift in Sources */,
 				9581B0D82C5CC6C3008D7701 /* LessonNoteTableView.swift in Sources */,
 				959D94452C2F07C80014F086 /* PasswordResetData.swift in Sources */,
 				958FE7C72C42C2BB00F2954D /* HomeManager.swift in Sources */,
@@ -1521,6 +1598,7 @@
 				958293882C7B41EA0041CC14 /* ChangeCoachModel.swift in Sources */,
 				9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */,
 				956FFED32C8347D000F92604 /* MyLikePostModel.swift in Sources */,
+				9569DC282C95C3A900EA7A17 /* ChatInputViewController.swift in Sources */,
 				9584A2322C6E096100E0BC99 /* MyChallengePostModel.swift in Sources */,
 				957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,
@@ -1543,6 +1621,7 @@
 				959D94212C2AEF100014F086 /* RegistrationManager.swift in Sources */,
 				956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */,
 				9582937E2C7B3C4A0041CC14 /* EditNicknameView.swift in Sources */,
+				9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */,
 				956F3C3E2C49034200F63F33 /* ReservationData.swift in Sources */,
 				957E3E102C344D0600936617 /* EmailVerifyData.swift in Sources */,
 				95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */,
@@ -1553,6 +1632,7 @@
 				959D94312C2D66B80014F086 /* EmailFinderViewController.swift in Sources */,
 				959B575B2C412C40009428D7 /* AuthData.swift in Sources */,
 				956325862C6A386300C801A4 /* MyLikePostChallengeView.swift in Sources */,
+				9569DC1E2C95AA5100EA7A17 /* SenderMessageCell.swift in Sources */,
 				956F3C342C47DC4500F63F33 /* RequestListData.swift in Sources */,
 				9509C3BF2C3D40AE00FE211E /* CoachSelectionView.swift in Sources */,
 				956F3C2C2C47CA6100F63F33 /* RequestListManager.swift in Sources */,
