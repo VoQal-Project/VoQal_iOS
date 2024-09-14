@@ -111,3 +111,4 @@ iOSInjectionProject/
 # 추가한 파일 무시
 
 VoQal_iOS/Resources/PrivateUrl.swift
+VoQal_iOS/GoogleService-Info.plist

@@ -55,6 +55,7 @@ class LessonNoteDetailView: BaseView {
         let label = UILabel()
         label.font = UIFont(name: "SUIT-Medium", size: 15)
         label.textColor = .white
+        label.numberOfLines = .max
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
