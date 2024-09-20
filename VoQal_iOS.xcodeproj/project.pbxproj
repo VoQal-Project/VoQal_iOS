@@ -51,7 +51,6 @@
 		9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */; };
 		9569DC242C95B49800EA7A17 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC232C95B49800EA7A17 /* ChatView.swift */; };
 		9569DC262C95C37500EA7A17 /* ChatInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC252C95C37500EA7A17 /* ChatInputView.swift */; };
-		9569DC282C95C3A900EA7A17 /* ChatInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */; };
 		956C1AA42C8C7DAC0035ABFC /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */; };
 		956C1AA62C8C7EF20035ABFC /* EditChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */; };
 		956C1AA82C8C82440035ABFC /* EditChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */; };
@@ -290,7 +289,6 @@
 		9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		9569DC232C95B49800EA7A17 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		9569DC252C95C37500EA7A17 /* ChatInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputView.swift; sourceTree = "<group>"; };
-		9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatInputViewController.swift; sourceTree = "<group>"; };
 		956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
 		956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeView.swift; sourceTree = "<group>"; };
 		956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeManager.swift; sourceTree = "<group>"; };
@@ -689,7 +687,6 @@
 			isa = PBXGroup;
 			children = (
 				9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */,
-				9569DC272C95C3A900EA7A17 /* ChatInputViewController.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1598,7 +1595,6 @@
 				958293882C7B41EA0041CC14 /* ChangeCoachModel.swift in Sources */,
 				9581B0E22C5CD506008D7701 /* StudentLessonNoteData.swift in Sources */,
 				956FFED32C8347D000F92604 /* MyLikePostModel.swift in Sources */,
-				9569DC282C95C3A900EA7A17 /* ChatInputViewController.swift in Sources */,
 				9584A2322C6E096100E0BC99 /* MyChallengePostModel.swift in Sources */,
 				957595992C6D137500DA65D1 /* PostChallengeManager.swift in Sources */,
 				95715A9F2C4673130010D4B7 /* UserModel.swift in Sources */,

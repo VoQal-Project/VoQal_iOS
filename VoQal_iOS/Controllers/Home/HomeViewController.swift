@@ -199,6 +199,11 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
     
     @objc internal func didTapChatBtn() {
         print("담당 코치와의 채팅!")
+        let vc = ChatViewController()
+        guard let coach = UserManager.shared.userModel?.assignedCoach else { return }
+        vc.title = "\(coach) 코치님"
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc internal func didTapManageLessonBtn() {
