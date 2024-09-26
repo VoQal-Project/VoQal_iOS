@@ -22,4 +22,13 @@ struct CoachChatData: Codable {
     let data: String? // 채팅방 id
 }
 
+struct ChatMessageData: Codable {
+    let status: Int
+    let data: [ChatMessage]
+}
 
+struct ChatMessage: Codable {
+    let receiverId: String
+    let message: String
+    let timestamp: Int
+}

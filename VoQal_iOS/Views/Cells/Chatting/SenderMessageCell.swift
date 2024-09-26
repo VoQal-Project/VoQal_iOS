@@ -16,7 +16,7 @@ class SenderMessageCell: UITableViewCell {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.textContainerInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.backgroundColor = UIColor(named: "chatColor")
         textView.layer.cornerRadius = 10.0
         textView.layer.cornerCurve = .continuous
@@ -43,6 +43,8 @@ class SenderMessageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: SenderMessageCell.identifier)
         
+        backgroundColor = UIColor(named: "mainBackgroundColor")
+        
         selectionStyle = .none
         addSubViews()
         setConstraints()
@@ -61,7 +63,6 @@ class SenderMessageCell: UITableViewCell {
         NSLayoutConstraint.activate([
             messageBox.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -25),
             messageBox.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
-            messageBox.heightAnchor.constraint(greaterThanOrEqualToConstant: 45),
             messageBox.widthAnchor.constraint(lessThanOrEqualToConstant: 255),
             messageBox.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             

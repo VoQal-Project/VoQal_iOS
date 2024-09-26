@@ -30,6 +30,11 @@ class EditNicknameViewController: BaseViewController {
     override func setAddTarget() {
         editNicknameView.nicknameVerifyButton.addTarget(self, action: #selector(didTapNicknameVerifyBtn), for: .touchUpInside)
         editNicknameView.completeButton.addTarget(self, action: #selector(didTapCompleteButton), for: .touchUpInside)
+        editNicknameView.closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+    }
+    
+    @objc private func didTapCloseButton() {
+        self.dismiss(animated: false)
     }
     
     @objc private func didTapNicknameVerifyBtn() {

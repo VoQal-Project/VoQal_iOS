@@ -1,8 +1,9 @@
 import UIKit
 
-class ChatViewController: UIViewController {
+class ChatViewController: BaseViewController {
     
     private let chatView = ChatView()
+    private let chatManager = ChatManager()
     
     private var messages: [String] = [] // 샘플 메시지 데이터
     
@@ -14,8 +15,8 @@ class ChatViewController: UIViewController {
         super.viewDidLoad()
         chatView.tableView.dataSource = self
         chatView.tableView.delegate = self
-        chatView.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "messageCell")
-        chatView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        chatView.tableView.register(ReceiverMessageCell.self, forCellReuseIdentifier: ReceiverMessageCell.identifier)
+        chatView.tableView.register(SenderMessageCell.self, forCellReuseIdentifier: SenderMessageCell.identifier)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -23,16 +24,24 @@ class ChatViewController: UIViewController {
         startObservingKeyboard()
     }
     
+    override func setAddTarget() {
+        chatView.sendButton.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+    }
+    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
     
+    private func enterChattingRoom(_ studentId: Int64) {
+        
+    }
+    
     @objc private func sendMessage() {
         guard let message = chatView.messageInputView.text, !message.isEmpty else { return }
+//        let chatMessage = ChatMessage(receiverId: <#T##String#>, message: <#T##String#>, timestamp: <#T##Int#>)
         messages.append(message)
         chatView.messageInputView.text = ""
         chatView.tableView.reloadData()
-//        scrollToBottom()
     }
     
     private func scrollToBottom() {
@@ -75,8 +84,9 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath)
-        cell.textLabel?.text = messages[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SenderMessageCell.identifier, for: indexPath) as? SenderMessageCell else { return UITableViewCell() }
+        cell.configure("13:33", messages[indexPath.row])
         return cell
     }
+    
 }
