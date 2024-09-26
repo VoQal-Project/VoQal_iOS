@@ -71,39 +71,15 @@ class ChatView: BaseView {
             // MessageInput Constraints
             messageInputView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             messageInputView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            messageInputView.heightAnchor.constraint(equalToConstant: 36),
+            messageInputView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -10),
+            messageInputView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36),
+            messageInputView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
             
             // SendButton Constraints
-            sendButton.leadingAnchor.constraint(equalTo: messageInputView.trailingAnchor, constant: 10),
             sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            sendButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor)
+            sendButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor),
+            sendButton.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
     
-}
-// SwiftUI PreviewProvider를 사용해 UIKit 뷰 미리보기
-struct ChatView_Previews: PreviewProvider {
-    static var previews: some View {
-        UIViewPreview {
-            let chatView = ChatView()
-            chatView.frame = CGRect(x: 0, y: 0, width: 375, height: 100) // 원하는 크기 설정
-            return chatView
-        }
-        .previewLayout(.sizeThatFits) // 적절한 크기로 미리보기
-    }
-}
-
-// UIKit 뷰를 SwiftUI에서 미리보기 할 수 있게 하는 Helper Struct
-struct ChatViewPreview: UIViewRepresentable {
-    let view: UIView
-    
-    init(_ builder: @escaping () -> UIView) {
-        view = builder()
-    }
-    
-    func makeUIView(context: Context) -> UIView {
-        return view
-    }
-    
-    func updateUIView(_ uiView: UIView, context: Context) {}
 }

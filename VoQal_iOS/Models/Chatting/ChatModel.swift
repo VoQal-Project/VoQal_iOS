@@ -16,3 +16,8 @@ struct CoachChatModel {
     let status: Int
     let data: String?
 }
+
+struct ChatMessageModel {
+    let status: Int
+    let data: [ChatMessage]
+}

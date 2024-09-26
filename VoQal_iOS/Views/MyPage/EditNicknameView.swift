@@ -50,7 +50,7 @@ class EditNicknameView: BaseView, UITextFieldDelegate {
         let label = UILabel()
         label.font = UIFont(name: "SUIT-SemiBold", size: 17)
         label.textColor = .white
-        label.text = "레슨곡 설정"
+        label.text = "닉네임 재설정"
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
