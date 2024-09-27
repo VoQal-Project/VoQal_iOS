@@ -152,5 +152,15 @@ class DateUtility {
         return outputFormatter.string(from: newDate)
     }
     
-    
+    static func convertTimestamp(_ timestamp: Int) -> String {
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp))
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "HH:mm"
+        
+        return dateFormatter.string(from: date)
+        
+    }
 }

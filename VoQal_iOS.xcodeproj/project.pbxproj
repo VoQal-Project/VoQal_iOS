@@ -45,7 +45,6 @@
 		956325842C6A385800C801A4 /* PostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325832C6A385800C801A4 /* PostChallengeView.swift */; };
 		956325862C6A386300C801A4 /* MyLikePostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */; };
 		956325882C6A388100C801A4 /* MyChallengePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325872C6A388100C801A4 /* MyChallengePostView.swift */; };
-		9569DC192C9589D200EA7A17 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */; };
 		9569DC1C2C95AA4300EA7A17 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */; };
 		9569DC1E2C95AA5100EA7A17 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */; };
 		9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */; };
@@ -59,6 +58,7 @@
 		956C1C092C4E192B00ECAADA /* EditReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */; };
 		956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */; };
 		956CAFB82C7E11AE00C3A46A /* MyLikePostChallengePostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956CAFB72C7E11AE00C3A46A /* MyLikePostChallengePostManager.swift */; };
+		956CFD6F2CA6DE6A00C86521 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 956CFD6E2CA6DE6A00C86521 /* GoogleService-Info.plist */; };
 		956EC07F2C56071200983AE6 /* TextFieldWithBottomBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC07E2C56071200983AE6 /* TextFieldWithBottomBorder.swift */; };
 		956EC0812C56257D00983AE6 /* SetLessonSongManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0802C56257D00983AE6 /* SetLessonSongManager.swift */; };
 		956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC0822C5625CB00983AE6 /* SetLessonSongModel.swift */; };
@@ -282,7 +282,6 @@
 		956325832C6A385800C801A4 /* PostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeView.swift; sourceTree = "<group>"; };
 		956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengeView.swift; sourceTree = "<group>"; };
 		956325872C6A388100C801A4 /* MyChallengePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostView.swift; sourceTree = "<group>"; };
-		9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
 		9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +295,7 @@
 		956C1C082C4E192B00ECAADA /* EditReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditReservationViewController.swift; sourceTree = "<group>"; };
 		956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeUtility.swift; sourceTree = "<group>"; };
 		956CAFB72C7E11AE00C3A46A /* MyLikePostChallengePostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengePostManager.swift; sourceTree = "<group>"; };
+		956CFD6E2CA6DE6A00C86521 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		956EC07E2C56071200983AE6 /* TextFieldWithBottomBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithBottomBorder.swift; sourceTree = "<group>"; };
 		956EC0802C56257D00983AE6 /* SetLessonSongManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongManager.swift; sourceTree = "<group>"; };
 		956EC0822C5625CB00983AE6 /* SetLessonSongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetLessonSongModel.swift; sourceTree = "<group>"; };
@@ -1157,7 +1157,7 @@
 		95B5C66B2BCABE490067432A /* VoQal_iOS */ = {
 			isa = PBXGroup;
 			children = (
-				9569DC182C9589D100EA7A17 /* GoogleService-Info.plist */,
+				956CFD6E2CA6DE6A00C86521 /* GoogleService-Info.plist */,
 				9542B63B2BCD688E0060E1BB /* Fonts */,
 				95B661692C3D30850091F241 /* Components */,
 				954F56942BD0AF2600288A7D /* Resources */,
@@ -1326,7 +1326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9542B63C2BCD688E0060E1BB /* Fonts in Resources */,
-				9569DC192C9589D200EA7A17 /* GoogleService-Info.plist in Resources */,
+				956CFD6F2CA6DE6A00C86521 /* GoogleService-Info.plist in Resources */,
 				95B5C6792BCABE4B0067432A /* LaunchScreen.storyboard in Resources */,
 				95B5C6762BCABE4B0067432A /* Assets.xcassets in Resources */,
 			);

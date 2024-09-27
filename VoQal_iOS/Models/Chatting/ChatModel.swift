@@ -21,3 +21,8 @@ struct ChatMessageModel {
     let status: Int
     let data: [ChatMessage]
 }
+
+struct SendMessageModel {
+    let status: Int
+    let message: String
+}
