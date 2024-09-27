@@ -32,3 +32,13 @@ struct ChatMessage: Codable {
     let message: String
     let timestamp: Int
 }
+
+struct ChatMessageToSend: Codable {
+    let receiverId: Int64
+    let message: String
+}
+
+struct SendMessageData: Codable {
+    let status: Int
+    let message: String
+}
