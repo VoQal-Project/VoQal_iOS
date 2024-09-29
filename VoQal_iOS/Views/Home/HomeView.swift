@@ -74,6 +74,33 @@ class HomeView: BaseView {
         return stackView
     }()
 
+    internal let challengeBanner: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor(hexCode: "181818", alpha: 1.0)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
+        return view
+    }()
+    
+    private let challengeBannerLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.textAlignment = .left
+        label.numberOfLines = .max
+        label.font = UIFont(name: "SUIT-Regular", size: 20)
+        
+        return label
+    }()
+    
+    private let crownIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = UIImage(named: "crown")?.withTintColor(UIColor(hexCode: "F9F871", alpha: 1.0))
+        
+        return imageView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubViews()
@@ -106,6 +133,9 @@ class HomeView: BaseView {
         addSubview(introLabel)
         addSubview(lessonSongButton)
         addSubview(buttonStackView)
+        addSubview(challengeBanner)
+        challengeBanner.addSubview(challengeBannerLabel)
+        challengeBanner.addSubview(crownIcon)
     }
 
     override func setConstraints() {
@@ -124,6 +154,20 @@ class HomeView: BaseView {
             buttonStackView.leadingAnchor.constraint(equalTo: lessonSongButton.leadingAnchor),
             buttonStackView.trailingAnchor.constraint(equalTo: lessonSongButton.trailingAnchor),
             buttonStackView.heightAnchor.constraint(equalToConstant: 77),
+            
+            challengeBanner.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 50),
+            challengeBanner.leadingAnchor.constraint(equalTo: leadingAnchor),
+            challengeBanner.trailingAnchor.constraint(equalTo: trailingAnchor),
+            challengeBanner.heightAnchor.constraint(equalToConstant: 140),
+            
+            challengeBannerLabel.leadingAnchor.constraint(equalTo: challengeBanner.leadingAnchor, constant: 40),
+            challengeBannerLabel.trailingAnchor.constraint(equalTo: crownIcon.leadingAnchor, constant: -10),
+            challengeBannerLabel.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
+            
+            crownIcon.trailingAnchor.constraint(equalTo: challengeBanner.trailingAnchor, constant: -40),
+            crownIcon.widthAnchor.constraint(equalToConstant: 57),
+            crownIcon.heightAnchor.constraint(equalToConstant: 60),
+            crownIcon.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
         ])
     }
 
@@ -172,4 +216,32 @@ class HomeView: BaseView {
         thirdButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
         fourthButton.getButton().removeTarget(nil, action: nil, for: .allEvents)
     }
-}
+    
+    internal func setChallengeBannerLabel(_ keyword: String, _ color: String) {
+        let firstLine = "오늘의 키워드는 \(keyword)입니다.\n"
+        let secondLine = "연상되는 노래를 불러보아요!"
+        
+        // 폰트 설정
+        let largeFont = UIFont(name: "SUIT-Medium", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .medium)
+        let smallFont = UIFont(name: "SUIT-Medium", size: 15) ?? UIFont.systemFont(ofSize: 23)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 8
+        
+        // 첫 번째 라인에 대한 NSMutableAttributedString 생성
+        let attributedText = NSMutableAttributedString(string: firstLine, attributes: [.font: largeFont, .paragraphStyle: paragraphStyle])
+        
+        // keyword에만 색상을 적용
+        if let keywordRange = firstLine.range(of: keyword) {
+            let nsRange = NSRange(keywordRange, in: firstLine)
+            let keywordColor = UIColor(hexCode: color, alpha: 1.0)
+            attributedText.addAttribute(.foregroundColor, value: keywordColor, range: nsRange)
+        }
+        
+        // 두 번째 라인을 NSAttributedString으로 추가
+        let normalText = NSAttributedString(string: secondLine, attributes: [.font: smallFont, .paragraphStyle: paragraphStyle])
+        attributedText.append(normalText)
+        
+        // 라벨에 최종 attributedText 적용
+        challengeBannerLabel.attributedText = attributedText
+    }}

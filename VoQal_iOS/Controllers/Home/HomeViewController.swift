@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: BaseViewController, MyPageViewDelegate {
     private let homeView = HomeView()
     private let homeManager = HomeManager()
+    private let challengeManager = ChallengeManager()
     
     private var currentUser: UserModel?
     internal var thumbnail: UIImage?
@@ -41,7 +42,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         
         self.thumbnail = nil
         loadLessonSongThumbnail()
-        
+        setChallengeBanner()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -169,6 +170,16 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
             homeView.updateThumbnail(self.thumbnail)
         } else {
             print("No need to update UI - user is the same")
+        }
+    }
+    
+    private func setChallengeBanner() {
+        challengeManager.fetchKeyword { [weak self] model in
+            guard let model = model, let self = self else {
+                print("setChallengeBanner - model or self is nil"); return
+            }
+            
+            homeView.setChallengeBannerLabel(model.keyword, model.color)
         }
     }
 
