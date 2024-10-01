@@ -22,9 +22,6 @@ class SetLessonSongViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setLessonSongView.artistField.delegate = self
-        setLessonSongView.songTitleField.delegate = self
-        setLessonSongView.urlTitleField.delegate = self
         
     }
     
@@ -56,6 +53,13 @@ class SetLessonSongViewController: BaseViewController {
             return
         }
         
+        if !isValidYouTubeURL(lessonSongUrl) {
+            let alert = UIAlertController(title: "유효하지 않은 링크", message: "올바른 YouTube 링크를 입력해주세요.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "확인", style: .default))
+            self.present(alert, animated: true)
+            return
+        }
+        
         setLessonSongManager.setLessonSong(studentId, lessonSongUrl, singer, songTitle) { model in
             guard let model = model else { print("didTapCompleteButton - model 바인딩 실패"); return }
             if model.status == 200 {
@@ -69,11 +73,13 @@ class SetLessonSongViewController: BaseViewController {
             }
         }
     }
+    
+    func isValidYouTubeURL(_ url: String) -> Bool {
+        let youtubeRegex = "^(https?://)?(www\\.)?(youtube\\.com|youtu\\.?be)/.+$"
+        let youtubeTest = NSPredicate(format: "SELF MATCHES %@", youtubeRegex)
+        return youtubeTest.evaluate(with: url)
+    }
 
 }
 
-extension SetLessonSongViewController: UITextFieldDelegate {
-    
-    
-    
-}
+
