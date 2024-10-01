@@ -180,7 +180,9 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
             }
             
             homeView.setChallengeBannerLabel(model.keyword, model.color)
+            homeView.challengeBanner.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapChallengeBanner)))
         }
+        
     }
 
     @objc internal func didTapLessonSongButton() {
@@ -228,6 +230,16 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         }
         else if role == "COACH" {
             print("코치 기준 수업 관리 탭")
+        }
+    }
+    
+    @objc private func didTapChallengeBanner() {
+        if let tabBarVC = self.tabBarController {
+            print("탭을 변경합니다.")
+            tabBarVC.selectedIndex = 2
+        }
+        else {
+            print("탭바 컨트롤러를 찾지 못했습니다.")
         }
     }
     
