@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: BaseViewController {
     
@@ -112,10 +113,12 @@ class LoginViewController: BaseViewController {
                         }
                         else if result.role == "COACH" {
                             self.loginCompletion?()
+                            self.signInFirebase()
                             self.dismiss(animated: true)
                         }
                         else if result.role == "STUDENT" {
                             self.loginCompletion?()
+                            self.signInFirebase()
                             self.dismiss(animated: true)
                         }
                         
@@ -138,6 +141,24 @@ class LoginViewController: BaseViewController {
             self.present(alert, animated: true)
         }
     }
+    
+    private func signInFirebase() {
+        loginManager.fetchFirebaseCustomToken { [weak self] model in
+            guard let model = model, let self = self else {
+                print("signInFirebase - model or self is nil"); return
+            }
+            
+            if model.status == 200 {
+                Auth.auth().signIn(withCustomToken: model.firebaseCustomToken) { authResult, error in
+                    if let error = error {
+                        print("Firebase custom token authentication failed: \(error.localizedDescription)"); return
+                    }
+                    print("Firebase Authentication successful")
+                }
+            }
+        }
+    }
+    
 }
 
     extension LoginViewController: LoginViewDelegate {

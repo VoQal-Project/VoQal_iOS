@@ -43,7 +43,8 @@ class ReceiverMessageCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: ReceiverMessageCell.identifier)
         
-        backgroundColor = UIColor(named: "mainBackgroundColor")
+        let mainBackgroundColor = UIColor(named: "mainBackgroundColor")
+        backgroundColor = mainBackgroundColor
         
         selectionStyle = .none
         addSubViews()
