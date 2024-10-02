@@ -24,3 +24,8 @@ struct StudentStatusModel {
     let code: String?
     let data: StudentStatus?
 }
+
+struct FetchFirebaseCustomTokenModel {
+    let firebaseCustomToken: String
+    let status: Int
+}

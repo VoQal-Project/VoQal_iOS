@@ -29,3 +29,8 @@ struct StudentStatusData: Codable {
 struct StudentStatus: Codable {
     let status: String?
 }
+
+struct FetchFirebaseCustomTokenData: Codable {
+    let firebaseCustomToken: String
+    let status: Int
+}

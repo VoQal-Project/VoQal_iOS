@@ -59,4 +59,22 @@ struct LoginManager {
         }
     }
     
+    func fetchFirebaseCustomToken(completion: @escaping (FetchFirebaseCustomTokenModel?) -> Void) {
+        let url = "https://www.voqal.today/firebase-token"
+        
+        AF.request(url, method: .post, interceptor: AuthInterceptor()).responseDecodable(of: FetchFirebaseCustomTokenData.self) { response in
+            switch response.result {
+            case .success(let res):
+                print(res)
+                let status = res.status
+                let customToken = res.firebaseCustomToken
+                let model = FetchFirebaseCustomTokenModel(firebaseCustomToken: customToken, status: status)
+                completion(model)
+            case .failure(let err):
+                print(err)
+                completion(nil)
+            }
+        }
+    }
+    
 }

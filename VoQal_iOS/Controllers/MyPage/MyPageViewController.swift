@@ -7,6 +7,7 @@
 
 import UIKit
 import MessageUI
+import FirebaseAuth
 
 protocol MyPageViewDelegate: AnyObject {
     func removeTarget()
@@ -148,6 +149,7 @@ class MyPageViewController: BaseViewController {
             print("after logout: \(UserManager.shared.userModel)")
             self.delegate?.removeTarget()
             self.resetAllNavigationStacks()
+            self.signOutFirebaseAuthentication()
             self.showLoginScreen()
         }))
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
@@ -182,6 +184,15 @@ class MyPageViewController: BaseViewController {
                     navigationController.popToRootViewController(animated: false)
                 }
             }
+        }
+    }
+    
+    private func signOutFirebaseAuthentication() {
+        do {
+            try Auth.auth().signOut()
+            print("User signed out successfully.")
+        } catch let signOutError as NSError {
+            print("Error signing out: \(signOutError.localizedDescription)")
         }
     }
     
