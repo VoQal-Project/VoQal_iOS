@@ -44,6 +44,10 @@ class ChatViewController: BaseViewController {
         view.endEditing(true)
     }
     
+    func configureStudentId(_ studentId: Int64) {
+        self.studentId = studentId
+    }
+    
     private func enterChattingRoom(_ studentId: Int64?) {
         guard let role = UserManager.shared.userModel?.role else { print("enterChattingRoom - role is nil"); return }
         if role == "COACH" {
@@ -161,6 +165,7 @@ class ChatViewController: BaseViewController {
     }
     
     private func scrollToBottom() {
+        guard !messages.isEmpty else { return }
         let indexPath = IndexPath(row: messages.count - 1, section: 0)
         chatView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
