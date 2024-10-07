@@ -73,6 +73,7 @@ class SenderMessageCell: UITableViewCell {
 
     func configure(_ time: String, _ message: String) {
         messageBox.text = message
+        dateLabel.text = time
     }
     
 }

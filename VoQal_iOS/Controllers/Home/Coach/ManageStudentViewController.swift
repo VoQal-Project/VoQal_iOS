@@ -124,8 +124,17 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
         
         
         
-        let chat = UIContextualAction(style: .normal, title: "Chat") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+        let chat = UIContextualAction(style: .normal, title: "Chat") { [weak self] (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            
+            guard let self = self else { print("chat(Coach) - self is nil"); return }
             print("담당 학생과의 채팅 tap!")
+            let vc = ChatViewController()
+            let student = self.students[indexPath.row]
+            vc.configureStudentId(Int64(student.id))
+            vc.title = "\(student.name) 학생"
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            
             success(true)
         }
         chat.image = UIImage(systemName: "ellipsis.bubble")

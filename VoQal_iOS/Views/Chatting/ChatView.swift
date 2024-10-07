@@ -6,22 +6,23 @@
 //
 
 import UIKit
-import SwiftUI
 
-class ChatView: BaseView {
+class ChatView: BaseView, UITextViewDelegate {
+    
+    private var messageInputViewHeightConstraint: NSLayoutConstraint!
     
     internal let messageInputView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.isScrollEnabled = false
         textView.layer.cornerRadius = 10
-        textView.font = UIFont.systemFont(ofSize: 16)
+        textView.font = UIFont(name: "SUIT-Regular", size: 16)
         textView.backgroundColor = UIColor(hexCode: "474747", alpha: 1.0)
         textView.textContainerInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         textView.keyboardType = .default
         textView.autocorrectionType = .no
         textView.spellCheckingType = .no
-
+        
         return textView
     }()
     
@@ -48,6 +49,7 @@ class ChatView: BaseView {
         setConstraints()
         
         backgroundColor = UIColor(hexCode: "1F1F1F", alpha: 1.0)
+        messageInputView.delegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -61,6 +63,9 @@ class ChatView: BaseView {
     }
     
     override func setConstraints() {
+        
+        messageInputViewHeightConstraint = messageInputView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)
+        
         NSLayoutConstraint.activate([
             // TableView Constraints
             tableView.topAnchor.constraint(equalTo: topAnchor),
@@ -72,7 +77,7 @@ class ChatView: BaseView {
             messageInputView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             messageInputView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
             messageInputView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -10),
-            messageInputView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36),
+            messageInputViewHeightConstraint,
             messageInputView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
             
             // SendButton Constraints
@@ -81,5 +86,27 @@ class ChatView: BaseView {
             sendButton.widthAnchor.constraint(equalToConstant: 50),
         ])
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+            let size = CGSize(width: textView.frame.width, height: .infinity)
+            let estimatedSize = textView.sizeThatFits(size)
+
+            // 텍스트뷰 높이에 따라 스크롤 설정 및 높이 조정
+            if estimatedSize.height > 100 {
+                messageInputViewHeightConstraint.constant = 100
+                textView.isScrollEnabled = true
+            } else if estimatedSize.height <= 40 {
+                messageInputViewHeightConstraint.constant = 40
+                textView.isScrollEnabled = false
+            } else {
+                messageInputViewHeightConstraint.constant = estimatedSize.height
+                textView.isScrollEnabled = false
+            }
+
+            // 레이아웃 업데이트
+            UIView.animate(withDuration: 0.2) {
+                self.layoutIfNeeded()
+            }
+        }
     
 }
