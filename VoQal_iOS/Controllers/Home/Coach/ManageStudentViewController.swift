@@ -11,6 +11,7 @@ class ManageStudentViewController: BaseViewController {
 
     private let manageStudentView = ManageStudentView()
     private let manageStudentManager = ManageStudentManager()
+    private let setLessonSongManager = SetLessonSongManager()
     internal var students: [ApprovedStudent] = [] {
         didSet {
             manageStudentView.tableView.reloadData()
@@ -65,22 +66,68 @@ class ManageStudentViewController: BaseViewController {
     
     @objc private func didTapLessonSongLabel(_ sender: UIButton) {
         let indexPath = IndexPath(row: sender.tag, section: 0)
-        let vc = SetLessonSongViewController()
-        let studentId = students[indexPath.row].id
-        print("tapped, \(indexPath.row)")
-        print("레슨곡 자리입니다! 학생 ID: \(studentId)")
-        vc.modalPresentationStyle = .overFullScreen
-        vc.studentId = studentId
-        vc.setLessonSongCompletion = { () in
-            self.manageStudentManager.getStudents { model in
-                guard let model = model else { return }
-                if model.status == 200 {
-                    self.students = model.students
-                    self.manageStudentView.tableView.reloadData()
+        let studentId = self.students[indexPath.row].id
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "추가", style: .default, handler: {  _ in
+            
+            
+            let vc = SetLessonSongViewController()
+            print("tapped, \(indexPath.row)")
+            print("레슨곡 자리입니다! 학생 ID: \(studentId)")
+            vc.modalPresentationStyle = .overFullScreen
+            vc.studentId = studentId
+            vc.isSettingMode = 1
+            vc.setLessonSongCompletion = { () in
+                self.manageStudentManager.getStudents { [weak self] model in
+                    guard let model = model, let self = self else { return }
+                    if model.status == 200 {
+                        self.students = model.students
+                        self.manageStudentView.tableView.reloadData()
+                    }
                 }
             }
-        }
-        present(vc, animated: false)
+            self.present(vc, animated: false)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "수정", style: .default, handler: { _ in
+            
+            let vc = SetLessonSongViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.isSettingMode = 0
+            vc.studentId = studentId
+            vc.setLessonSongCompletion = { () in
+                self.manageStudentManager.getStudents { [weak self] model in
+                    guard let model = model, let self = self else { return }
+                    if model.status == 200 {
+                        self.students = model.students
+                        self.manageStudentView.tableView.reloadData()
+                    }
+                }
+            }
+            self.present(vc, animated: false)
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "삭제", style: .destructive, handler: { _ in
+            self.setLessonSongManager.deleteLessonSong(Int64(studentId)) { [weak self] model in
+                print("\(studentId)번 학생 레슨곡 삭제 신청")
+                guard let self = self, let model = model else { return }
+                if model.status == 200 {
+                    self.manageStudentManager.getStudents { [weak self] model in
+                        guard let self = self, let model = model else { return }
+                        if model.status == 200 {
+                            self.students = model.students
+                            self.manageStudentView.tableView.reloadData()
+                        }
+                    }
+                }
+            }
+        }))
+        
+        actionSheet.addAction(UIAlertAction(title: "취소", style: .cancel))
+        
+        present(actionSheet, animated: true)
     }
     
 }

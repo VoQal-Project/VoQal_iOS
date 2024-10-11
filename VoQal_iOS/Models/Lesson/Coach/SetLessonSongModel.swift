@@ -16,3 +16,12 @@ struct SetLessonSongModel {
     let code: String?
     let errors: [ErrorDetail]?
 }
+
+struct DeleteLessonSongModel {
+    let message: String
+    let status: Int
+}
+
+struct EditLessonSongModel {
+    let status: Int
+}
