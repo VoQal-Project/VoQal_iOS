@@ -16,3 +16,15 @@ struct SetLessonSongData: Codable {
     let code: String?
     let errors: [ErrorDetail]?
 }
+
+struct DeleteLessonSongData: Codable {
+    let message: String
+    let status: Int
+}
+
+struct EditLessonSongData: Codable {
+    let status: Int
+    let lessonSongUrl: String
+    let singer: String
+    let songTitle: String
+}

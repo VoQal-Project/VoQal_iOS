@@ -11,6 +11,7 @@ class SetLessonSongViewController: BaseViewController {
     
     var setLessonSongCompletion: (() -> Void)?
     internal var studentId: Int?
+    internal var isSettingMode: Int? = nil
     
     private let setLessonSongView = SetLessonSongView()
     private let setLessonSongManager = SetLessonSongManager()
@@ -18,10 +19,10 @@ class SetLessonSongViewController: BaseViewController {
     override func loadView() {
         view = setLessonSongView
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
@@ -29,7 +30,7 @@ class SetLessonSongViewController: BaseViewController {
         setLessonSongView.closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         setLessonSongView.completeButton.addTarget(self, action: #selector(didTapCompleteButton), for: .touchUpInside)
     }
-
+    
     @objc private func didTapCloseButton() {
         print("Close Tap!")
         self.dismiss(animated: false)
@@ -60,18 +61,38 @@ class SetLessonSongViewController: BaseViewController {
             return
         }
         
-        setLessonSongManager.setLessonSong(studentId, lessonSongUrl, singer, songTitle) { model in
-            guard let model = model else { print("didTapCompleteButton - model 바인딩 실패"); return }
-            if model.status == 200 {
-                self.dismiss(animated: true)
-                self.setLessonSongCompletion?()
-            }
-            else {
-                let alert = UIAlertController(title: "설정 실패", message: "잠시 후 다시 시도해주세요.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default))
-                self.present(alert, animated: true)
+        if isSettingMode == 1 {
+            setLessonSongManager.setLessonSong(studentId, lessonSongUrl, singer, songTitle) { [weak self] model in
+                guard let model = model, let self = self else { print("didTapCompleteButton - model, self 바인딩 실패"); return }
+                if model.status == 200 {
+                    self.dismiss(animated: true)
+                    self.setLessonSongCompletion?()
+                }
+                else {
+                    let alert = UIAlertController(title: "설정 실패", message: "잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
             }
         }
+        else {
+            setLessonSongManager.setLessonSong(studentId, lessonSongUrl, singer, songTitle) { [weak self] model in
+                guard let model = model, let self = self else {
+                    print("didTapCompleteButton - model, self 바인딩 실패"); return }
+                
+                if model.status == 200 {
+                    self.dismiss(animated: true)
+                    self.setLessonSongCompletion?()
+                }
+                else {
+                    let alert = UIAlertController(title: "설정 실패", message: "잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        
+        
     }
     
     func isValidYouTubeURL(_ url: String) -> Bool {
@@ -79,7 +100,7 @@ class SetLessonSongViewController: BaseViewController {
         let youtubeTest = NSPredicate(format: "SELF MATCHES %@", youtubeRegex)
         return youtubeTest.evaluate(with: url)
     }
-
+    
 }
 
 
