@@ -191,7 +191,12 @@ extension MyChallengePostViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let cell = cell as? MyChallengePostCollectionViewCell {
-            cell.togglePlayPause() // 셀이 사라지면 자동으로 일시정지
+            if let player = cell.player {
+                cell.player?.pause()
+            }
+            else {
+                print("player is nil")
+            }
         }
     }
 }
