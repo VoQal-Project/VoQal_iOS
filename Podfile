@@ -17,6 +17,7 @@ pod 'FirebaseAnalytics'
 
 pod 'FirebaseAuth'
 pod 'Firebase/Firestore'
+pod 'Firebase/Messaging'
 
   target 'VoQal_iOSTests' do
     inherit! :search_paths

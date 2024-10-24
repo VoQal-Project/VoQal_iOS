@@ -11,6 +11,9 @@
 		86FF2F0B683765BE3BFA2664 /* Pods_VoQal_iOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64BA13640785F683CF68E9D9 /* Pods_VoQal_iOSTests.framework */; };
 		9509C3BD2C3D409D00FE211E /* CoachSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509C3BC2C3D409D00FE211E /* CoachSelectionViewController.swift */; };
 		9509C3BF2C3D40AE00FE211E /* CoachSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509C3BE2C3D40AE00FE211E /* CoachSelectionView.swift */; };
+		952431872CC938D8005B3177 /* FCMTokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952431862CC938D8005B3177 /* FCMTokenManager.swift */; };
+		952431892CC93C9D005B3177 /* FCMTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952431882CC93C9D005B3177 /* FCMTokenData.swift */; };
+		9524318B2CC93CA5005B3177 /* FCMTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524318A2CC93CA5005B3177 /* FCMTokenModel.swift */; };
 		9541D3302BD29C0300B36977 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D32F2BD29C0300B36977 /* HomeView.swift */; };
 		9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D3322BD29CCA00B36977 /* HomeViewController.swift */; };
 		9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9541D3702BD2ACC300B36977 /* SceneDelegate.swift */; };
@@ -248,6 +251,9 @@
 		6D82197EA947CA09B02FC649 /* Pods_VoQal_iOS_VoQal_iOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VoQal_iOS_VoQal_iOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9509C3BC2C3D409D00FE211E /* CoachSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionViewController.swift; sourceTree = "<group>"; };
 		9509C3BE2C3D40AE00FE211E /* CoachSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachSelectionView.swift; sourceTree = "<group>"; };
+		952431862CC938D8005B3177 /* FCMTokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenManager.swift; sourceTree = "<group>"; };
+		952431882CC93C9D005B3177 /* FCMTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenData.swift; sourceTree = "<group>"; };
+		9524318A2CC93CA5005B3177 /* FCMTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenModel.swift; sourceTree = "<group>"; };
 		9541D32F2BD29C0300B36977 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9541D3322BD29CCA00B36977 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		9541D3702BD2ACC300B36977 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 		955F60372C8F197700523287 /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		955F603A2C8F199700523287 /* ChatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatData.swift; sourceTree = "<group>"; };
 		955F603C2C8F199D00523287 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		955FA1172CC14DC300188CFF /* VoQal_iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = VoQal_iOS.entitlements; sourceTree = "<group>"; };
 		9563257D2C6A36A400C801A4 /* MyChallengePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostViewController.swift; sourceTree = "<group>"; };
 		9563257F2C6A380000C801A4 /* MyLikePostChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengeViewController.swift; sourceTree = "<group>"; };
 		956325812C6A381500C801A4 /* PostChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeViewController.swift; sourceTree = "<group>"; };
@@ -659,6 +666,7 @@
 			isa = PBXGroup;
 			children = (
 				955F60372C8F197700523287 /* ChatManager.swift */,
+				952431862CC938D8005B3177 /* FCMTokenManager.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -668,6 +676,8 @@
 			children = (
 				955F603A2C8F199700523287 /* ChatData.swift */,
 				955F603C2C8F199D00523287 /* ChatModel.swift */,
+				952431882CC93C9D005B3177 /* FCMTokenData.swift */,
+				9524318A2CC93CA5005B3177 /* FCMTokenModel.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1157,6 +1167,7 @@
 		95B5C66B2BCABE490067432A /* VoQal_iOS */ = {
 			isa = PBXGroup;
 			children = (
+				955FA1172CC14DC300188CFF /* VoQal_iOS.entitlements */,
 				956CFD6E2CA6DE6A00C86521 /* GoogleService-Info.plist */,
 				9542B63B2BCD688E0060E1BB /* Fonts */,
 				95B661692C3D30850091F241 /* Components */,
@@ -1548,16 +1559,19 @@
 				9581B0DA2C5CC6D1008D7701 /* RecordFileTableView.swift in Sources */,
 				955BD9092C55101B005FA69B /* WriteLessonNoteModel.swift in Sources */,
 				956F3C422C49036100F63F33 /* ReservationManager.swift in Sources */,
+				952431872CC938D8005B3177 /* FCMTokenManager.swift in Sources */,
 				956325842C6A385800C801A4 /* PostChallengeView.swift in Sources */,
 				9542B64A2BCD7FF10060E1BB /* RegistrationView.swift in Sources */,
 				955F603D2C8F199D00523287 /* ChatModel.swift in Sources */,
 				9570F09E2C4D002D0004AA67 /* MyReservationData.swift in Sources */,
 				9541D37F2BD2AFD900B36977 /* ChallengeView.swift in Sources */,
 				95786E902C40234100F77146 /* LoginModel.swift in Sources */,
+				952431892CC93C9D005B3177 /* FCMTokenData.swift in Sources */,
 				956EC08B2C5776F700983AE6 /* SelectModeViewController.swift in Sources */,
 				9541D3712BD2ACC400B36977 /* SceneDelegate.swift in Sources */,
 				95A0D4422C43AD8E002A768B /* MyPageView.swift in Sources */,
 				9581B0DE2C5CD418008D7701 /* StudentLessonNoteManager.swift in Sources */,
+				9524318B2CC93CA5005B3177 /* FCMTokenModel.swift in Sources */,
 				9582059B2C60F2E700C1A280 /* PrivateUrl.swift in Sources */,
 				9581D8BE2C624402009BE1B2 /* LessonNoteDetailModel.swift in Sources */,
 				9587DDF72C46C43D0039B6D0 /* ManageStudentViewController.swift in Sources */,
@@ -1812,6 +1826,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VoQal_iOS/VoQal_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R6V7ZUXR5H;
@@ -1845,6 +1860,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = VoQal_iOS/VoQal_iOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = R6V7ZUXR5H;

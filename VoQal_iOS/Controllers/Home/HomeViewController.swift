@@ -6,11 +6,13 @@
 //
 
 import UIKit
+import FirebaseMessaging
 
-class HomeViewController: BaseViewController, MyPageViewDelegate {
+class HomeViewController: BaseViewController, MyPageViewDelegate, MessagingDelegate {
     private let homeView = HomeView()
     private let homeManager = HomeManager()
     private let challengeManager = ChallengeManager()
+    private let fcmTokenManager = FCMTokenManager()
     
     private var currentUser: UserModel?
     internal var thumbnail: UIImage?
@@ -81,6 +83,8 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
         
         if UserManager.shared.userModel == nil {
             homeManager.getUserInform { [weak self] homeModel in
+                guard let self = self else { print("homeVC - updateUserInformationIfNeeded self is nil"); return }
+                
                 if let model = homeModel {
                     if let successModel = model.successModel {
                         print("User information updated: \(successModel)")
@@ -94,7 +98,7 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                            let role = successModel.role {
                             
                             if role == "GUEST" {
-                                self?.showLoginScreen()
+                                self.showLoginScreen()
                                 return
                             }
                             
@@ -110,7 +114,8 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
                             )
                             
                             UserManager.shared.userModel = user
-                            self?.loadLessonSongThumbnail()
+                            self.sendFCMToken()
+                            self.loadLessonSongThumbnail()
                         }
                     } else if let errorModel = model.errorModel {
                         print("Error Data: \(errorModel)")
@@ -170,6 +175,28 @@ class HomeViewController: BaseViewController, MyPageViewDelegate {
             homeView.updateThumbnail(self.thumbnail)
         } else {
             print("No need to update UI - user is the same")
+        }
+    }
+    
+    private func sendFCMToken() {
+        guard let id = UserManager.shared.userModel?.memberId else { print("homeVC - sendFCMToken memberId is nil"); return }
+        
+        Messaging.messaging().delegate = self
+        
+        if let fcmToken = Messaging.messaging().fcmToken {
+            fcmTokenManager.sendFCMToken(String(id), fcmToken) { [weak self] model in
+                guard let self = self, let model = model else { print("sendFCMToken self or model is nil"); return }
+                
+                if model.status == 200 {
+                    print("HomeVC - FCM Token 전송 완료")
+                }
+                else {
+                    print("HomeVC - FCM Token 전송 실패")
+                }
+            }
+        }
+        else {
+            print("FCMToken 받아오기 실패")
         }
     }
     
