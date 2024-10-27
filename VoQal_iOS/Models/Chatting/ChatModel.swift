@@ -19,7 +19,9 @@ struct CoachChatModel {
 
 struct ChatMessageModel {
     let status: Int
-    let data: [ChatMessage]
+    let messages: [ChatMessage]
+    let coachLastReadTime: String
+    let studentLastReadTime: String
 }
 
 struct SendMessageModel {

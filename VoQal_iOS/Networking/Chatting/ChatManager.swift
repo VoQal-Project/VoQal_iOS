@@ -27,8 +27,10 @@ struct ChatManager {
             case .success(let res):
                 print(res)
                 let status = res.status
-                let data = res.data
-                let model = ChatMessageModel(status: status, data: data)
+                let messages = res.data.messages
+                let coachLastReadTime = res.data.coachLastReadTime
+                let studentLastReadTime = res.data.studentLastReadTime
+                let model = ChatMessageModel(status: status, messages: messages, coachLastReadTime: coachLastReadTime, studentLastReadTime: studentLastReadTime)
                 completion(model)
             case .failure(let err):
                 print(err)

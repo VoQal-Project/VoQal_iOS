@@ -12,6 +12,9 @@ class ChatViewController: BaseViewController {
     private var messages: [ChatMessage] = [] // 샘플 메시지 데이터
     private var listener: ListenerRegistration?
     
+    private var lastReadTime: String? = nil
+    private var lastTimeStampLocal: Int = 0
+    
     override func loadView() {
         view = chatView
     }
@@ -34,6 +37,39 @@ class ChatViewController: BaseViewController {
         super.viewWillAppear(true)
         
         enterChattingRoom(studentId)
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.isUserInChatRoom = true
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if let lastReadTimeStamp = CacheManager.shared.getLastReadTime() {
+            updateLastReadTimeToDB(lastReadTimeStamp)
+        }
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.isUserInChatRoom = false
+        }
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func appDidEnterBackground() {
+        if let lastReadTime = CacheManager.shared.getLastReadTime() {
+            updateLastReadTimeToDB(lastReadTime)
+        }
+    }
+    
+    @objc private func appWillTerminate() {
+        if let lastReadTime = CacheManager.shared.getLastReadTime() {
+            updateLastReadTimeToDB(lastReadTime)
+        }
     }
     
     override func setAddTarget() {
@@ -88,9 +124,18 @@ class ChatViewController: BaseViewController {
     private func fetchMessages(_ chatId: String) {
         chatManager.fetchMessages(chatId) { [weak self] model in
             guard let model = model, let self = self else { print("fetchMessages - model or self is nil"); return }
+            guard let role = UserManager.shared.userModel?.role else { print("fetchMessages - role is nil"); return }
             
             if model.status == 200 {
-                self.messages = model.data
+                
+                if role == "COACH" {
+                    self.lastReadTime = model.coachLastReadTime
+                }
+                else if role == "STUDENT" {
+                    self.lastReadTime = model.studentLastReadTime
+                }
+                
+                self.messages = model.messages
                 self.chatView.tableView.reloadData()
             }
             else {
@@ -155,6 +200,8 @@ class ChatViewController: BaseViewController {
                             
                             let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
                             self.messages.append(chatMessage)
+                            
+                            self.updateLastReadMessageInCache(timestamp)
                         }
                     }
                 }
@@ -162,6 +209,30 @@ class ChatViewController: BaseViewController {
                 self.chatView.tableView.reloadData()
                 self.scrollToBottom()
         })
+    }
+    
+    private func updateLastReadMessageInCache(_ timeStamp: Int) {
+        CacheManager.shared.saveLastReadTime(timeStamp)
+    }
+    
+    private func updateLastReadTimeToDB(_ lastReadTime: Int) {
+        guard let chatId = self.chatRoomId else { print("updateLastReadTimeToDB - chatId is nil"); return }
+        let role = UserManager.shared.userModel?.role ?? "STUDENT"
+        
+        // Firestore에 저장하는 코드
+        let db = Firestore.firestore()
+        let chatRoomRef = db.collection("chats").document(chatId)
+        
+        let lastReadField = role == "COACH" ? "coachLastReadTime" : "studentLastReadTime"
+        
+        chatRoomRef.updateData([lastReadField: lastReadTime]) { error in
+            if let error = error {
+                print("Firestore update failed: \(error)")
+            }
+            else {
+                print("Firestore update successful")
+            }
+        }
     }
     
     private func scrollToBottom() {
@@ -190,6 +261,12 @@ class ChatViewController: BaseViewController {
         }
     }
     
+    private func addSeparatorBelowCell(_ cell: UITableViewCell) {
+        let separator = UIView(frame: CGRect(x: 0, y: cell.frame.height - 1, width: cell.frame.width, height: 1))
+        separator.backgroundColor = UIColor.red
+        cell.contentView.addSubview(separator)
+    }
+    
 }
 
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
@@ -211,6 +288,13 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
+            
+            if let lastReadTime = self.lastReadTime {
+                if message.timestamp == Int(lastReadTime) {
+                    addSeparatorBelowCell(cell)
+                }
+            }
+            
             return cell
         }
         else {
@@ -218,6 +302,13 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
+            
+            if let lastReadTime = self.lastReadTime {
+                if message.timestamp == Int(lastReadTime) {
+                    addSeparatorBelowCell(cell)
+                }
+            }
+            
             return cell
         }
     }
