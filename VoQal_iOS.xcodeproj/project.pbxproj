@@ -52,6 +52,7 @@
 		9569DC1E2C95AA5100EA7A17 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */; };
 		9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */; };
 		9569DC242C95B49800EA7A17 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC232C95B49800EA7A17 /* ChatView.swift */; };
+		956B5C442CCB696A0070F699 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956B5C432CCB696A0070F699 /* CacheManager.swift */; };
 		956C1AA42C8C7DAC0035ABFC /* EditChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */; };
 		956C1AA62C8C7EF20035ABFC /* EditChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */; };
 		956C1AA82C8C82440035ABFC /* EditChallengeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */; };
@@ -293,6 +294,7 @@
 		9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		9569DC232C95B49800EA7A17 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		956B5C432CCB696A0070F699 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		956C1AA32C8C7DAC0035ABFC /* EditChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeViewController.swift; sourceTree = "<group>"; };
 		956C1AA52C8C7EF20035ABFC /* EditChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeView.swift; sourceTree = "<group>"; };
 		956C1AA72C8C82440035ABFC /* EditChallengeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditChallengeManager.swift; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 				9570F0A12C4D20220004AA67 /* DateUtility.swift */,
 				956C1C0A2C4FAD5500ECAADA /* YoutubeUtility.swift */,
 				9582059A2C60F2E700C1A280 /* PrivateUrl.swift */,
+				956B5C432CCB696A0070F699 /* CacheManager.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1587,6 +1590,7 @@
 				9570F0982C4CFBF80004AA67 /* MyReservationView.swift in Sources */,
 				9541D3332BD29CCA00B36977 /* HomeViewController.swift in Sources */,
 				957E3E192C344E0100936617 /* PasswordResetModel.swift in Sources */,
+				956B5C442CCB696A0070F699 /* CacheManager.swift in Sources */,
 				9581B0D82C5CC6C3008D7701 /* LessonNoteTableView.swift in Sources */,
 				959D94452C2F07C80014F086 /* PasswordResetData.swift in Sources */,
 				958FE7C72C42C2BB00F2954D /* HomeManager.swift in Sources */,

@@ -15,6 +15,7 @@ import FirebaseMessaging
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     private let fcmTokenManager = FCMTokenManager()
+    var isUserInChatRoom = false
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -66,7 +67,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // 포그라운드에서 푸시 알림 처리
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // 앱이 포그라운드에 있을 때 알림을 표시하도록 설정
-        completionHandler([.banner, .sound, .badge])
+        if isUserInChatRoom {
+            completionHandler([])
+        } else {
+            completionHandler([.banner, .sound, .badge])
+        }
+        
     }
     
     // 백그라운드나 포그라운드에서 푸시 알림을 탭했을 때 처리

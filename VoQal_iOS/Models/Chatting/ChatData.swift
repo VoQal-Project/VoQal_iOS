@@ -24,7 +24,13 @@ struct CoachChatData: Codable {
 
 struct ChatMessageData: Codable {
     let status: Int
-    let data: [ChatMessage]
+    let data: ChatMessageDetailData
+}
+
+struct ChatMessageDetailData: Codable {
+    let coachLastReadTime: String
+    let studentLastReadTime: String
+    let messages: [ChatMessage]
 }
 
 struct ChatMessage: Codable {
