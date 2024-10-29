@@ -9,11 +9,12 @@ class ChatViewController: BaseViewController {
     private var studentId: Int64? = nil
     private var coachId: Int64? = nil
     private var chatRoomId: String? = nil
-    private var messages: [ChatMessage] = [] // 샘플 메시지 데이터
+    private var messages: [ChatMessage] = []
+    private var messageTimestamps: Set<Int> = Set()
     private var listener: ListenerRegistration?
     
-    private var lastReadTime: String? = nil
-    private var lastTimeStampLocal: Int = 0
+    private var lastReadTime: Int64? = nil
+    private var lastTimeStampLocal: Int64 = 0
     
     override func loadView() {
         view = chatView
@@ -128,17 +129,21 @@ class ChatViewController: BaseViewController {
             
             if model.status == 200 {
                 
+                // 사용자의 역할에 따라 마지막 읽은 시간 설정
                 if role == "COACH" {
                     self.lastReadTime = model.coachLastReadTime
-                }
-                else if role == "STUDENT" {
+                } else if role == "STUDENT" {
                     self.lastReadTime = model.studentLastReadTime
                 }
                 
-                self.messages = model.messages
+                // 메시지 리스트를 순회하면서 바로 추가 (중복 체크 X)
+                for message in model.messages {
+                    self.messages.append(message)
+                    self.messageTimestamps.insert(message.timestamp) // Set에 타임스탬프 추가
+                }
+                
                 self.chatView.tableView.reloadData()
-            }
-            else {
+            } else {
                 print("fetchMessages - model.status is not 200")
             }
         }
@@ -177,38 +182,44 @@ class ChatViewController: BaseViewController {
     private func listenForMessages(_ chatRoomId: String) {
         let db = Firestore.firestore()
         
-        listener = db.collection("chats")
-            .document(chatRoomId)
-            .collection("messages")
-            .order(by: "timestamp", descending: false)
-            .addSnapshotListener({ [weak self] snapshot, error in
-                guard let self = self else { return }
-                
-                if let error = error {
-                    print("Error fetching messages: \(error)")
-                    return
-                }
-                
-                guard let snapshot = snapshot else { print("listenForMessages - snapshot is nil"); return }
-                
-                for diff in snapshot.documentChanges {
-                    if diff.type == .added {
-                        let data = diff.document.data()
-                        if let receiverId = data["receiverId"] as? String,
-                           let message = data["message"] as? String,
-                           let timestamp = data["timestamp"] as? Int {
-                            
-                            let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
-                            self.messages.append(chatMessage)
-                            
-                            self.updateLastReadMessageInCache(timestamp)
+        if listener == nil {
+            listener = db.collection("chats")
+                .document(chatRoomId)
+                .collection("messages")
+                .order(by: "timestamp", descending: false)
+                .addSnapshotListener({ [weak self] snapshot, error in
+                    guard let self = self else { return }
+                    
+                    if let error = error {
+                        print("Error fetching messages: \(error)")
+                        return
+                    }
+                    
+                    guard let snapshot = snapshot else { print("listenForMessages - snapshot is nil"); return }
+                    
+                    for diff in snapshot.documentChanges {
+                        if diff.type == .added {
+                            let data = diff.document.data()
+                            if let receiverId = data["receiverId"] as? String,
+                               let message = data["message"] as? String,
+                               let timestamp = data["timestamp"] as? Int {
+                                
+                                // Set에서 중복 여부 확인 후 추가
+                                if !self.messageTimestamps.contains(timestamp) {
+                                    let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
+                                    self.messages.append(chatMessage)
+                                    self.messageTimestamps.insert(timestamp) // 새로운 메시지의 타임스탬프 추가
+                                    
+                                    self.updateLastReadMessageInCache(timestamp)
+                                }
+                            }
                         }
                     }
-                }
-                
-                self.chatView.tableView.reloadData()
-                self.scrollToBottom()
-        })
+                    
+                    self.chatView.tableView.reloadData()
+                    self.scrollToBottom()
+                })
+        }
     }
     
     private func updateLastReadMessageInCache(_ timeStamp: Int) {
@@ -290,7 +301,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
             
             if let lastReadTime = self.lastReadTime {
-                if message.timestamp == Int(lastReadTime) {
+                if message.timestamp == lastReadTime {
                     addSeparatorBelowCell(cell)
                 }
             }
@@ -304,7 +315,7 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
             
             if let lastReadTime = self.lastReadTime {
-                if message.timestamp == Int(lastReadTime) {
+                if message.timestamp == lastReadTime {
                     addSeparatorBelowCell(cell)
                 }
             }
