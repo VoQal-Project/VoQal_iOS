@@ -20,8 +20,8 @@ struct CoachChatModel {
 struct ChatMessageModel {
     let status: Int
     let messages: [ChatMessage]
-    let coachLastReadTime: String
-    let studentLastReadTime: String
+    let coachLastReadTime: Int64?
+    let studentLastReadTime: Int64?
 }
 
 struct SendMessageModel {

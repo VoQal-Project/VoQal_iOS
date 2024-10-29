@@ -28,8 +28,8 @@ struct ChatMessageData: Codable {
 }
 
 struct ChatMessageDetailData: Codable {
-    let coachLastReadTime: String
-    let studentLastReadTime: String
+    let coachLastReadTime: Int64?
+    let studentLastReadTime: Int64?
     let messages: [ChatMessage]
 }
 
