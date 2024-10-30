@@ -13,10 +13,12 @@ import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
+    
+    var window: UIWindow?
+    
     private let fcmTokenManager = FCMTokenManager()
     var isUserInChatRoom = false
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -45,25 +47,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
-
+    
     // MARK: UISceneSession Lifecycle
-
+    
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
+    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
-
+    
     // 포그라운드에서 푸시 알림 처리
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // 앱이 포그라운드에 있을 때 알림을 표시하도록 설정
@@ -80,13 +82,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let userInfo = response.notification.request.content.userInfo
         // 메시지를 처리하는 로직 추가 (예: 특정 화면으로 이동)
         Messaging.messaging().appDidReceiveMessage(userInfo)
-
-        if let messageId = userInfo["messageId"] as? String {
-            print("Received Message ID: \(messageId)")
-            // 메시지 ID로 특정 화면으로 이동하는 등의 처리 로직
+        
+        if let sender = userInfo["sender"] as? String, let senderId = Int64(sender), let name = userInfo["title"] as? String {
+            navigateToChatRoom(senderId: senderId, name: name)
+            print("알림 추출 senderId: \(senderId), name: \(name)")
+        } else {
+            print("senderId or name sdfis nil")
         }
         
         completionHandler()
+    }
+    
+    func navigateToChatRoom(senderId: Int64, name: String) {
+        guard let tabBarController = window?.rootViewController as? MainTabBarController else { return }
+
+        // MainTabBarController에서 HomeViewController가 있는 탭으로 접근
+        if let navigationController = tabBarController.viewControllers?.first as? UINavigationController,
+           let homeVC = navigationController.viewControllers.first as? HomeViewController {
+            homeVC.openChatRoom(studentId: senderId, name: name)
+        } else {
+            // HomeViewController가 초기화되지 않았을 때
+            let homeVC = HomeViewController()
+            let navController = UINavigationController(rootViewController: homeVC)
+            tabBarController.viewControllers?[0] = navController
+            homeVC.openChatRoom(studentId: senderId, name: name)
+        }
     }
     
 }

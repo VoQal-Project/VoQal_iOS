@@ -246,6 +246,23 @@ class HomeViewController: BaseViewController, MyPageViewDelegate, MessagingDeleg
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func openChatRoom(studentId: Int64, name: String) {
+        guard let role = UserManager.shared.userModel?.role else { print("navigateToChatRoom - role is nil"); return }
+        
+        let vc = ChatViewController()
+        
+        if role == "COACH" {
+            vc.configureStudentId(studentId)
+            vc.title = "\(name) 학생"
+        }
+        else if role == "STUDENT" {
+            vc.title = "\(name) 코치님"
+        }
+        
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     @objc internal func didTapManageLessonBtn() {
         
         guard let role = UserManager.shared.userModel?.role else { print("userModel에 role이 없습니다."); return }

@@ -28,6 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
         window?.windowScene = windowScene
+        
+        (UIApplication.shared.delegate as? AppDelegate)?.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

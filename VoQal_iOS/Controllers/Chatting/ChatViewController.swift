@@ -26,6 +26,7 @@ class ChatViewController: BaseViewController {
         chatView.tableView.delegate = self
         chatView.tableView.register(ReceiverMessageCell.self, forCellReuseIdentifier: ReceiverMessageCell.identifier)
         chatView.tableView.register(SenderMessageCell.self, forCellReuseIdentifier: SenderMessageCell.identifier)
+        chatView.tableView.register(ReadReceiptCell.self, forCellReuseIdentifier: ReadReceiptCell.identifier)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
@@ -182,44 +183,55 @@ class ChatViewController: BaseViewController {
     private func listenForMessages(_ chatRoomId: String) {
         let db = Firestore.firestore()
         
-        if listener == nil {
-            listener = db.collection("chats")
-                .document(chatRoomId)
-                .collection("messages")
-                .order(by: "timestamp", descending: false)
-                .addSnapshotListener({ [weak self] snapshot, error in
-                    guard let self = self else { return }
-                    
-                    if let error = error {
-                        print("Error fetching messages: \(error)")
-                        return
-                    }
-                    
-                    guard let snapshot = snapshot else { print("listenForMessages - snapshot is nil"); return }
-                    
-                    for diff in snapshot.documentChanges {
-                        if diff.type == .added {
-                            let data = diff.document.data()
-                            if let receiverId = data["receiverId"] as? String,
-                               let message = data["message"] as? String,
-                               let timestamp = data["timestamp"] as? Int {
-                                
-                                // Set에서 중복 여부 확인 후 추가
-                                if !self.messageTimestamps.contains(timestamp) {
-                                    let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
-                                    self.messages.append(chatMessage)
-                                    self.messageTimestamps.insert(timestamp) // 새로운 메시지의 타임스탬프 추가
-                                    
-                                    self.updateLastReadMessageInCache(timestamp)
-                                }
+        if listener != nil {
+            return
+        }
+
+        var isFirstSnapshot = true
+        
+        listener = db.collection("chats")
+            .document(chatRoomId)
+            .collection("messages")
+            .order(by: "timestamp", descending: false)
+            .addSnapshotListener { [weak self] snapshot, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    print("Error fetching messages: \(error)")
+                    return
+                }
+                
+                guard let snapshot = snapshot else {
+                    print("listenForMessages - snapshot is nil")
+                    return
+                }
+                
+                // 첫 번째 스냅샷은 무시하고 이후부터 데이터 추가
+                if isFirstSnapshot {
+                    isFirstSnapshot = false
+                    return
+                }
+                
+                // 이후 변경 사항만 추가
+                for diff in snapshot.documentChanges {
+                    if diff.type == .added {
+                        let data = diff.document.data()
+                        if let receiverId = data["receiverId"] as? String,
+                           let message = data["message"] as? String,
+                           let timestamp = data["timestamp"] as? Int {
+                            
+                            if !self.messageTimestamps.contains(timestamp) {
+                                let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
+                                self.messages.append(chatMessage)
+                                self.messageTimestamps.insert(timestamp)
                             }
                         }
                     }
-                    
-                    self.chatView.tableView.reloadData()
-                    self.scrollToBottom()
-                })
-        }
+                }
+                
+                self.chatView.tableView.reloadData()
+                self.scrollToBottom()
+            }
     }
     
     private func updateLastReadMessageInCache(_ timeStamp: Int) {
@@ -273,9 +285,13 @@ class ChatViewController: BaseViewController {
     }
     
     private func addSeparatorBelowCell(_ cell: UITableViewCell) {
-        let separator = UIView(frame: CGRect(x: 0, y: cell.frame.height - 1, width: cell.frame.width, height: 1))
-        separator.backgroundColor = UIColor.red
-        cell.contentView.addSubview(separator)
+        let separatorTag = 999
+        if cell.contentView.viewWithTag(separatorTag) == nil {
+            let separator = UIView(frame: CGRect(x: 0, y: cell.frame.height - 1, width: cell.frame.width, height: 1))
+            separator.backgroundColor = UIColor.red
+            separator.tag = separatorTag // Assign a tag to the separator view
+            cell.contentView.addSubview(separator)
+        }
     }
     
 }
@@ -294,34 +310,34 @@ extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
             print("userModel.memberId is nil"); return UITableViewCell()
         }
         
+        let cell: UITableViewCell
+        
         if message.receiverId == String(currentUserId) {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReceiverMessageCell.identifier, for: indexPath) as? ReceiverMessageCell else {
+            guard let receiverCell = tableView.dequeueReusableCell(withIdentifier: ReceiverMessageCell.identifier, for: indexPath) as? ReceiverMessageCell else {
                 return UITableViewCell()
             }
-            cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
-            
-            if let lastReadTime = self.lastReadTime {
-                if message.timestamp == lastReadTime {
-                    addSeparatorBelowCell(cell)
-                }
-            }
-            
-            return cell
-        }
-        else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: SenderMessageCell.identifier, for: indexPath) as? SenderMessageCell else {
+            receiverCell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
+            cell = receiverCell
+        } else {
+            guard let senderCell = tableView.dequeueReusableCell(withIdentifier: SenderMessageCell.identifier, for: indexPath) as? SenderMessageCell else {
                 return UITableViewCell()
             }
-            cell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
-            
-            if let lastReadTime = self.lastReadTime {
-                if message.timestamp == lastReadTime {
-                    addSeparatorBelowCell(cell)
-                }
-            }
-            
-            return cell
+            senderCell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
+            cell = senderCell
         }
+        
+        // 기존 separator 제거 (중복 방지)
+        let separatorTag = 999
+        if let existingSeparator = cell.contentView.viewWithTag(separatorTag) {
+            existingSeparator.removeFromSuperview()
+        }
+
+        // Add separator only if this is the last read message
+        if let lastReadTime = self.lastReadTime, message.timestamp == lastReadTime {
+            addSeparatorBelowCell(cell)
+        }
+        
+        return cell
     }
     
 }
