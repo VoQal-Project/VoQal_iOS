@@ -134,6 +134,7 @@
 		957E6F8C2C78BF5300093C9E /* CancelAccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F8B2C78BF5300093C9E /* CancelAccountManager.swift */; };
 		957E6F8F2C78BF9D00093C9E /* CancelAccountData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F8E2C78BF9D00093C9E /* CancelAccountData.swift */; };
 		957E6F912C78BFA600093C9E /* CancelAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957E6F902C78BFA600093C9E /* CancelAccountModel.swift */; };
+		95803A1D2CD2432F00C17769 /* ReadReceiptCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95803A1C2CD2432F00C17769 /* ReadReceiptCell.swift */; };
 		9581B0CE2C5CB75C008D7701 /* LessonTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */; };
 		9581B0D02C5CBF74008D7701 /* LessonNoteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */; };
 		9581B0D22C5CBF8D008D7701 /* RecordFileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */; };
@@ -374,6 +375,7 @@
 		957E6F8B2C78BF5300093C9E /* CancelAccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountManager.swift; sourceTree = "<group>"; };
 		957E6F8E2C78BF9D00093C9E /* CancelAccountData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountData.swift; sourceTree = "<group>"; };
 		957E6F902C78BFA600093C9E /* CancelAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelAccountModel.swift; sourceTree = "<group>"; };
+		95803A1C2CD2432F00C17769 /* ReadReceiptCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadReceiptCell.swift; sourceTree = "<group>"; };
 		9581B0CD2C5CB75C008D7701 /* LessonTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTabViewController.swift; sourceTree = "<group>"; };
 		9581B0CF2C5CBF74008D7701 /* LessonNoteTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonNoteTableViewController.swift; sourceTree = "<group>"; };
 		9581B0D12C5CBF8D008D7701 /* RecordFileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordFileTableViewController.swift; sourceTree = "<group>"; };
@@ -690,6 +692,7 @@
 			children = (
 				9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */,
 				9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */,
+				95803A1C2CD2432F00C17769 /* ReadReceiptCell.swift */,
 			);
 			path = Chatting;
 			sourceTree = "<group>";
@@ -1634,6 +1637,7 @@
 				9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */,
 				956F3C3E2C49034200F63F33 /* ReservationData.swift in Sources */,
 				957E3E102C344D0600936617 /* EmailVerifyData.swift in Sources */,
+				95803A1D2CD2432F00C17769 /* ReadReceiptCell.swift in Sources */,
 				95B6616B2C3D309F0091F241 /* RoleSelectionButton.swift in Sources */,
 				95A0D4442C43ADE9002A768B /* BaseView.swift in Sources */,
 				956FFEDB2C83628800F92604 /* EditNicknameModel.swift in Sources */,
