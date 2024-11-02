@@ -16,6 +16,11 @@ class ChatViewController: BaseViewController {
     private var lastReadTime: Int64? = nil
     private var lastTimeStampLocal: Int64 = 0
     
+    private var lastReadMessageIndex: Int? {
+        guard let lastReadTime = self.lastReadTime else { return nil }
+        return messages.lastIndex { $0.timestamp <= lastReadTime }
+    }
+    
     override func loadView() {
         view = chatView
     }
@@ -46,6 +51,7 @@ class ChatViewController: BaseViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appDidEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: UIApplication.willTerminateNotification, object: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -143,7 +149,12 @@ class ChatViewController: BaseViewController {
                     self.messageTimestamps.insert(message.timestamp) // Set에 타임스탬프 추가
                 }
                 
+                if let lastReadTime = self.lastReadTime {
+                    self.updateLastReadMessageInCache(Int(lastReadTime))
+                }
+                
                 self.chatView.tableView.reloadData()
+                self.scrollToSpecificMessage()
             } else {
                 print("fetchMessages - model.status is not 200")
             }
@@ -164,6 +175,7 @@ class ChatViewController: BaseViewController {
                 guard let model = model, let self = self else { print("sendMessage - model or self is nil"); return }
                 
                 chatView.messageInputView.text = ""
+                
             }
         }
         else if UserManager.shared.userModel?.role == "STUDENT" {
@@ -186,7 +198,7 @@ class ChatViewController: BaseViewController {
         if listener != nil {
             return
         }
-
+        
         var isFirstSnapshot = true
         
         listener = db.collection("chats")
@@ -224,6 +236,8 @@ class ChatViewController: BaseViewController {
                                 let chatMessage = ChatMessage(receiverId: receiverId, message: message, timestamp: timestamp)
                                 self.messages.append(chatMessage)
                                 self.messageTimestamps.insert(timestamp)
+                                
+                                self.updateLastReadMessageInCache(timestamp)
                             }
                         }
                     }
@@ -235,6 +249,7 @@ class ChatViewController: BaseViewController {
     }
     
     private func updateLastReadMessageInCache(_ timeStamp: Int) {
+        print("timeStamp in cache updated: \(timeStamp)")
         CacheManager.shared.saveLastReadTime(timeStamp)
     }
     
@@ -260,8 +275,56 @@ class ChatViewController: BaseViewController {
     
     private func scrollToBottom() {
         guard !messages.isEmpty else { return }
-        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        
+        // 마지막 row의 인덱스 계산
+        let lastRow: Int
+        if let lastReadIndex = lastReadMessageIndex, lastReadIndex < messages.count - 1 {
+            // 구분선이 있는 경우 (마지막으로 읽은 메시지가 있고, 그 이후에 새 메시지가 있는 경우)
+            lastRow = messages.count  // messages.count + 1 - 1
+        } else {
+            // 구분선이 없는 경우
+            lastRow = messages.count - 1
+        }
+        
+        let indexPath = IndexPath(row: lastRow, section: 0)
         chatView.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+        
+        if let lastMessageTimestamp = messages.last?.timestamp {
+            updateLastReadMessageInCache(lastMessageTimestamp)
+        }
+        
+        print("scroll to bottom - lastRow: \(lastRow)")
+    }
+
+    // scrollToSpecificMessage도 같은 방식으로 수정
+    private func scrollToSpecificMessage() {
+        if let lastReadTime = self.lastReadTime,
+           let index = messages.firstIndex(where: { $0.timestamp == lastReadTime }) {
+            
+            // 구분선이 있는 경우를 고려한 인덱스 계산
+            let targetIndex: Int
+            if index < messages.count - 1 {
+                // 구분선이 표시되는 경우 (마지막으로 읽은 메시지 다음에 새 메시지가 있는 경우)
+                targetIndex = index + 1  // 구분선 위치로 스크롤
+            } else {
+                // 구분선이 없는 경우
+                targetIndex = index
+            }
+            
+            let indexPath = IndexPath(row: targetIndex, section: 0)
+            chatView.tableView.scrollToRow(at: indexPath, at: .middle, animated: true)
+            
+            // 모든 메시지를 확인한 것으로 간주하여 최신 메시지로 읽음 상태 갱신
+            if let latestMessageTimestamp = messages.last?.timestamp {
+                updateLastReadMessageInCache(latestMessageTimestamp)
+            }
+            
+            print("읽지 않은 메시지 전 챗으로 이동 - targetIndex: \(targetIndex)")
+        } else {
+            // 마지막 읽은 메시지가 없을 경우 최신 메시지로 스크롤
+            print("마지막 챗으로 이동")
+            scrollToBottom()
+        }
     }
     
     private func startObservingKeyboard() {
@@ -277,7 +340,7 @@ class ChatViewController: BaseViewController {
             }
         }
     }
-
+    
     @objc private func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
             self.chatView.transform = .identity
@@ -299,45 +362,57 @@ class ChatViewController: BaseViewController {
 extension ChatViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        let messageCount = messages.count
+        // 마지막으로 읽은 메시지가 있고, 그 이후에 메시지가 있는 경우에만 구분선 추가
+        if let lastIndex = lastReadMessageIndex, lastIndex < messageCount - 1 {
+            return messageCount + 1
+        }
+        return messageCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let message = messages[indexPath.row]
-        
-        guard let currentUserId = UserManager.shared.userModel?.memberId else {
-            print("userModel.memberId is nil"); return UITableViewCell()
+        // 마지막으로 읽은 메시지 다음 위치에 구분선 셀 삽입
+        if let lastIndex = lastReadMessageIndex,
+           indexPath.row == lastIndex + 1,
+           lastIndex < messages.count - 1 {
+            guard let separatorCell = tableView.dequeueReusableCell(withIdentifier: ReadReceiptCell.identifier, for: indexPath) as? ReadReceiptCell else {
+                return UITableViewCell()
+            }
+            return separatorCell
         }
         
-        let cell: UITableViewCell
+        // 실제 메시지 인덱스 계산
+        var messageIndex = indexPath.row
+        if let lastIndex = lastReadMessageIndex, indexPath.row > lastIndex + 1 {
+            messageIndex = indexPath.row - 1  // 구분선 이후의 메시지는 인덱스를 하나 줄임
+        }
+        
+        // 인덱스가 유효한지 확인
+        guard messageIndex < messages.count else {
+            return UITableViewCell()
+        }
+        
+        // 기존 메시지 셀 로직
+        let message = messages[messageIndex]
+        guard let currentUserId = UserManager.shared.userModel?.memberId else {
+            return UITableViewCell()
+        }
         
         if message.receiverId == String(currentUserId) {
             guard let receiverCell = tableView.dequeueReusableCell(withIdentifier: ReceiverMessageCell.identifier, for: indexPath) as? ReceiverMessageCell else {
                 return UITableViewCell()
             }
             receiverCell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
-            cell = receiverCell
+            return receiverCell
         } else {
             guard let senderCell = tableView.dequeueReusableCell(withIdentifier: SenderMessageCell.identifier, for: indexPath) as? SenderMessageCell else {
                 return UITableViewCell()
             }
             senderCell.configure(DateUtility.convertTimestamp(message.timestamp), message.message)
-            cell = senderCell
+            return senderCell
         }
-        
-        // 기존 separator 제거 (중복 방지)
-        let separatorTag = 999
-        if let existingSeparator = cell.contentView.viewWithTag(separatorTag) {
-            existingSeparator.removeFromSuperview()
-        }
-
-        // Add separator only if this is the last read message
-        if let lastReadTime = self.lastReadTime, message.timestamp == lastReadTime {
-            addSeparatorBelowCell(cell)
-        }
-        
-        return cell
     }
+    
+    
     
 }
