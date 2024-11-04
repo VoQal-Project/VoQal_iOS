@@ -160,9 +160,11 @@ extension ManageStudentViewController: UITableViewDelegate, UITableViewDataSourc
         
         let write = UIContextualAction(style: .normal, title: "Write") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             let vc = SelectModeViewController()
-            vc.modalPresentationStyle = .overFullScreen
             vc.studentId = self.students[indexPath.row].id
-            self.present(vc, animated: false)
+            
+            let navController = UINavigationController(rootViewController: vc)
+            navController.modalPresentationStyle = .overFullScreen
+            self.present(navController, animated: false)
             
             success(true)
         }

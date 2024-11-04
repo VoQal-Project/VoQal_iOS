@@ -7,6 +7,9 @@
 
 import UIKit
 
+protocol UploadRecordDelegate: AnyObject {
+    func didFinishUploadingRecord()
+}
 
 class UploadRecordViewController: BaseViewController {
     
@@ -14,7 +17,7 @@ class UploadRecordViewController: BaseViewController {
     private let uploadRecordView = UploadRecordView()
     internal var studentId: Int?
     private let selectedFileURL: URL
-    
+    weak var delegate: UploadRecordDelegate? = nil
     
     init(selectedFileURL: URL) {
         self.selectedFileURL = selectedFileURL
@@ -58,6 +61,7 @@ class UploadRecordViewController: BaseViewController {
             
             if model.status == 200 {
                 print("녹음 파일 업로드 성공!")
+                self.delegate?.didFinishUploadingRecord()
                 self.dismiss(animated: true)
             }
             else {

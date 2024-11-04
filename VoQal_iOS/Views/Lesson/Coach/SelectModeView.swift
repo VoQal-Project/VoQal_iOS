@@ -40,7 +40,7 @@ class SelectModeView: BaseView {
     
     internal let writeLessonNoteButton: UIButton = {
         let button = UIButton()
-        button.setTitle("수업 일지 작성", for: .normal)
+        button.setTitle("수업 일지", for: .normal)
         button.titleLabel?.font = UIFont(name: "SUIT-Regular", size: 15)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ class SelectModeView: BaseView {
     
     internal let uploadRecordFileButton: UIButton = {
         let button = UIButton()
-        button.setTitle("녹음 파일 업로드", for: .normal)
+        button.setTitle("녹음 파일", for: .normal)
         button.titleLabel?.font = UIFont(name: "SUIT-Regular", size: 15)
         button.tintColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false

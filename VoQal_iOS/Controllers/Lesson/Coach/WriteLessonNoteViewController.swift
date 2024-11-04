@@ -6,8 +6,11 @@
 //
 
 import UIKit
-import MobileCoreServices
 import UniformTypeIdentifiers
+
+protocol WriteLessonNoteDelegate: AnyObject {
+    func didFinishWritingLessonNote()
+}
 
 class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegate {
     
@@ -15,6 +18,7 @@ class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegat
     private let writeLessonNoteManager = WriteLessonNoteManager()
     
     internal var studentId: Int? = nil
+    weak var delegate: WriteLessonNoteDelegate? = nil
     
     override func loadView() {
         view = writeLessonNoteView
@@ -65,6 +69,7 @@ class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegat
                     
                     if model.status == 200 {
                         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0){
+                            self.delegate?.didFinishWritingLessonNote()
                             self.dismiss(animated: true)
                         }
                     }
