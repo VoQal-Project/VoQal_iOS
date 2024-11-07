@@ -20,7 +20,7 @@ class ReadReceiptCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "여기까지 읽었습니다"
-        label.textColor = UIColor.systemGray
+        label.textColor = UIColor(named: "mainBackgroundColor")
         label.font = UIFont.systemFont(ofSize: 11)
         label.backgroundColor = .systemBackground
         label.translatesAutoresizingMaskIntoConstraints = false
