@@ -1,13 +1,21 @@
-//
-//  HomeView.swift
-//  VoQal_iOS
-//
-//  Created by 송규섭 on 2024/04/19.
-//
-
 import UIKit
 
 class HomeView: BaseView {
+    // ScrollView를 담을 컨테이너 뷰
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.alwaysBounceVertical = true
+        return scrollView
+    }()
+    
+    // 스크롤뷰 내부의 컨텐츠를 담을 컨테이너 뷰
+    private let contentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
 
     weak var homeViewController: HomeViewController?
 
@@ -51,6 +59,7 @@ class HomeView: BaseView {
         customButtonView.translatesAutoresizingMaskIntoConstraints = false
         return customButtonView
     }()
+    
     private let thirdButton: CustomButtonView = {
         let customButtonView = CustomButtonView()
         customButtonView.translatesAutoresizingMaskIntoConstraints = false
@@ -78,7 +87,6 @@ class HomeView: BaseView {
         let view = UIView()
         view.backgroundColor = UIColor(hexCode: "181818", alpha: 1.0)
         view.translatesAutoresizingMaskIntoConstraints = false
-        
         return view
     }()
     
@@ -89,7 +97,6 @@ class HomeView: BaseView {
         label.textAlignment = .left
         label.numberOfLines = .max
         label.font = UIFont(name: "SUIT-Regular", size: 20)
-        
         return label
     }()
     
@@ -97,7 +104,6 @@ class HomeView: BaseView {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.image = UIImage(named: "crown")?.withTintColor(UIColor(hexCode: "F9F871", alpha: 1.0))
-        
         return imageView
     }()
     
@@ -111,6 +117,70 @@ class HomeView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func addSubViews() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubview(introLabel)
+        contentView.addSubview(lessonSongButton)
+        contentView.addSubview(buttonStackView)
+        contentView.addSubview(challengeBanner)
+        challengeBanner.addSubview(challengeBannerLabel)
+        challengeBanner.addSubview(crownIcon)
+    }
+
+    override func setConstraints() {
+        NSLayoutConstraint.activate([
+            // ScrollView Constraints
+            scrollView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            // ContentView Constraints
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            // 기존 컴포넌트들의 제약조건
+            introLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            introLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 50),
+            introLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 40),
+            introLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -40),
+            introLabel.heightAnchor.constraint(equalToConstant: 70),
+            
+            lessonSongButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            lessonSongButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 35),
+            lessonSongButton.widthAnchor.constraint(equalToConstant: 320),
+            lessonSongButton.heightAnchor.constraint(equalToConstant: 170),
+            
+            buttonStackView.topAnchor.constraint(equalTo: lessonSongButton.bottomAnchor, constant: 35),
+            buttonStackView.leadingAnchor.constraint(equalTo: lessonSongButton.leadingAnchor),
+            buttonStackView.trailingAnchor.constraint(equalTo: lessonSongButton.trailingAnchor),
+            buttonStackView.heightAnchor.constraint(equalToConstant: 77),
+            
+            challengeBanner.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 50),
+            challengeBanner.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            challengeBanner.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            challengeBanner.heightAnchor.constraint(equalToConstant: 140),
+            challengeBanner.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
+            
+            challengeBannerLabel.leadingAnchor.constraint(equalTo: challengeBanner.leadingAnchor, constant: 40),
+            challengeBannerLabel.trailingAnchor.constraint(equalTo: crownIcon.leadingAnchor, constant: -10),
+            challengeBannerLabel.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
+            
+            crownIcon.trailingAnchor.constraint(equalTo: challengeBanner.trailingAnchor, constant: -40),
+            crownIcon.widthAnchor.constraint(equalToConstant: 57),
+            crownIcon.heightAnchor.constraint(equalToConstant: 60),
+            crownIcon.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
+            
+            contentView.bottomAnchor.constraint(equalTo: challengeBanner.bottomAnchor, constant: 20),
+        ])
+    }
+
+    // 나머지 메서드들은 동일하게 유지
     func updateUI(with user: UserModel) {
         print("Home UI updated!")
         setIntroText(user.name)
@@ -122,53 +192,10 @@ class HomeView: BaseView {
         if let thumbnail = thumbnail {
             print("updateThumbnail - updated")
             lessonSongButton.setImage(thumbnail, for: .normal)
-        }
-        else {
+        } else {
             print("updateThumbnail - nil")
             lessonSongButton.setImage(nil, for: .normal)
         }
-    }
-
-    override func addSubViews() {
-        addSubview(introLabel)
-        addSubview(lessonSongButton)
-        addSubview(buttonStackView)
-        addSubview(challengeBanner)
-        challengeBanner.addSubview(challengeBannerLabel)
-        challengeBanner.addSubview(crownIcon)
-    }
-
-    override func setConstraints() {
-        NSLayoutConstraint.activate([
-            introLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            introLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 50),
-            introLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 40),
-            introLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -40),
-            
-            lessonSongButton.centerXAnchor.constraint(equalTo: centerXAnchor),
-            lessonSongButton.topAnchor.constraint(equalTo: introLabel.bottomAnchor, constant: 35),
-            lessonSongButton.widthAnchor.constraint(equalToConstant: 320),
-            lessonSongButton.heightAnchor.constraint(equalToConstant: 170),
-            
-            buttonStackView.topAnchor.constraint(equalTo: lessonSongButton.bottomAnchor, constant: 35),
-            buttonStackView.leadingAnchor.constraint(equalTo: lessonSongButton.leadingAnchor),
-            buttonStackView.trailingAnchor.constraint(equalTo: lessonSongButton.trailingAnchor),
-            buttonStackView.heightAnchor.constraint(equalToConstant: 77),
-            
-            challengeBanner.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 50),
-            challengeBanner.leadingAnchor.constraint(equalTo: leadingAnchor),
-            challengeBanner.trailingAnchor.constraint(equalTo: trailingAnchor),
-            challengeBanner.heightAnchor.constraint(equalToConstant: 140),
-            
-            challengeBannerLabel.leadingAnchor.constraint(equalTo: challengeBanner.leadingAnchor, constant: 40),
-            challengeBannerLabel.trailingAnchor.constraint(equalTo: crownIcon.leadingAnchor, constant: -10),
-            challengeBannerLabel.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
-            
-            crownIcon.trailingAnchor.constraint(equalTo: challengeBanner.trailingAnchor, constant: -40),
-            crownIcon.widthAnchor.constraint(equalToConstant: 57),
-            crownIcon.heightAnchor.constraint(equalToConstant: 60),
-            crownIcon.centerYAnchor.constraint(equalTo: challengeBanner.centerYAnchor),
-        ])
     }
 
     private func setIntroText(_ name: String?) {
@@ -184,12 +211,10 @@ class HomeView: BaseView {
     }
     
     private func configureButtons() {
-        
         self.lessonSongButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapLessonSongButton), for: .touchUpInside)
         self.firstButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapManageReservationButton), for: .touchUpInside)
         self.secondButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapSNSButton), for: .touchUpInside)
         self.fourthButton.addTarget(homeViewController, action: #selector(homeViewController?.didTapManageLessonBtn), for: .touchUpInside)
-        
     }
 
     private func configureThirdButton(_ userRole: String?) {
@@ -221,27 +246,23 @@ class HomeView: BaseView {
         let firstLine = "오늘의 키워드는 \(keyword)입니다.\n"
         let secondLine = "연상되는 노래를 불러보아요!"
         
-        // 폰트 설정
         let largeFont = UIFont(name: "SUIT-Medium", size: 20) ?? UIFont.systemFont(ofSize: 20, weight: .medium)
         let smallFont = UIFont(name: "SUIT-Medium", size: 15) ?? UIFont.systemFont(ofSize: 23)
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 8
         
-        // 첫 번째 라인에 대한 NSMutableAttributedString 생성
         let attributedText = NSMutableAttributedString(string: firstLine, attributes: [.font: largeFont, .paragraphStyle: paragraphStyle])
         
-        // keyword에만 색상을 적용
         if let keywordRange = firstLine.range(of: keyword) {
             let nsRange = NSRange(keywordRange, in: firstLine)
             let keywordColor = UIColor(hexCode: color, alpha: 1.0)
             attributedText.addAttribute(.foregroundColor, value: keywordColor, range: nsRange)
         }
         
-        // 두 번째 라인을 NSAttributedString으로 추가
         let normalText = NSAttributedString(string: secondLine, attributes: [.font: smallFont, .paragraphStyle: paragraphStyle])
         attributedText.append(normalText)
         
-        // 라벨에 최종 attributedText 적용
         challengeBannerLabel.attributedText = attributedText
-    }}
+    }
+}
