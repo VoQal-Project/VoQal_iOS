@@ -69,10 +69,22 @@ class RegistrationViewController: UIViewController {
                 if model?.status == 200 {
                     self.isEmailVerified = true
                     self.registrationView.originalEmail = email // originEmail 업데이트
-                    self.registrationView.updateEmailVerificationButton(isVerified: true)
+                    
+                    let alert = UIAlertController(title: nil, message: "사용 가능한 이메일입니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.registrationView.updateEmailVerificationButton(isVerified: true)
+                    }))
+                    self.present(alert, animated: true)
+                    
                 } else if model?.status == 400 {
                     self.isEmailVerified = false
-                    self.registrationView.updateEmailVerificationButton(isVerified: false)
+                    
+                    let alert = UIAlertController(title: "", message: "이미 생성된 이메일입니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.registrationView.updateEmailVerificationButton(isVerified: false)
+                    }))
+                    self.present(alert, animated: true)
+                    
                 }
                 
                 if !self.registrationView.isEmailEditingInProgress {
@@ -111,13 +123,24 @@ class RegistrationViewController: UIViewController {
                 if model?.status == 200 {
                     self.isNicknameVerified = true
                     self.registrationView.originalNickname = nickname // originNickname 업데이트
-                    self.registrationView.updateNicknameVerificationButton(isVerified: true)
+                    
+                    let alert = UIAlertController(title: nil, message: "사용 가능한 닉네임입니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.registrationView.updateNicknameVerificationButton(isVerified: true)
+                    }))
+                    self.present(alert, animated: true)
+                    
                 } else if model?.status == 400 {
                     self.isNicknameVerified = false
-                    self.registrationView.updateNicknameVerificationButton(isVerified: false)
+                    
+                    let alert = UIAlertController(title: nil, message: "이미 생성된 닉네임입니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.registrationView.updateNicknameVerificationButton(isVerified: false)
+                    }))
+                    self.present(alert, animated: true)
+                    
                 }
             }
-            
             
             if !self.registrationView.isNicknameEditingInProgress {
                 self.registrationView.nicknameVerifyButton.isEnabled = true

@@ -107,11 +107,13 @@ class ChallengeViewController: BaseViewController {
     
     func didTapMyLikePostBtn() {
         let vc = MyLikePostChallengeViewController()
+        vc.title = "좋아요한 챌린지"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func didTapMyPostBtn() {
         let vc = MyChallengePostViewController()
+        vc.title = "내 챌린지"
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
