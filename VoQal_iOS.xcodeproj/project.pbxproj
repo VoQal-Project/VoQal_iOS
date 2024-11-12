@@ -48,6 +48,11 @@
 		956325842C6A385800C801A4 /* PostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325832C6A385800C801A4 /* PostChallengeView.swift */; };
 		956325862C6A386300C801A4 /* MyLikePostChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */; };
 		956325882C6A388100C801A4 /* MyChallengePostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956325872C6A388100C801A4 /* MyChallengePostView.swift */; };
+		95684C932CE30E00008B2DD0 /* EditLessonNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95684C922CE30E00008B2DD0 /* EditLessonNoteViewController.swift */; };
+		95684C952CE30E62008B2DD0 /* EditLessonNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95684C942CE30E62008B2DD0 /* EditLessonNoteView.swift */; };
+		95684C972CE39237008B2DD0 /* EditLessonNoteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95684C962CE39237008B2DD0 /* EditLessonNoteManager.swift */; };
+		95684C992CE39262008B2DD0 /* EditLessonNoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95684C982CE39262008B2DD0 /* EditLessonNoteData.swift */; };
+		95684C9B2CE39273008B2DD0 /* EditLessonNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95684C9A2CE39273008B2DD0 /* EditLessonNoteModel.swift */; };
 		9569DC1C2C95AA4300EA7A17 /* ReceiverMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */; };
 		9569DC1E2C95AA5100EA7A17 /* SenderMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */; };
 		9569DC212C95B3FB00EA7A17 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */; };
@@ -303,6 +308,11 @@
 		956325832C6A385800C801A4 /* PostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeView.swift; sourceTree = "<group>"; };
 		956325852C6A386300C801A4 /* MyLikePostChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLikePostChallengeView.swift; sourceTree = "<group>"; };
 		956325872C6A388100C801A4 /* MyChallengePostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChallengePostView.swift; sourceTree = "<group>"; };
+		95684C922CE30E00008B2DD0 /* EditLessonNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonNoteViewController.swift; sourceTree = "<group>"; };
+		95684C942CE30E62008B2DD0 /* EditLessonNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonNoteView.swift; sourceTree = "<group>"; };
+		95684C962CE39237008B2DD0 /* EditLessonNoteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonNoteManager.swift; sourceTree = "<group>"; };
+		95684C982CE39262008B2DD0 /* EditLessonNoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonNoteData.swift; sourceTree = "<group>"; };
+		95684C9A2CE39273008B2DD0 /* EditLessonNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLessonNoteModel.swift; sourceTree = "<group>"; };
 		9569DC1B2C95AA4300EA7A17 /* ReceiverMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiverMessageCell.swift; sourceTree = "<group>"; };
 		9569DC1D2C95AA5100EA7A17 /* SenderMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SenderMessageCell.swift; sourceTree = "<group>"; };
 		9569DC202C95B3FB00EA7A17 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -836,6 +846,7 @@
 				956EC08C2C57771400983AE6 /* SelectModeView.swift */,
 				9573A46C2CD87D3D00391020 /* LessonNoteListView.swift */,
 				9573A46E2CD87D5700391020 /* RecordFileListView.swift */,
+				95684C942CE30E62008B2DD0 /* EditLessonNoteView.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -860,6 +871,7 @@
 				955BD90E2C552F47005FA69B /* SetLessonSongViewController.swift */,
 				9573A4702CD87DE300391020 /* RecordFileListViewController.swift */,
 				9573A4722CD87E0700391020 /* LessonNoteListViewController.swift */,
+				95684C922CE30E00008B2DD0 /* EditLessonNoteViewController.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -885,6 +897,7 @@
 				956EC08E2C5796FC00983AE6 /* UploadRecordFileManager.swift */,
 				9573A47C2CD8936F00391020 /* LessonNoteListManager.swift */,
 				9573A47E2CD8937C00391020 /* RecordFileListManager.swift */,
+				95684C962CE39237008B2DD0 /* EditLessonNoteManager.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -909,6 +922,8 @@
 				9573A4762CD8930B00391020 /* LessonNoteListModel.swift */,
 				9573A4782CD8931600391020 /* RecordFileListData.swift */,
 				9573A47A2CD8931F00391020 /* RecordFileListModel.swift */,
+				95684C982CE39262008B2DD0 /* EditLessonNoteData.swift */,
+				95684C9A2CE39273008B2DD0 /* EditLessonNoteModel.swift */,
 			);
 			path = Coach;
 			sourceTree = "<group>";
@@ -1512,6 +1527,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9573A47D2CD8936F00391020 /* LessonNoteListManager.swift in Sources */,
+				95684C932CE30E00008B2DD0 /* EditLessonNoteViewController.swift in Sources */,
 				957E3E172C344DE500936617 /* NicknameVerifyModel.swift in Sources */,
 				956F3C3A2C48E58200F63F33 /* CustomCollectionViewCell.swift in Sources */,
 				95B661642C3D1C8D0091F241 /* RoleSelectionManager.swift in Sources */,
@@ -1555,6 +1571,7 @@
 				9584A2362C6E0A9C00E0BC99 /* ChallengeManager.swift in Sources */,
 				955B4ACC2C67AE9600AC2E20 /* ChallengeCollectionViewCell.swift in Sources */,
 				9573A47B2CD8931F00391020 /* RecordFileListModel.swift in Sources */,
+				95684C972CE39237008B2DD0 /* EditLessonNoteManager.swift in Sources */,
 				95B5C6712BCABE490067432A /* ViewController.swift in Sources */,
 				958293802C7B3E690041CC14 /* ChangeCoachView.swift in Sources */,
 				956EC0832C5625CB00983AE6 /* SetLessonSongModel.swift in Sources */,
@@ -1572,6 +1589,7 @@
 				9581B0E82C5CD524008D7701 /* StudentRecordFileModel.swift in Sources */,
 				9582937C2C7B3C390041CC14 /* EditNicknameViewController.swift in Sources */,
 				95A0D43F2C43997B002A768B /* UserManager.swift in Sources */,
+				95684C952CE30E62008B2DD0 /* EditLessonNoteView.swift in Sources */,
 				958FE7CC2C42C33000F2954D /* HomeData.swift in Sources */,
 				956C1C0B2C4FAD5500ECAADA /* YoutubeUtility.swift in Sources */,
 				956EC0812C56257D00983AE6 /* SetLessonSongManager.swift in Sources */,
@@ -1581,6 +1599,7 @@
 				954F56962BD0AF8400288A7D /* Extension.swift in Sources */,
 				9570F0962C4CFBD00004AA67 /* MyReservationViewController.swift in Sources */,
 				955F603B2C8F199700523287 /* ChatData.swift in Sources */,
+				95684C992CE39262008B2DD0 /* EditLessonNoteData.swift in Sources */,
 				956C1AAC2C8C8CE70035ABFC /* EditChallengeModel.swift in Sources */,
 				9577AC052C4FE03E0019396E /* ManageStudentData.swift in Sources */,
 				955F60382C8F197700523287 /* ChatManager.swift in Sources */,
@@ -1689,6 +1708,7 @@
 				95A0D4442C43ADE9002A768B /* BaseView.swift in Sources */,
 				956FFEDB2C83628800F92604 /* EditNicknameModel.swift in Sources */,
 				957E3E152C344DD800936617 /* EmailVerifyModel.swift in Sources */,
+				95684C9B2CE39273008B2DD0 /* EditLessonNoteModel.swift in Sources */,
 				9570F09A2C4CFD070004AA67 /* MyReservationTableViewCell.swift in Sources */,
 				959D94312C2D66B80014F086 /* EmailFinderViewController.swift in Sources */,
 				959B575B2C412C40009428D7 /* AuthData.swift in Sources */,

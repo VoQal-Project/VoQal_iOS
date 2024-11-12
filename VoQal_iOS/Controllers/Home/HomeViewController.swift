@@ -143,6 +143,17 @@ class HomeViewController: BaseViewController, MyPageViewDelegate, MessagingDeleg
                     self.homeView.updateThumbnail(self.thumbnail)
                 }
             }
+        } else {
+            let url = "https://www.youtube.com/watch?v=78tHFSzMPKk&pp=ygUT67CV7Zqo7IugIOudvOydtOu4jA%3D%3D"
+            
+            homeManager.getLessonSongThumbnail(url) { [weak self] model in
+                guard let self = self else { return }
+                self.thumbnail = model?.thumbnail
+                print("썸네일 저장 완료")
+                DispatchQueue.main.async {
+                    self.homeView.updateThumbnail(self.thumbnail)
+                }
+            }
         }
     }
 
