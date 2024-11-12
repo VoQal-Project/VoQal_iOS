@@ -50,24 +50,33 @@ class UploadRecordViewController: BaseViewController {
     }
     
     @objc private func didTapCompleteButton() {
-        guard let title = uploadRecordView.titleField.text,
-              let studentId = self.studentId else { print("녹음 파일 업로드 뷰에서의 값이 누락되었습니다."); return }
-        let date = DateUtility.convertSelectedDate(uploadRecordView.datePicker.date, true)
-
-        print("업로드 요청 - studentId: \(studentId), recordDate: \(date), recordTitle: \(title), fileURL: \(selectedFileURL)")
-
-        uploadRecordFileManager.uploadRecordFile(studentId: studentId, recordDate: date, recordTitle: title, fileURL: selectedFileURL) { model in
-            guard let model = model else { print("didTapCompleteButton - model 바인딩 실패!"); return }
-            
-            if model.status == 200 {
-                print("녹음 파일 업로드 성공!")
-                self.delegate?.didFinishUploadingRecord()
-                self.dismiss(animated: true)
+        uploadRecordView.completeButton.throttle(seconds: 3.0) { [weak self] in
+            guard let self = self,
+                  let title = self.uploadRecordView.titleField.text,
+                  let studentId = self.studentId else {
+                print("녹음 파일 업로드 뷰에서의 값이 누락되었습니다.");
+                return
             }
-            else {
-                let alert = UIAlertController(title: "업로드 실패!", message: "잠시 후에 다시 시도해 주세요.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default))
-                self.present(alert, animated: true)
+            let date = DateUtility.convertSelectedDate(self.uploadRecordView.datePicker.date, true)
+
+            print("업로드 요청 - studentId: \(studentId), recordDate: \(date), recordTitle: \(title), fileURL: \(self.selectedFileURL)")
+
+            self.uploadRecordFileManager.uploadRecordFile(studentId: studentId, recordDate: date, recordTitle: title, fileURL: self.selectedFileURL) { model in
+                guard let model = model else {
+                    print("didTapCompleteButton - model 바인딩 실패!");
+                    return
+                }
+                
+                if model.status == 200 {
+                    print("녹음 파일 업로드 성공!")
+                    self.delegate?.didFinishUploadingRecord()
+                    self.dismiss(animated: true)
+                }
+                else {
+                    let alert = UIAlertController(title: "업로드 실패!", message: "잠시 후에 다시 시도해 주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    self.present(alert, animated: true)
+                }
             }
         }
     }

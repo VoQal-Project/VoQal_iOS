@@ -14,6 +14,8 @@ protocol WriteLessonNoteDelegate: AnyObject {
 
 class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegate {
     
+    private var postBarButton: UIBarButtonItem?
+    
     private let writeLessonNoteView = WriteLessonNoteView()
     private let writeLessonNoteManager = WriteLessonNoteManager()
     
@@ -33,9 +35,9 @@ class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegat
     }
     
     override func setupNavigationBar() {
-        let postButton = UIBarButtonItem(title: "게시", style: .done, target: self, action: #selector(postLessonNote))
+        postBarButton = UIBarButtonItem(title: "게시", style: .done, target: self, action: #selector(postButtonTapped))
         
-        self.navigationItem.rightBarButtonItem = postButton
+        self.navigationItem.rightBarButtonItem = postBarButton
         
         let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left")?.withTintColor(.white), style: .done, target: self, action: #selector(didTapBackButton))
         
@@ -44,6 +46,12 @@ class WriteLessonNoteViewController: BaseViewController, UIDocumentPickerDelegat
     
     @objc private func didTapBackButton() {
         self.dismiss(animated: true)
+    }
+    
+    @objc private func postButtonTapped() {
+        postBarButton?.throttle(seconds: 3.0, action: { [weak self] in
+            self?.postLessonNote()
+        })
     }
     
     @objc private func postLessonNote() {
