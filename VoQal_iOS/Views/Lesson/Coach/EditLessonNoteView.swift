@@ -1,14 +1,14 @@
 //
-//  WriteLessonNoteView.swift
+//  EditLessonNoteView.swift
 //  VoQal_iOS
 //
-//  Created by 송규섭 on 7/24/24.
+//  Created by 송규섭 on 11/12/24.
 //
 
 import UIKit
 
-class WriteLessonNoteView: BaseView {
-    
+class EditLessonNoteView: BaseView {
+
     private var scrollViewBottomConstraint: NSLayoutConstraint?
     
     private let scrollView: UIScrollView = {
@@ -353,7 +353,7 @@ class WriteLessonNoteView: BaseView {
     
 }
 
-extension WriteLessonNoteView: UITextFieldDelegate {
+extension EditLessonNoteView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == titleTextField {
             artistTextField.becomeFirstResponder()

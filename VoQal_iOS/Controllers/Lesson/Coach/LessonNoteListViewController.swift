@@ -94,6 +94,26 @@ extension LessonNoteListViewController: UITableViewDelegate, UITableViewDataSour
         return 80
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // 왼쪽에 만들기
+        
+        let edit = UIContextualAction(style: .normal, title: "Edit") { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            let vc = EditLessonNoteViewController()
+            let lessonNote = self.lessonNoteList[indexPath.row]
+            vc.lessonNoteId = Int64(lessonNote.lessonNoteId)
+
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            success(true)
+        }
+        edit.image = UIImage(systemName: "pencil")
+        edit.backgroundColor = UIColor(hexCode: "747474")
+        
+        
+        //actions배열 인덱스 0이 왼쪽에 붙어서 나옴
+        return UISwipeActionsConfiguration(actions:[edit])
+        
+    }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -143,6 +163,12 @@ extension LessonNoteListViewController: UITableViewDelegate, UITableViewDataSour
 
 extension LessonNoteListViewController: WriteLessonNoteDelegate {
     func didFinishWritingLessonNote() {
+        fetchLessonNoteList()
+    }
+}
+
+extension LessonNoteListViewController: EditLessonNoteDelegate {
+    func didFinishEditLessonNote() {
         fetchLessonNoteList()
     }
 }
