@@ -10,7 +10,7 @@ import PhotosUI
 import CropViewController
 
 class PostChallengeViewController: BaseViewController, PHPickerViewControllerDelegate, CropViewControllerDelegate, UIDocumentPickerDelegate {
-
+    
     private let postChallengeView = PostChallengeView()
     private let postChallengeManager = PostChallengeManager()
     private var recordFileURL: URL? = nil
@@ -25,7 +25,7 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -35,7 +35,7 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
         postChallengeView.closeButton.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
         postChallengeView.postButton.addTarget(self, action: #selector(didTapPostButton), for: .touchUpInside)
     }
-
+    
     
     
     @objc private func didTapUploadRecordFileButton() {
@@ -63,45 +63,47 @@ class PostChallengeViewController: BaseViewController, PHPickerViewControllerDel
     }
     
     @objc private func didTapPostButton() {
-        // .post api request
-        var errorFields: [String] = []
-        
-        if postChallengeView.getArtistValue() == "" { errorFields.append("가수명") }
-        if postChallengeView.getSongTitleValue() == "" { errorFields.append("제목(곡 명)") }
-        if self.thumbnailImage == nil { errorFields.append("대표 사진(썸네일)") }
-        if self.recordFileURL == nil { errorFields.append("음성 파일") }
-        
-        if !errorFields.isEmpty {
-            let alert = UIAlertController(title: "", message: "\(errorFields.joined(separator: ", "))을 입력해주세요!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "확인", style: .default))
+        postChallengeView.postButton.throttle(seconds: 3.0) { [weak self] in
+            guard let self = self else { return }
             
-            self.present(alert, animated: false)
-            return
-        }
-        
-        postChallengeManager.postChallenge(thumbnail: self.thumbnailImage!, thumbnailName: self.thumbnailName!, songTitle: postChallengeView.getSongTitleValue()!, singer: postChallengeView.getArtistValue()!, fileURL: self.recordFileURL!) { [weak self] model in
-            guard let self = self, let model = model else { print("postChallengeViewController - model, self 바인딩 실패"); return }
+            var errorFields: [String] = []
             
-            if model.status == 200 {
-                let alert = UIAlertController(title: "게시 완료!", message: "챌린지 게시가 완료되었습니다.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
-                    self.postCompletion?()
-                    self.dismiss(animated: true)
-                }))
-                
-                self.present(alert, animated: true)
-            }
-            else {
-                let alert = UIAlertController(title: "게시 실패", message: "챌린지 게시에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+            if self.postChallengeView.getArtistValue() == "" { errorFields.append("가수명") }
+            if self.postChallengeView.getSongTitleValue() == "" { errorFields.append("제목(곡 명)") }
+            if self.thumbnailImage == nil { errorFields.append("대표 사진(썸네일)") }
+            if self.recordFileURL == nil { errorFields.append("음성 파일") }
+            
+            if !errorFields.isEmpty {
+                let alert = UIAlertController(title: "", message: "\(errorFields.joined(separator: ", "))을 입력해주세요!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "확인", style: .default))
                 
-                self.present(alert, animated: true)
+                self.present(alert, animated: false)
+                return
             }
-        } // 이전에 null인지 검사를 했으나 이를 그대로 쓸 방법을 찾아야함.
+            
+            self.postChallengeManager.postChallenge(thumbnail: self.thumbnailImage!, thumbnailName: self.thumbnailName!, songTitle: self.postChallengeView.getSongTitleValue()!, singer: self.postChallengeView.getArtistValue()!, fileURL: self.recordFileURL!) { model in
+                guard let model = model else { print("postChallengeViewController - model 바인딩 실패"); return }
+                
+                if model.status == 200 {
+                    let alert = UIAlertController(title: "게시 완료!", message: "챌린지 게시가 완료되었습니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                        self.postCompletion?()
+                        self.dismiss(animated: true)
+                    }))
+                    
+                    self.present(alert, animated: true)
+                }
+                else {
+                    let alert = UIAlertController(title: "게시 실패", message: "챌린지 게시에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "확인", style: .default))
+                    
+                    self.present(alert, animated: true)
+                }
+            }
+        }
     }
     
     
-
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
         

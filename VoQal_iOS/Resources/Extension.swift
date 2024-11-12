@@ -47,3 +47,64 @@ extension UIImage {
 extension Notification.Name {
     static let tokenExpired = Notification.Name("tokenExpired")
 }
+
+extension UIButton {
+    
+    private static var throttleTime: [String: Date] = [:]
+    
+    func throttle(seconds: Double, action: @escaping () -> Void) {
+        // 버튼의 메모리 주소를 고유 식별자로 사용
+        let identifier = String(describing: self)
+        
+        // 현재 시간
+        let now = Date()
+        
+        // 마지막으로 액션이 실행된 시간을 가져옴
+        if let lastExecutionTime = UIButton.throttleTime[identifier] {
+            // 마지막 실행 시간과 현재 시간의 차이를 계산
+            let timePassed = now.timeIntervalSince(lastExecutionTime)
+            
+            // 설정된 쓰로틀링 시간이 지나지 않았다면 액션을 실행하지 않음
+            guard timePassed >= seconds else { return }
+        }
+        
+        // 현재 시간을 마지막 실행 시간으로 저장
+        UIButton.throttleTime[identifier] = now
+        
+        // 액션 실행
+        action()
+    }
+    
+}
+
+extension UIBarButtonItem {
+    // 쓰로틀링 상태를 저장할 속성
+    private static var throttleTime: [String: Date] = [:]
+    
+    /// UIBarButtonItem에 쓰로틀링을 적용하는 메서드
+    /// - Parameters:
+    ///   - seconds: 쓰로틀링 시간 (초)
+    ///   - action: 실행할 액션
+    func throttle(seconds: Double, action: @escaping () -> Void) {
+        // 버튼의 메모리 주소를 고유 식별자로 사용
+        let identifier = String(describing: self)
+        
+        // 현재 시간
+        let now = Date()
+        
+        // 마지막으로 액션이 실행된 시간을 가져옴
+        if let lastExecutionTime = UIBarButtonItem.throttleTime[identifier] {
+            // 마지막 실행 시간과 현재 시간의 차이를 계산
+            let timePassed = now.timeIntervalSince(lastExecutionTime)
+            
+            // 설정된 쓰로틀링 시간이 지나지 않았다면 액션을 실행하지 않음
+            guard timePassed >= seconds else { return }
+        }
+        
+        // 현재 시간을 마지막 실행 시간으로 저장
+        UIBarButtonItem.throttleTime[identifier] = now
+        
+        // 액션 실행
+        action()
+    }
+}

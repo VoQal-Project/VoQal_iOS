@@ -70,39 +70,40 @@ class EditChallengeViewController: BaseViewController, PHPickerViewControllerDel
     }
     
     @objc private func didTapPostButton() {
-        
-        if let artist = editChallengeView.getArtistValue(), artist != "",
-           let songTitle = editChallengeView.getSongTitleValue(), songTitle != ""
-        {
-            print("songTitle: \(songTitle), artist: \(artist)")
-            editChallengeManager.editChallenge(thumbnail: self.thumbnailImage, thumbnailName: self.thumbnailName, songTitle: songTitle, singer: artist, fileURL: self.recordFileURL, challengePostId: self.challengePostId!) { model in
-                guard let model = model else { print("postChallengeViewController - model 바인딩 실패"); return }
-                
-                if model.status == 200 {
-                    let alert = UIAlertController(title: "수정 완료!", message: "챌린지 수정이 완료되었습니다.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
-                        self.editCompletion?()
-                        self.dismiss(animated: true)
-                    }))
+        editChallengeView.postButton.throttle(seconds: 3.0) { [weak self] in
+            guard let self = self else { return }
+            
+            if let artist = self.editChallengeView.getArtistValue(), artist != "",
+               let songTitle = self.editChallengeView.getSongTitleValue(), songTitle != ""
+            {
+                print("songTitle: \(songTitle), artist: \(artist)")
+                self.editChallengeManager.editChallenge(thumbnail: self.thumbnailImage, thumbnailName: self.thumbnailName, songTitle: songTitle, singer: artist, fileURL: self.recordFileURL, challengePostId: self.challengePostId!) { model in
+                    guard let model = model else { print("postChallengeViewController - model 바인딩 실패"); return }
                     
-                    self.present(alert, animated: true)
-                }
-                else {
-                    let alert = UIAlertController(title: "수정 실패", message: "챌린지 수정에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "확인", style: .default))
-                    
-                    self.present(alert, animated: true)
+                    if model.status == 200 {
+                        let alert = UIAlertController(title: "수정 완료!", message: "챌린지 수정이 완료되었습니다.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in
+                            self.editCompletion?()
+                            self.dismiss(animated: true)
+                        }))
+                        
+                        self.present(alert, animated: true)
+                    }
+                    else {
+                        let alert = UIAlertController(title: "수정 실패", message: "챌린지 수정에 실패했습니다.\n잠시 후 다시 시도해주세요.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "확인", style: .default))
+                        
+                        self.present(alert, animated: true)
+                    }
                 }
             }
+            else {
+                let alert = UIAlertController(title: "", message: "곡명 혹은 가수명을 입력해주세요!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "확인", style: .default))
+                
+                self.present(alert, animated: false)
+            }
         }
-        else {
-            let alert = UIAlertController(title: "", message: "곡명 혹은 가수명을 입력해주세요!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "확인", style: .default))
-            
-            self.present(alert, animated: false)
-        }
-        
-         
     }
     
     
