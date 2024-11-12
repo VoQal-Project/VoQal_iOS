@@ -12,7 +12,7 @@ class ReadReceiptCell: UITableViewCell {
     
     private let separatorLine: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.systemGray5
+        view.backgroundColor = UIColor.lightGray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -20,9 +20,9 @@ class ReadReceiptCell: UITableViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.text = "여기까지 읽었습니다"
-        label.textColor = UIColor(named: "mainBackgroundColor")
+        label.textColor = UIColor.lightGray
         label.font = UIFont.systemFont(ofSize: 11)
-        label.backgroundColor = .systemBackground
+        label.backgroundColor = UIColor(named: "mainBackgroundColor")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -42,7 +42,7 @@ class ReadReceiptCell: UITableViewCell {
         
         // 레이블의 백그라운드 뷰
         let backgroundView = UIView()
-        backgroundView.backgroundColor = .systemBackground
+        backgroundView.backgroundColor = UIColor(named: "mainBackgroundColor")
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(backgroundView)
         
