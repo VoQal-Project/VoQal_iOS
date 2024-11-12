@@ -16,6 +16,9 @@ class ChatViewController: BaseViewController {
     private var lastReadTime: Int64? = nil
     private var lastTimeStampLocal: Int64 = 0
     
+    private var isKeyboardVisible = false
+    private var keyboardHeight: CGFloat = 0
+    
     private var lastReadMessageIndex: Int? {
         guard let lastReadTime = self.lastReadTime else { return nil }
         return messages.lastIndex { $0.timestamp <= lastReadTime }
@@ -328,22 +331,36 @@ class ChatViewController: BaseViewController {
     }
     
     private func startObservingKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillShow),
+                name: UIResponder.keyboardWillShowNotification,
+                object: nil
+            )
+            NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(keyboardWillHide),
+                name: UIResponder.keyboardWillHideNotification,
+                object: nil
+            )
+        }
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
             let keyboardHeight = keyboardFrame.height
+            let bottomInset = -(keyboardHeight - view.safeAreaInsets.bottom)
+            
             UIView.animate(withDuration: 0.3) {
-                self.chatView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+                self.chatView.updateBottomConstraint(constant: bottomInset)
+                self.view.layoutIfNeeded()
             }
         }
     }
-    
+
     @objc private func keyboardWillHide(notification: NSNotification) {
         UIView.animate(withDuration: 0.3) {
-            self.chatView.transform = .identity
+            self.chatView.updateBottomConstraint(constant: -10) // 원래 constant 값으로 복구
+            self.view.layoutIfNeeded()
         }
     }
     

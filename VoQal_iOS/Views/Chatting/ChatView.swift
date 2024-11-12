@@ -11,6 +11,8 @@ class ChatView: BaseView, UITextViewDelegate {
     
     private var messageInputViewHeightConstraint: NSLayoutConstraint!
     
+    private var messageInputViewBottomConstraint: NSLayoutConstraint!
+    
     internal let messageInputView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,8 +65,9 @@ class ChatView: BaseView, UITextViewDelegate {
     }
     
     override func setConstraints() {
-        
+
         messageInputViewHeightConstraint = messageInputView.heightAnchor.constraint(greaterThanOrEqualToConstant: 36)
+        messageInputViewBottomConstraint = messageInputView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10)
         
         NSLayoutConstraint.activate([
             // TableView Constraints
@@ -75,7 +78,7 @@ class ChatView: BaseView, UITextViewDelegate {
             
             // MessageInput Constraints
             messageInputView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            messageInputView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            messageInputViewBottomConstraint, // 수정된 부분
             messageInputView.trailingAnchor.constraint(equalTo: sendButton.leadingAnchor, constant: -10),
             messageInputViewHeightConstraint,
             messageInputView.heightAnchor.constraint(lessThanOrEqualToConstant: 100),
@@ -85,6 +88,10 @@ class ChatView: BaseView, UITextViewDelegate {
             sendButton.centerYAnchor.constraint(equalTo: messageInputView.centerYAnchor),
             sendButton.widthAnchor.constraint(equalToConstant: 50),
         ])
+    }
+    
+    func updateBottomConstraint(constant: CGFloat) {
+        messageInputViewBottomConstraint.constant = constant
     }
     
     func textViewDidChange(_ textView: UITextView) {
